@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First Lean Project</title>
+  <meta name="description" content="Will clean it up soon!" />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --link: #0b5fff;
+      --border: #e5e7eb;
+      --chip-bg: #f9fafb;
+      --chip-bg-hover: #f3f4f6;
+      --code-bg: #0b1020;
+      --code-text: #e5e7eb;
+      --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+      --radius: 14px;
+      --maxw: 920px;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --text: #e5e7eb;
+        --muted: #a1a1aa;
+        --link: #7db2ff;
+        --border: #1f2937;
+        --chip-bg: #0f172a;
+        --chip-bg-hover: #111c33;
+        --code-bg: #060a14;
+        --code-text: #e5e7eb;
+        --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 36px rgba(0,0,0,.30);
+      }
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color: var(--link); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .skip-link{
+      position: absolute;
+      left: -999px;
+      top: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--chip-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      box-shadow: var(--shadow);
+    }
+    .skip-link:focus{ left: 12px; z-index: 9999; }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+
+    header{
+      padding-top: 10px;
+      padding-bottom: 18px;
+    }
+    h1{
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .chip a{
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      background: var(--chip-bg);
+      border-radius: 999px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.03);
+      color: var(--text);
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .chip a:hover{
+      background: var(--chip-bg-hover);
+      text-decoration: none;
+    }
+
+    main{
+      margin-top: 10px;
+    }
+
+    .hero{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin: 18px 0 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,.00), rgba(0,0,0,.02));
+    }
+    .hero .media{
+      aspect-ratio: 16/6;
+      min-height: 160px;
+      background:
+        radial-gradient(1200px 260px at 30% 10%, rgba(11,95,255,.18), transparent 60%),
+        radial-gradient(900px 240px at 85% 40%, rgba(245,158,11,.14), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.00));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .hero .caption{
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .hero .media span{
+      font-weight: 600;
+      color: var(--text);
+      opacity: .9;
+      text-align: center;
+    }
+
+    h2{
+      margin: 26px 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+    p{ margin: 10px 0; }
+    ul{ margin: 10px 0 10px 22px; }
+    li{ margin: 6px 0; }
+
+    pre{
+      margin: 12px 0 0;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    footer{
+      margin-top: 46px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .two-col{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 12px;
+    }
+    @media (min-width: 900px){
+      .two-col{ grid-template-columns: 1.15fr 0.85fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 1px 0 rgba(0,0,0,.03);
+    }
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .card p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="container">
+    <header>
+      <h1>Equational Theories Project</h1>
+      <p class="subtitle">Mapping out the relations between different equational theories of Magmas</p>
+
+      <!-- Top link row (like the example site) -->
+      <ul class="chips" aria-label="Primary links">
+        <li class="chip"><a href="#">Blueprint (web)</a></li>
+        <li class="chip"><a href="#">Blueprint (pdf)</a></li>
+        <li class="chip"><a href="#">Paper (pdf)</a></li>
+        <li class="chip"><a href="#">Documentation</a></li>
+        <li class="chip"><a href="#">Dashboard</a></li>
+        <li class="chip"><a href="#">Equation Explorer</a></li>
+        <li class="chip"><a href="#">Finite Magma Explorer</a></li>
+        <li class="chip"><a href="#">Graphiti</a></li>
+        <li class="chip"><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a></li>
+      </ul>
+    </header>
+
+    <main id="content">
+      <!-- Hero image area: swap this for an <img> if you have one -->
+      <section class="hero" aria-label="Project visualization">
+        <div class="media">
+          <span>Hero image / diagram goes here<br><small style="opacity:.7;">(replace this block with your image)</small></span>
+        </div>
+        <div class="caption">Image: Hasse diagram of selected equations</div>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <p>
+            The purpose of this project is to explore the space of equational theories of
+            <a href="https://en.wikipedia.org/wiki/Magma_(algebra)" target="_blank" rel="noreferrer">magmas</a>,
+            ordered by implication. To begin with, we focus on theories of a single equation, and specifically on a
+            finite list of equational laws up to symmetry and relabeling.
+          </p>
+
+          <p>
+            We accumulate both <strong>proven</strong> and <strong>conjectured</strong> implications and anti-implications.
+            Proven assertions are verified in a proof assistant, while conjectured assertions represent claims not yet verified.
+          </p>
+
+          <h2>Examples</h2>
+          <ul>
+            <li><strong>Equation 1</strong>: <code>x = x</code>. The trivial law.</li>
+            <li><strong>Equation 2</strong>: <code>x = y</code>. The singleton law.</li>
+            <li><strong>Equation 43</strong>: <code>x ◇ y = y ◇ x</code>. The commutative law.</li>
+            <li><strong>Equation 46</strong>: <code>x ◇ y = z ◇ w</code>. The constant law.</li>
+            <li><strong>Equation 4512</strong>: <code>x ◇ (y ◇ z) = (x ◇ y) ◇ z</code>. The associative law.</li>
+          </ul>
+
+          <h2>Building the project</h2>
+          <p>After installing your tooling and cloning the repository, run:</p>
+          <pre><code>% cd your_project/
+% lake exe cache get
+% lake build</code></pre>
+        </div>
+
+        <aside class="card" aria-label="Quick links">
+          <h3>Quick links</h3>
+          <p>
+            Put your most-visited pages here (dashboard, docs, contribution guide, etc.). You can also add small status notes.
+          </p>
+
+          <div style="margin-top:12px">
+            <strong style="font-size:14px;">Contributing</strong>
+            <p style="margin-top:6px">
+              For guidelines on how to contribute, see <a href="#">CONTRIBUTING.md</a>.
+              Please also follow the <a href="#">code of conduct</a>.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <h2>Links</h2>
+      <ul>
+        <li>Main web page
+          <ul>
+            <li><a href="#">Blueprint</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Community stream</a></li>
+            <li><a href="#">Wiki</a></li>
+          </ul>
+        </li>
+        <li>Data
+          <ul>
+            <li><a href="#">Text list of equations</a></li>
+            <li><a href="#">JSON exports</a></li>
+            <li><a href="#">Download the current implication graph</a></li>
+          </ul>
+        </li>
+        <li>Tools
+          <ul>
+            <li><a href="#">Equation Explorer</a></li>
+            <li><a href="#">Finite Magma Explorer</a></li>
+            <li><a href="#">Graphiti</a></li>
+          </ul>
+        </li>
+      </ul>
+    </main>
+
+    <footer>
+      <div>
+        Maintained by <a href="#">Your Name</a> ·
+        <a href="https://github.com/" target="_blank" rel="noreferrer">Repository</a>
+      </div>
+      <div style="margin-top:6px;">
+        © <span id="year"></span> · Last updated: <span id="updated"></span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Tiny helpers: keep the footer fresh
+    const now = new Date();
+    document.getElementById("year").textContent = String(now.getFullYear());
+    document.getElementById("updated").textContent = now.toLocaleDateString(undefined, { year:"numeric", month:"short", day:"numeric" });
+  </script>
+</body>
+</html>
