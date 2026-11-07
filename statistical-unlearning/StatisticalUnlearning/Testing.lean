@@ -11,8 +11,8 @@ Source: Pandey and Kulkarni, arXiv:2605.16645v1, Definition 1, equation (1).
 We use `ℝ≥0∞` for error probabilities and the nonnegative integral. Every test
 is measurable and bounded by one. This avoids an implicit integrability
 assumption and makes the infimum a complete-lattice infimum. Test levels are
-restricted to `[0,1]`. A real-valued reformulation and the full characterization
-of trade-off functions are future work.
+restricted to `[0,1]`. The real-valued test, error, feasibility and infimum
+correspondence is proved below. The full characterization remains future work.
 -/
 
 set_option autoImplicit false
@@ -56,7 +56,7 @@ noncomputable def typeIIError (Q : ProbabilityMeasure Ω) (φ : RandomizedTest �
   ∫⁻ x, (1 - φ.toFun x) ∂(Q : Measure Ω)
 
 /-- Encoding of Definition 1, equation (1), in nonnegative extended real
-arithmetic. The real-valued integral/infimum equivalence is not yet proved. -/
+arithmetic. See `tradeOff_eq_real_test_infimum` for the real-valued formulation. -/
 noncomputable def tradeOff (P Q : ProbabilityMeasure Ω)
     (α : SignificanceLevel) : ℝ≥0∞ :=
   ⨅ (φ : RandomizedTest Ω) (_ : typeIError P φ ≤ (α : ℝ≥0∞)), typeIIError Q φ
