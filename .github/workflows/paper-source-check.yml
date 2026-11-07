@@ -1,0 +1,14 @@
+name: Paper source availability
+on:
+  push:
+    branches: [paper-faithful-reader]
+permissions:
+  contents: read
+jobs:
+  headers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check arXiv response and embedding headers
+        run: |
+          curl -L -I --max-time 30 https://arxiv.org/html/2605.16645v1
+          curl -L -I --max-time 30 https://arxiv.org/pdf/2605.16645v1
