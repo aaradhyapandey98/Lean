@@ -3,8 +3,8 @@ import Mathlib.Probability.Kernel.Composition.MeasureComp
 import Mathlib.Probability.Kernel.MeasurableLIntegral
 
 /-! Forward data processing for randomized Markov kernels. This concerns the
-ENNReal encoding of testing trade-offs; the real-valued bridge and Blackwell
-converse are not established here. -/
+ENNReal encoding and the real-valued testing trade-off. The Blackwell
+converse is not established here. -/
 
 set_option autoImplicit false
 open MeasureTheory ProbabilityTheory
@@ -71,5 +71,26 @@ theorem tradeOff_kernel_ge (κ : Kernel Ω Ω') [IsMarkovKernel κ]
         ≤ typeIIError Q (kernelPullbackTest κ φ) :=
       iInf_le_of_le (kernelPullbackTest κ φ) (iInf_le_of_le hfeasible le_rfl)
     _ = typeIIError (kernelLaw κ Q) φ := (typeIIError_kernel κ Q φ).symm
+
+/-- The kernel-to-order direction of Appendix A.5, Theorem 19, expressed
+directly using Definition 1's real-valued tests and expectations.
+
+This does not establish the converse direction of Blackwell ordering. -/
+theorem real_tradeOff_kernel_ge (κ : Kernel Ω Ω') [IsMarkovKernel κ]
+    (P Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    sInf {r : ℝ | ∃ f : Ω → ℝ, Measurable f ∧
+      (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+      (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ∧
+      r = ∫ x, (1 - f x) ∂(Q : Measure Ω)} ≤
+    sInf {r : ℝ | ∃ f : Ω' → ℝ, Measurable f ∧
+      (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+      (∫ x, f x ∂((kernelLaw κ P) : Measure Ω')) ≤ (α : ℝ≥0∞).toReal ∧
+      r = ∫ x, (1 - f x) ∂((kernelLaw κ Q) : Measure Ω')} := by
+  rw [← tradeOff_eq_real_test_infimum P Q α,
+    ← tradeOff_eq_real_test_infimum (kernelLaw κ P) (kernelLaw κ Q) α]
+  exact ENNReal.toReal_mono
+    (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞)
+      (tradeOff_le_one (kernelLaw κ P) (kernelLaw κ Q) α))
+    (tradeOff_kernel_ge κ P Q α)
 
 end StatisticalUnlearning
