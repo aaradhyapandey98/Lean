@@ -69,6 +69,7 @@ function harness(extraEntry){
  assert.equal(links().length,entries.length);
  assert.equal($('statement-title').textContent,entries[0].title);
  assert.equal($('lean-file').textContent,entries[0].lean.file);
+ assert.equal($('lean-scope-note').textContent,entries[0].notes,'Correspondence notes remain visible beside Lean');
  assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/html/2605.16645v1#S2.SS1','The paper pane must show the original versioned HTML');
  window.location.hash='gaussian-region';
  assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/html/2605.16645v1#S3.SS1','HTML selection must navigate to the corresponding source section');

@@ -145,6 +145,11 @@
     for(const id of entry.dependencies||[]){const target=byId.get(id);const a=document.createElement('a');a.href='#'+encodeURIComponent(id);a.textContent=target?target.title:id;$('dependencies').append(a);}
     $('dependencies-section').hidden=!entry.dependencies?.length;
     setText('entry-note',entry.notes);$('entry-note').hidden=!entry.notes;
+    setText('lean-scope-note',entry.notes);$('lean-scope-note').hidden=!entry.notes;
+    $('lean-assumptions').replaceChildren();
+    for(const assumption of entry.assumptions||[]){const li=document.createElement('li');li.textContent=assumption;$('lean-assumptions').append(li);}
+    $('lean-assumptions').hidden=!entry.assumptions?.length;
+    $('lean-scope').hidden=!entry.notes&&!entry.assumptions?.length;
     const source=entry.lean?.code||'';const hasCode=Boolean(source.trim());
     $('code-body').hidden=!hasCode;$('empty-proof').hidden=hasCode;$('copy-code').hidden=!hasCode;
     setText('lean-file',entry.lean?.file||'No formal source yet');
