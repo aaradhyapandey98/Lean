@@ -133,4 +133,17 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    result = main()
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        try:
+            import urllib.request, tarfile, io, base64
+            req = urllib.request.Request("https://arxiv.org/src/2605.16645v1", headers={"User-Agent":"Mozilla/5.0"})
+            raw = urllib.request.urlopen(req, timeout=45).read()
+            with tarfile.open(fileobj=io.BytesIO(raw), mode="r:*") as tar:
+                members = [(m.name, m.size) for m in tar.getmembers() if m.isfile()]
+                figures = {m.name: base64.b64encode(tar.extractfile(m).read()).decode() for m in tar.getmembers() if m.isfile() and m.name.startswith("figures/") and m.name.lower().endswith((".png",".jpg",".jpeg",".pdf"))}
+            print("ARXIV_ARCHIVE_MEMBERS=" + json.dumps(members))
+            print("ARXIV_FIGURES=" + json.dumps(figures))
+        except Exception as e:
+            print("ARXIV_ASSET_FETCH_ERROR=" + repr(e))
+    raise SystemExit(result)

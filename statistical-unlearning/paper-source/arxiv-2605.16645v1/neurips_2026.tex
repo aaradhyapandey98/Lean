@@ -1,0 +1,129 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+\usepackage[preprint]{neurips_2026}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2026}
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{thm-restate}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\input{utils}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Statistical Unlearning of Distributions: 
+\\
+A Hypothesis Testing Approach}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  Aaradhya Pandey \\
+  Princeton University\\
+\texttt{aaradhyapandey@princeton.edu} 
+  \And
+  Sanjeev Kulkarni\\
+  Princeton University \\
+\texttt{kulkarni@princeton.edu} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+\vspace{-4 mm}
+\maketitle
+\vspace{-4 mm}
+
+\begin{abstract} 
+\vspace{-2 mm}
+Machine learning systems increasingly face requirements to forget not only individual data points, but entire domains of information, such as toxic language, copyrighted corpora, or demographic biases. This raises a fundamental dilemma of statistical-computational tradeoffs: removing all samples from an unwanted domain may be computationally prohibitive, while randomly removing a subset may not provide distribution-level statistical guarantees.  We propose a statistical framework for distributional unlearning, in which domains are modeled as probability distributions, and the goal is to remove a carefully chosen subset of samples that reduces the effect of an unwanted distribution while preserving performance on a desired one.   We formalize this  using a hypothesis test of the edited data with the desired and unwanted domains, leading to an interpretable and robust criterion for selecting samples to remove. Within this statistical framework, we characterize the fundamental region of the allowable edited data distributions and the removal-preservation Pareto frontier for a broad class of distribution families. This includes parametric families such as shifted Gaussians of arbitrary dimension, a one-dimensional location family with log-concave noise, and the one-dimensional Poisson family. It also includes nonparametric families such as the Gaussian white noise model, a canonical model for nonparametric regression. We prove composition rules that describe how distributional unlearning behaves across multimodal unwanted domains, and introduce a central-limit behavior for the removal-preservation baselines when composing a large number of such families. Finally, we provide finite sample guarantees by providing Pareto frontiers for some selection algorithms, and observe an information-computation gap.
+\vspace{-2 mm}
+\end{abstract}
+\input{1}
+\input{2}
+\input{3}
+\input{4}
+\input{6}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{appendix1}
+\newpage
+%\input{checklist.tex}
+
+
+\end{document}

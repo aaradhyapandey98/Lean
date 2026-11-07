@@ -1,0 +1,164 @@
+\vspace{-4mm}
+\section{Results: feasible regions} \label{sec:statistics}
+\vspace{-4mm}
+In this section, we determine feasible regions for several parametric and non-parametric models.
+\vspace{-4mm}
+\subsection{Feasible region of shifted Gaussians}
+\vspace{-2mm}
+\begin{restatable}[Feasible Region of Shifted Gaussians]{proposition}{FFR}
+\label{thm:FFR}
+Let $p_1 = N(\mu_1, \Sigma), q_1= N(\nu_1, \Sigma)\in \mathcal{P}:= \{N(\mu, \Sigma): \mu \in \mathbb{R}^d\}$ be class of shifted Gaussian distributions with common covariance $\Sigma \succ 0$. Take $f_d= T(N(0,1), N(\alpha, 1))$ and $f_c= T(N(0,1), N(\ve,1))$ for $\alpha, \ve \geq 0$. Then  
+\vspace{-2mm}
+\begin{equation} \label{eq:GFR}
+\cR(\cP, (p_1,q_1), (f_d,f_c)) =
+\cR= \{p= N(\mu, \Sigma): \mu \in \mathbb{R}^d: \alpha'(\mu) \geq \alpha, \ve'(\mu) \leq \ve\} 
+\end{equation}
+\begin{equation} \label{eq:GFRparameters0}
+\text{ where } \alpha'^2= \langle \mu_1 -\mu, \Sigma^{-1}(\mu_1-\mu) \rangle \text{ and }\ve'^2= \langle \nu_1 -\mu, \Sigma^{-1}(\nu_1-\mu) \rangle. 
+\end{equation}
+Let $\Delta= \|\Sigma^{-1/2}(\mu_1- \nu_1)\|_2$,  then $\cR$ is empty $\leftrightarrow$ $ \Delta + \epsilon <\alpha $. Moreover, $\cR= \overline{B}(\nu_1, \ve) \leftrightarrow \Delta - \ve \geq \alpha $, and $\cR$ is annular cap otherwise.  See the proof  \ref{proof:FFRG} for plots of the fundamental region (Figure \ref{fig:alpha_e_plot_1}). 
+\end{restatable}
+\vspace{-3mm}
+\begin{figure}[t]\label{alpha_e_plot_2}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/alpha_e_plot_2.png}
+  \caption{Feasibility regions in $(\alpha,\varepsilon)$ for fixed $\Delta=\|\mu_1-\nu_1\|_2$. 
+  The lines $\alpha=\Delta-\varepsilon$ (solid) and $\alpha=\Delta+\varepsilon$ (dashed) partition the positive orthant of the plane into three regions based on what $\cR$ is:
+  whole disk ($\alpha\le\Delta-\varepsilon$), lens/annular cap ($\Delta-\varepsilon<\alpha\le\Delta+\varepsilon$), and empty ($\alpha>\Delta+\varepsilon$).}
+  \label{fig:alpha-eps-feasibleM}
+\end{figure}
+\textbf{Interpretation of the result :} This feasible region $\cR$ quantifies a natural cost of distributional unlearning: a minimal preservation loss is incurred  ($\ve \leftrightarrow f_c$) for any given removal level ($\alpha \leftrightarrow f_d$), governed by the baseline trade-off functions.  Finally, the result also highlights the suboptimality of keeping only the retained data $q_1$. While this strategy achieves perfect preservation $\ve = 0 \leftrightarrow f_c(x) = 1-x$  for $x \in [0,1]$, the region $\cR$ in Proposition \ref{thm:FFR} shows it is possible to attain a significantly higher level of removal by accepting a  small preservation loss $\ve >0 \leftrightarrow f_c(x) < 1- x$ for $x \in [0,1]$. By dimension invariance of Gaussian TOFs (Lemma \ref{lem: GTOF}) one dimensional $f_d,f_c$ are not restrictive.
+\vspace{-1mm}
+\begin{lemma}[Pareto Frontier] \label{lem:PFGF}
+Consider $p_1, q_1, \cP$  as in Proposition \ref{thm:FFR}  with $\Sigma \succ 0$, the Gaussian forms of $f_d$ and $f_c$, one obtains a curve of $(\alpha, \varepsilon)$ pairs, capturing for a fixed preservation level of $\varepsilon \geq 0$, the largest level of removal $\alpha \geq 0$  that is jointly achievable or, equivalently, allows $\cR \neq \emptyset$.
+\begin{equation} \label{eq:Pareto}
+    \text{PF}(p_1, q_1, \cP) := \{(\Delta +\varepsilon, \varepsilon): \varepsilon \geq 0\} \text{ with } \Delta = ||\Sigma^{-1/2}(\mu_1- \nu_1)||_2.
+\end{equation}
+\end{lemma}
+\begin{remark} We can take $\Sigma= \II_d$ and work in $(\mu_1', \nu_1', \mu')= (\Sigma{^{-1/2} \mu_1}, \Sigma{^{-1/2} \nu_1}, \Sigma{^{-1/2} \mu})$  coordinates. In our unlearning framework (Definition \ref{def:dist-unlearning}), the geometric description (Figure \ref{fig:alpha_e_plot_1}) as well as the Pareto frontiers (Figure \ref{fig:alpha-eps-feasibleM}) for finite-dimensional Gaussians in Proposition \ref{thm:FFR} and Lemma \ref{lem:PFGF} extends naturally to any one-parameter location family with a symmetric log-concave base noise (Proposition \ref{prop:FFRLC}), and even to non-parametric families \citep{gine2016mathematical}, \citep{castillo2024bayesian} with infinite dimensional parameter spaces such as the  Gaussian white noise model (Proposition \ref{thm:GWN}). 
+\end{remark}
+\vspace{-3mm}
+\subsection{Feasible region of the Gaussian white noise model}
+\vspace{-2mm}
+We now describe the additive Gaussian white noise model, one of the canonical models of non-parametric statistics ~\citet{gine2016mathematical, johnstone2019gaussian, castillo2024bayesian}, where the parametric family $\{p_{\mu}: \mu\in \R^d\}$ of shifted Gaussians is replaced by a nonparametric family $\{p_f: f\in  H\}$ for  
+\vspace{-2 mm}
+\begin{equation}
+H:= L^{2}([0,1], \cB_{[0,1]}, \lambda)
+\text{ with }\langle f,g\rangle_{ H}:=\int_0^1 f(t)g(t)\,dt.
+\vspace{-2 mm}
+\end{equation}
+\vspace{-2 mm}
+
+
+Let \(W:= \{W(\varphi):\varphi \in H\} \) be a centered Gaussian process over \(H= L^2[0,1]\). More precisely,  for each \(\varphi\in H\), \(W(\varphi)\) is a centered Gaussian on $(\R, \cB_{\R})$  with  covariance $\mathbb E[W(\varphi)W(\psi)] =
+    \langle \varphi,\psi\rangle_{H}$ for $\varphi,\psi\in H.$ Informally, $W= \{W(t): t\in [0,1]\}$ viewed as a random function, is `derivative' of Brownian motion $B$ and Gaussian white noise $W(\varphi)=\int_{0}^1 \varphi(t)dB(t)$ \cite{gine2016mathematical} is the Wiener integral. Now, for a signal \(f\in H\), the Gaussian white-noise observation is an SDE.
+\begin{equation} \label{eq:AGWN}
+dY_t=f(t)\,dt+\,dB_t \text{ for } 0\le t\le 1 \leftrightarrow Y(t)= \int_{0}^t f(s)ds + B(t) \text{ for } 0\le t\le 1, 
+\end{equation}
+ where $\{B(t): t\in [0,1]\}$ is the standard Brownian motion.
+More precisely, for each test function \(\varphi\in H\), one has the observation  $Y_f(\varphi) =\int_0^1 \varphi(t)f(t)\,dt + W(\varphi) \overset{d}{=} N(\langle f, \varphi \rangle_{H}, \langle \varphi, \varphi\rangle_H ),$ as we have $W(\varphi)= \int_{0}^1 \varphi(t) dB(t)\overset{d}{=} N(0, \langle \varphi, \varphi \rangle_H)$.
+Let \(p_f\) denote the distribution of the process  $\{Y_f(\varphi):\varphi\in H\}.$
+For \(f,g\in H\), the likelihood ratio is   \text{ ~\citet{gine2016mathematical}[Proposition 6.1.1]}
+\begin{equation}
+    \log\frac{dp_g}{dp_f}(Y)
+    =
+    \int_0^1 (g-f)(t)\,dY_t
+    -
+    \left(
+        \frac{\|g\|_{H}^2-\|f\|_{H}^2}{2}
+    \right).
+\end{equation}
+Under \(p_f\), the SDE path $\{Y_t:t \in [0,1]\}$ has the form  $dY_t=f(t)\,dt+ dB_t.$ Therefore, we have
+\[
+\log\frac{dp_g}{dp_f}(Y)
+    =
+    \int_0^1 (g-f)(t)\,dB_t
+    -
+    \frac{\Delta^2}{2}, \text{ where } \Delta^2= \|f-g\|_{H}^2 =\langle f-g, f-g\rangle_H .
+\]
+\begin{equation}
+ \text{Consequently, }   \log\frac{dp_g}{dp_f}
+    \sim
+    N\left(- \frac{\Delta^2}{2},
+        \Delta^2
+    \right) \quad \text{under } p_f.
+\end{equation}
+Under \(p_g\), the SDE path $\{Y_t:t \in [0,1]\}$ has the form  $dY_t=g(t)\,dt+ dB_t.$ Therefore,
+\begin{equation}
+    \text{Similarly, }
+    \log\frac{dp_g}{dp_f}
+    \sim
+    N\left( \frac{\Delta^2}{2},
+        \Delta^2
+    \right)
+    \quad \text{under } p_g
+\end{equation}
+From ~\citet{pandey2025infinitely}[Lemma 4]  $T(P,Q)= T\left(P \circ \log \left(\frac{dQ}{dP}\right)^{-1}, Q \circ \log \left( \frac{dQ}{dP}\right)^{-1}\right)$.
+
+\begin{equation}
+   \text{So, } T(p_f,p_{g})
+    = 
+    T\left(N\left(-\frac{\Delta^2}{2}, \Delta^2\right), N\left(\frac{\Delta^2}{2}, \Delta^2\right)\right)
+=T\bigl(N(0,1),N(\Delta,1)\bigr).
+\end{equation}
+
+As a consequence, we have the following result in infinite-dimensional non-parametric families.
+
+\begin{restatable}[Feasible region of the Gaussian White Noise Model]{proposition}{GWN}
+\label{thm:GWN}
+
+Following the notations from above, for $f,g\in H$, let $p_f, p_g \in   \mathcal{P}:= \{p_h: h \in H\}$ be the class of additive Gaussian white noise models \eqref{eq:AGWN}. Take $f_d= T(N(0,1), N(\alpha, 1))$ and $f_c= T(N(0,1), N(\ve,1))$ for $\alpha, \ve \geq 0$. Then  
+\vspace{-2mm}
+\begin{equation} \label{eq:GWNFR}
+\cR(\cP, (p_f,p_g), (f_d,f_c)) =
+\cR= \{p_h: h\in H: \alpha'(h) \geq \alpha, \ve'(h) \leq \ve\} 
+\end{equation}
+\begin{equation} \label{eq:GWNFRparameters0}
+\text{ where } \alpha'^2(h)= \langle f-h, f-h \rangle \text{ and }\ve'^2(h)= \langle g-h, g-h \rangle_{H}. 
+\end{equation}
+Let $\Delta= \|f- g\|_{H}$  then $\cR$ is empty $\leftrightarrow$ $ \Delta + \epsilon <\alpha $. Moreover, $\cR= \overline{B}(\nu_1, \ve) \leftrightarrow \Delta - \ve \geq \alpha $, and $\cR$ is annular cap otherwise. Moreover, the Pareto frontier of removal-preservation pairs is given by
+\begin{equation} \label{eq:ParetoGWN}
+    \text{PF}(p_f, p_g, \cP) := \{(\Delta +\varepsilon, \varepsilon): \varepsilon \geq 0\} \text{ with } \Delta = ||f-g||_H.
+\end{equation}
+\end{restatable}
+\vspace{-2 mm}
+We prove a generalization of the above in the appendix for shifted Gaussians on Hilbert spaces \ref{ssec:GaussiansonHS}.
+\vspace{-1mm}
+\begin{remark}
+    Definition~\ref{def:dist-unlearning} yields the same geometric form of the fundamental region for additive Gaussian models, in both finite and infinite dimensions. In particular, for location models with unwanted $p_1\overset{d}{=} \mu_1+X$ and desired $q_1\overset{d}{=}\nu_1+X$, our unlearning framework ~\eqref{eq:dist-unlearning} formalizes the intuition in a clear geometric way (Figure \ref{fig:alpha_e_plot_1}) that the edited data should be close to $\nu_1$ and far from $\mu_1$, with the precise tradeoff governed by the allowable removal and preservation levels $\alpha,\varepsilon$.
+\end{remark}
+\vspace{-5mm}
+\subsection{Feasible region for Poisson family}
+\vspace{-2mm}
+We consider a parametric, but a non-location Poisson family $\cP= \{P(\mu): \mu >0\}$ on $(\mathbb{Z}_{\geq 0}, 2^{\mathbb{Z}_{\geq 0}})$ with baselines $f_d=T(P(1), P(\alpha))$ and $f_c=T(P(1), P(\varepsilon))$ for some $\alpha, \varepsilon >0$. The intuition is that when the data $\{X_i\}_i$, or a relevant summary statistic $\{f(X_i)\}_i$ of the data, is count-valued, for example, the number of occurrences $f(X_i)$ of a specific word in a text $X_i$, the Poisson family provides a natural model. In this setting, distributional unlearning aims to carefully remove a subset of the text corpora $\{X_i\}_i$ coming from the unwanted domain with \(f(X) \sim P(\mu_1)\) so that the edited data remain close to the desired domain with \(f(X)\sim P(\nu_1)\).  Moreover, it is natural to adapt the removal-preservation baselines $f_d,f_c$ as trade-off functions between Poisson pairs.
+
+\begin{restatable}[Feasible region of Poissons]{proposition}{FRP}
+\label{thm:FRP}
+
+Let $p_1 = P(\mu_1), q_1= P(\nu_1)\in \mathcal{P}:= \{P(\mu): \mu >0\}$. Take $f_d= T(P(1), P(\alpha))$ and $f_c= T(P(1), P(\ve))$ for some $\alpha>1,\ve<1, \mu_1, \nu_1 > 0$. Then  
+\vspace{-2mm}
+\begin{equation} \label{eq:FRP}
+\cR(\cP, p_1,q_1,f_d,f_c)=\cR_P= 
+\left[ \nu_1 ,
+\min\left\{
+\frac{\mu_1}{\alpha},
+\mu_1-\alpha+1, \frac{\nu_1}{\varepsilon},
+\nu_1-\varepsilon+1
+\right\}
+\right],
+\end{equation}
+\begin{equation} \label{eq:FRPparameters0}
+\text{ provided we have } \nu_1\leq \min\left\{
+\frac{\mu_1}{\alpha},
+\mu_1-\alpha+1
+\right\}.
+\end{equation}
+Otherwise, $\cR_{P}$ is empty.  See Table \ref{table:Poissonregion} for a description of the feasible region $\cR_P$ for other pairs of  $(\alpha, \ve)$ different from $\alpha >1,\varepsilon <1$. Moreover, see Table \ref{table:Paretofrontiers} for the Pareto frontier of $(\alpha, \varepsilon)$ pairs.
+\end{restatable}
+\begin{remark}[Intuition]
+The description of the feasible region for the Poisson family is more involved compared to a location family. For a given $\mu_1 >\nu_1>0$, it is natural from Lemma \ref{lem:Poisson-experiments} to consider $\alpha >1$ and $\ve <1$ as the baseline parameters. Moreover, the Pareto frontier of $(\alpha, \ve)$ pairs (\ref{table:Paretofrontiers}) involves several  parameters including  $\frac{\mu_1}{\nu_1}, \mu_1- \nu_1$.  The proof is a consequence of a characterization result (Lemma \ref{lem:Poisson-experiments}) of when exactly do we have $f=T(P(a), P(b)) \leq T(P(c), P(d))$ for constants $a,b,c,d>0$.
+In the appendix, we provide the feasible region of the Binomial and the Bernoulli family (Lemma \ref{lem:binomregion}), along with a similar characterization result (Lemma \ref{lem:Binom}) required in the proof.
+\end{remark}
+\vspace{-2mm}
+\textbf{Consistency with Poisson baselines:}  For $f_d=T(P(1),P(\alpha))$ and  $f_c=T(P(1),P(\ve))$, with $\alpha >1$ and $\ve <1$ if $p$ satisfies $(f_d \leftrightarrow \alpha ,f_c \leftrightarrow \ve)$ unlearning, then as a consequence of Lemma \ref{lem:Poisson-experiments} it also satisfies  $(f_{d'} \leftrightarrow \alpha' ,f_{c'} \leftrightarrow \ve')$ unlearning for any $1\leq \alpha' \leq \alpha$ and $\ve' \leq \ve < 1$.
+

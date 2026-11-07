@@ -1,0 +1,80 @@
+\vspace{-4mm}
+\section{Algorithms and information-computation gaps}
+\vspace{-3mm}
+\label{sec:theory}
+The preceding sections developed our framework at the level of distributions. We now shift focus to the practically relevant finite-sample regime, where achieving $(f_d, f_c)$ unlearning must be accomplished using only the finite but practically large collections of drawn samples introduced in Section~\ref{sec:problem}. To develop rigorous analytical intuition about finite-sample behavior, we restrict attention to an idealized yet foundational setting of parametric families $\cP= \{p_{\mu}: \mu\in \mathbb{R}^d\}$ on some space $(\cW, \cF_{\cW})$. Our theoretical results are for Gaussian distributions in $d$ dimensions with variance $\sigma^2 \mathbb{I}_d$,  and removal-preservation baselines $f_d = T(\mathcal{N}(0,1), \mathcal{N}(\alpha, 1))$, $f_c = T(\mathcal{N}(0,1), \mathcal{N}(\varepsilon, 1))$. While the proofs extend to arbitrary covariances $\Sigma \succ 0$, we focus on other aspects of the problem. The analytical tractability of the Gaussian setting enables us to obtain closed-form sample complexity bounds, which yield essential intuition regarding the comparative efficiency of distinct removal strategies.  What follows presents and analyzes two distinct deletion strategies: a random baseline and a selective, distance-based approach. Our analysis concentrates on the distribution class $\mathcal{P} \coloneqq \left\{ \mathcal{N}(\mu, \sigma^2\mathbb{I}_d) \colon \mu \in \mathbb{R}^d \right\}$, with $\sigma > 0$ treated as known. Starting from $n_1$ IID samples drawn from the unwanted distribution $p_1 \in \mathcal{P}$ and $n_2$ IID samples drawn from the retained distribution $q_1 \in \mathcal{P}$, together with a deletion budget $0 \leq n_r \leq n_1$, we establish high-probability bounds on the $(f_d \leftrightarrow \alpha, f_c \leftrightarrow \varepsilon)$-distributional unlearning guarantees that result from each strategy. 
+
+\vspace{-2mm}
+\subsection{Random removal: behavior on Gaussian and log-concave families}
+\vspace{-2mm}
+\textbf{Random removal} We begin with a baseline deletion strategy that treats every sample equally, deleting $n_r$ points chosen uniformly at random from the $n_1$ samples of $p_1$. The formal procedure is:
+
+\textbf{Algorithm (Random removal by deleting points from unwanted data) \citep{allouah2025distributionalmachineunlearningselective}.} 
+\begin{enumerate}[nosep] \label{algo:RR}
+\item Randomly select $n_r$ out of the $n_1$ samples of $p_1$ without replacement, and remove them.
+\item  Fit MLE (maximum likelihood estimator) on the remaining data,  take weighted average.
+\end{enumerate}
+
+The following result provides in our framework \ref{def:dist-unlearning} a finite-sample guarantee for achieving $(f_d \leftrightarrow \alpha,f_c \leftrightarrow \varepsilon)$-distributional unlearning using random removal with a deletion budget $n_r$.
+
+
+\begin{restatable}[Random Removal]{proposition}{samples}
+\label{th:random}
+Let $p_1=N(\mu_1, \sigma^2 \II_d), q_1= N(\nu_1, \sigma^2 \II_d) \in \mathcal{P}= \{N(\mu, \sigma^2\II_d): \mu \in \R^d\}$ and $\delta \in (0,1)$. We observe $n_1$ IID samples from $p_1$ and $n_2$ IID samples from $q_1$, and randomly remove $n_r$ samples from $p_1$ before fitting a weighted MLE according to \ref{algo:RR}. With probability at least $1 - \delta$, the resulting $p$ satisfies $(f_d \leftrightarrow \alpha,f_c\leftrightarrow  \varepsilon)$- unlearning \ref{def:dist-unlearning} with:
+\begin{align*}
+\alpha & \leq \alpha_M(R):= \Delta -  \ve_m(R),
+\varepsilon \geq  \ve_m(R):= \frac{n_1'  \Delta }{n_1' + n_2} + \frac{n_1' \gamma(n_1',d,\delta) + n_2 \gamma(n_2, d,\delta) }{n_1' + n_2}.
+\end{align*}
+where $\sigma \Delta := \|\mu_1- \nu_1\|_2$, $n_1'= n_1- n_r$ and $\sqrt{n} \gamma(n, d, \delta):= \sqrt{d+2\sqrt{d \log (1/\delta)} + 2 \log (1/\delta)}$.  
+\end{restatable}
+
+\begin{remark}[Information-Computation gap] \label{rem:ICGRRM}
+The feasible region $\cR$ allows any $\ve \geq 0$ and requires $\alpha \leq \Delta +\ve$ \ref{thm:FFR}. However, in the finite sample case, where we do not know the locations $\mu_1, \nu_1$, the baseline random removal with weighted MLE has a  lower bound on $\ve \geq \ve_m(R)>0$ and an upper bound $\alpha \leq \alpha_M(R)= \Delta -\ve_m(R)$ (see Remark \ref{rem:ICGRR} in the appendix for a more detailed analysis of the Information-computation gap). In both $\alpha_M(R)$ and  $\ve_m(R)$, the latter two terms involves  $\gamma(n, d, \delta)$ with weights. The quantity $\gamma(n, d, \delta)$ comes from the tail of $\|\sum_{i=1}^n X_i\|_2$ for $X_i$ IID $N(0,\II_d)$, and allow the upper bounds to hold with probability $1-\delta$. So, this is the cost in finite sample to avoid cases where samples are far from their mean. The first term involving $\Delta$ appears because weighted MLE involves the unwanted samples, and the associated weights $\frac{n_2}{n_1' + n_2}$ and $\frac{n_1'}{n_1' + n_2}$ capture that. A generalization of the above to  $\{\mu+X:\mu\in \R\}$ with symmetric log-concave $X$ (Proposition \ref{th:randomLC}), including the analysis of weighted median for Laplace (Remark \ref{rem:RRLaplace}), is in the appendix.
+\end{remark} 
+ 
+
+
+\vspace{-4mm}
+\subsection{Selective removal: behavior on Gaussian and log-concave families}
+\vspace{-2mm}
+
+For a family of distributions $\cP=\{p_{\mu}: \mu\in \Theta\}$, indexed by a metric space  $(\Theta, d(\cdot, \cdot))$  including the shifted Gaussian $\{N(\mu, \sigma^2 \II_d): \mu \in \R^d\}$ or the symmetric log-concave family $\{\mu+X: \mu\in \R\}$, a more effective strategy than random removal decides which samples to delete, based on relative separation between the distributions $p_1$ and $q_1$. For location families, our intuition suggests shifting the dataset's empirical mean away from the unwanted center $\mu_1$ and towards the retained center $\nu_1$. The most impactful samples to remove are those from $p_1$ that are furthest from $\nu_1$. Within our $(f_d,f_c)$ unlearning framework \ref{def:dist-unlearning} this intuition extends to families $\cP=\{\theta+X: \theta\in \Theta\}$ if $T(p_{\theta_1}, p_{\theta_2}) \uparrow$ whenever $d(\theta_1,\theta_2)\downarrow $. The families $\{N(\mu, \sigma^2 \II_d): \mu \in \R^d\}$ and $\{\mu+X: \mu\in \R\}$ satisfy that.
+This intuition leads to the proposed selective removal strategy of ~\citep{allouah2025distributionalmachineunlearningselective}, using the empirical mean of the retained data $\hat{\mu}_2$ as a reference point for selection. 
+
+\textbf{Algorithm (Distance based selective removal algorithm of ~\citep{allouah2025distributionalmachineunlearningselective}).}
+\begin{enumerate}[nosep] \label{algo:SR}
+\item Compute  MLE (maximum likelihood estimator) $\hat\nu_1$ of $n_2$ samples $x_2^{(1)}, \ldots, x_2^{(n_2)}$  from $q_1$.
+\item For each of the $n_1$ samples $x_1^{(i)}$ from $p_1$, compute the score $s_i = ||x_1^{(i)} - \hat\nu_1||_2$.
+\item Delete  $n_r$ samples with  largest scores $s_i$ and fit by a weighted mean on the remaining data.
+\end{enumerate}
+\begin{remark}[Empirical mean versus MLE]
+   For Gaussians with unknown mean and known variance \ref{th:selective}, the empirical mean $\frac{1}{n} \sum_{i=1}^n X_i$ is the MLE. However, it is not  MLE for shifted log-concave families in general, such as shifted Laplace family, for which the median$(X_1, \cdots, X_n)$ is the MLE.
+\end{remark}
+\vspace{-2 mm}
+The following result provides in our framework \ref{def:dist-unlearning} a finite-sample guarantee for achieving $(f_d \leftrightarrow \alpha,f_c \leftrightarrow \varepsilon)$-distributional unlearning using selective removal with a deletion budget $n_r$.
+
+
+\begin{restatable}[Selective Removal]{proposition}{samplesselection}
+\label{th:selective}
+Let $p_1=N(\mu_1, \sigma^2 \II_d), q_1= N(\nu_1, \sigma^2 \II_d) \in \mathcal{P}= \{N(\mu, \sigma^2\II_d): \mu \in \R^d\}$ and $\delta \in (0,1)$. We observe $n_1$ IID samples from $p_1$ and $n_2$ IID samples from $q_1$, and selectively remove $n_r$ samples from $p_1$. With probability atleast $1 - \delta$, the resulting $p$ satisfies $(f_d= T(N(0,1), N(\alpha, 1)),f_c= T(N(0,1), N(\ve, 1)))$ unlearning \ref{def:dist-unlearning} with:
+\begin{align*}
+    \alpha
+    \leq 
+   \alpha_M(S):= \Delta - \ve_m(S),
+    \varepsilon
+    \geq  
+    \ve_m(S):= 
+    \frac{1}{\sigma}\frac{n_1'}{n_1' + n_2} 
+    F_1^{-1}\left(\frac{n_1'}{n_1} +d(n_1, \delta)\right)
+    + 
+    2\gamma(n_2,d,\delta)
+\end{align*}
+where $\sigma \Delta := \|\mu_1- \nu_1\|_2$, $n_1'= n_1- n_r$, $\sqrt{n} \gamma(n, d, \delta):= \sqrt{d+2\sqrt{d \log (1/\delta)} + 2 \log (1/\delta)}$, $d(n,\delta)=\sqrt{\frac{\ln(4/\delta)}{2n}}$ and $F_1^{-1}$ is the inverse of $F_1(t):= \mathbb{P}[\|\sigma Z + \mu_1- \nu_1\|_2 \leq t] \text{ with } Z \sim N(0, \II_d).$ 
+\end{restatable}
+\begin{remark}[Information-Computation gap] \label{rem:ICGSR}
+The feasible region $\cR$ allows any $\ve \geq 0$ and  $ 0\leq \alpha \leq \Delta +\ve$ \ref{thm:FFR}. In comparison to the random removal with $\ve \geq \ve_m(R)>0$ and  $\alpha \leq \alpha_M(R)= \Delta  -\ve_m(R)$, the selective removal provides a trade-off, with  $\ve \geq \ve_m(S)>0$ and  $\alpha \leq \alpha_M(S)=  \Delta -\ve_m(S)$. The factor $d(n_1,\delta)$ comes from  approximating $F_1$ with its empirical version $\widehat{F}_1$ (Lemma \ref{lem:DKW}). The CDF $F_1$ appears naturally, since the selective removal is based on the sample version of the ordered list of distances   $\left\{\|x_1^{(i)} - \nu_1\|_2: i\in [n_1]\right\}$ for $x_1^{(i)} \overset{d}{=} p_1\overset{d}{=} \mu_1 + \sigma Z$. A generalization to  $\{\mu+X:\mu\in \R\}$ with log-concave noise $X$ is in the appendix (Proposition \ref{th:randomLCSR}). In the appendix (Proposition \ref{th:CSRRODG}, Remark \ref{rem:CSROGH}), we analyze in detail when it is the case that $\ve_m(S)\leq \ve_m(R)$, and observe that one needs a minimal separation $\Delta \geq \Delta_m$ (Equation \ref{eq:Delta_m}) and $n_r \geq \frac{n_1 (1+ o(1))}{2}$ (Equation \ref{eq:n_r}) for the selective removal to allow a smaller preservation level $\ve_m(S)$ than random removal $\ve_m(R)$.
+\end{remark}
+\vspace{-2 mm}
+
+
+
