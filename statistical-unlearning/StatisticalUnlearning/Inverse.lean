@@ -86,4 +86,12 @@ theorem leftInverse_mono {f g : ℝ → ℝ}
     · exact Set.mem_insert 1 _
     · exact Set.mem_insert_of_mem 1 ⟨hx.1, hx.2.1, le_trans (h x ⟨hx.1, hx.2.1⟩) hx.2.2⟩
 
+/-- The inverse depends only on the function's values on the paper's domain. -/
+theorem leftInverse_congr {f g : ℝ → ℝ}
+    (h : ∀ x ∈ Set.Icc (0 : ℝ) 1, f x = g x) (t : ℝ) :
+    leftInverse f t = leftInverse g t := by
+  apply le_antisymm
+  · exact leftInverse_mono (fun x hx => le_of_eq (h x hx)) t
+  · exact leftInverse_mono (fun x hx => le_of_eq (h x hx).symm) t
+
 end StatisticalUnlearning
