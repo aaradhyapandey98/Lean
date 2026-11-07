@@ -29,9 +29,44 @@ jobs:
       - name: Resolve and build
         working-directory: statistical-unlearning
         run: |
-          lake update
+          python3 -m unittest discover -s tests
+          node tests/site_dom_qa.js
+          python3 scripts/check_integrity.py structural
+          python3 scripts/check_integrity.py generate-audit --declarations declarations.json --output StatisticalUnlearning/Audit.lean
+          git diff --exit-code -- StatisticalUnlearning/Audit.lean lake-manifest.json
           lake exe cache get
           lake build --wfail
-      - name: Record resolved dependencies
+      - name: Audit transitive axioms
         working-directory: statistical-unlearning
-        run: cat lake-manifest.json
+        run: |
+          mkdir -p .audit
+          lake env lean -DwarningAsError=true StatisticalUnlearning/Audit.lean > .audit/axioms.log
+          cat .audit/axioms.log
+          python3 scripts/check_integrity.py verify-audit --declarations declarations.json --log .audit/axioms.log --json-output .audit/axioms.json
+      - name: Generate proof companion and record evidence
+        working-directory: statistical-unlearning
+        run: |
+          python3 scripts/build_site.py --evidence .audit/axioms.json
+          node --check site/app.js
+          node --check site/data/proofs.js
+          node tests/site_dom_qa.js
+          python3 - <<'PY'
+          import base64, json, os
+          from pathlib import Path
+          evidence_path = Path('.audit/axioms.json')
+          evidence = json.loads(evidence_path.read_text())
+          evidence['build'] = {
+              'revision': os.environ['GITHUB_SHA'],
+              'url': 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID'],
+          }
+          evidence_path.write_text(json.dumps(evidence, indent=2) + '\n')
+          print('AXIOM_EVIDENCE_BASE64=' + base64.b64encode(evidence_path.read_bytes()).decode())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: statistical-unlearning-checked-reader
+          path: |
+            statistical-unlearning/site
+            statistical-unlearning/.audit/axioms.json
+            statistical-unlearning/.audit/axioms.log
+            statistical-unlearning/lake-manifest.json

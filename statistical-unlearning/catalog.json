@@ -1,0 +1,489 @@
+{
+  "paper": {
+    "title": "Statistical Unlearning of Distributions",
+    "subtitle": "A Hypothesis Testing Approach",
+    "authors": "Aaradhya Pandey and Sanjeev Kulkarni",
+    "arxiv": "https://arxiv.org/abs/2605.16645v1",
+    "version": "2605.16645v1"
+  },
+  "repositoryUrl": "https://github.com/aaradhyapandey98/Lean/tree/main/statistical-unlearning",
+  "entries": [
+    {
+      "id": "randomized-tests",
+      "kind": "Definition",
+      "number": "1 · tests",
+      "title": "A test is a measurable rejection probability",
+      "section": "01 · Testing foundations",
+      "summary": "A randomized test assigns each observation a rejection probability between zero and one.",
+      "statement": "φ : Ω → [0, 1] is measurable.\n\nOur encoding uses nonnegative extended real values bounded by 1. This excludes infinity and retains the measurable-space formulation.",
+      "assumptions": [
+        "Ω is a measurable space.",
+        "The formal test representation is ℝ≥0∞-valued and bounded by one."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.RandomizedTest"
+      },
+      "dependencies": [],
+      "notes": "Encoded foundation. Equivalence of this test type with the real interval-valued test type remains to be formalized."
+    },
+    {
+      "id": "trade-off",
+      "kind": "Definition",
+      "number": "1 · Eq. (1)",
+      "title": "The hypothesis-testing trade-off",
+      "section": "01 · Testing foundations",
+      "summary": "For a type-I error budget α, minimize the achievable type-II error.",
+      "statement": "T(P, Q)(α) = inf { E_Q[1 − φ] : E_P[φ] ≤ α, φ measurable, 0 ≤ φ ≤ 1 }.\n\nThe first distribution controls type-I error; the second controls type-II error. The Lean definition uses a complete-lattice infimum and nonnegative integrals.",
+      "assumptions": [
+        "P and Q are probability measures on the same measurable space.",
+        "α belongs to [0,1]."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.tradeOff"
+      },
+      "dependencies": [
+        "randomized-tests"
+      ],
+      "notes": "The real-integral and infimum representation bridges are open obligations. A checked encoding is not yet a checked equivalence with the paper's Definition 1."
+    },
+    {
+      "id": "zero-type-i",
+      "kind": "Lemma",
+      "number": "Auxiliary 1",
+      "title": "The zero test has zero type-I error",
+      "section": "01 · Testing foundations",
+      "summary": "Never rejecting the null hypothesis gives no false rejection.",
+      "statement": "typeIError P zeroTest = 0.",
+      "assumptions": [
+        "P is a probability measure."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.typeIError_zero"
+      },
+      "dependencies": [
+        "randomized-tests"
+      ],
+      "notes": "Auxiliary lemma for the encoded testing problem; not a numbered main theorem of the paper."
+    },
+    {
+      "id": "zero-type-ii",
+      "kind": "Lemma",
+      "number": "Auxiliary 2",
+      "title": "The zero test has unit type-II error",
+      "section": "01 · Testing foundations",
+      "summary": "A test that never rejects always accepts under the alternative.",
+      "statement": "typeIIError Q zeroTest = 1.",
+      "assumptions": [
+        "Q is a probability measure."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.typeIIError_zero"
+      },
+      "dependencies": [
+        "randomized-tests"
+      ],
+      "notes": "The normalization Q(Ω)=1 supplies the unit value."
+    },
+    {
+      "id": "trade-off-antitone",
+      "kind": "Lemma",
+      "number": "Auxiliary 3",
+      "title": "More type-I budget lowers the trade-off",
+      "section": "01 · Testing foundations",
+      "summary": "Increasing α enlarges the admissible set of tests, so its infimum cannot increase.",
+      "statement": "If α ≤ β, then T(P,Q)(β) ≤ T(P,Q)(α).",
+      "assumptions": [
+        "P and Q are probability measures.",
+        "α, β belong to [0,1]."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.tradeOff_antitone"
+      },
+      "dependencies": [
+        "trade-off"
+      ],
+      "notes": "No existence of an optimal test is assumed."
+    },
+    {
+      "id": "trade-off-upper-bound",
+      "kind": "Lemma",
+      "number": "Auxiliary 4",
+      "title": "The trade-off is at most one",
+      "section": "01 · Testing foundations",
+      "summary": "The zero test is feasible for every significance level and has type-II error one.",
+      "statement": "T(P,Q)(α) ≤ 1.\n\nNonnegativity is built into the encoded codomain, so this also excludes infinite trade-off values.",
+      "assumptions": [
+        "P and Q are probability measures.",
+        "α belongs to [0,1]."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.tradeOff_le_one"
+      },
+      "dependencies": [
+        "trade-off",
+        "zero-type-i",
+        "zero-type-ii"
+      ],
+      "notes": "This is weaker than the complete trade-off-function characterization."
+    },
+    {
+      "id": "unlearning",
+      "kind": "Definition",
+      "number": "2 · Eq. (2)",
+      "title": "Removal and preservation together",
+      "section": "02 · Unlearning and feasibility",
+      "summary": "The edited distribution should be distinguishable from the unwanted population while remaining close to the retained population.",
+      "statement": "T(p, p₁) ≤ f_d  and  f_c ≤ T(p, q₁).\n\nThe order is pointwise in the significance level. The encoded predicate accepts arbitrary baseline curves; the paper restricts them to realizable trade-off functions.",
+      "assumptions": [
+        "p, p₁, q₁ are probability measures on a common measurable space.",
+        "Baseline admissibility and family membership are additional source-facing restrictions, not encoded here."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Unlearning.lean",
+        "declaration": "StatisticalUnlearning.Unlearns"
+      },
+      "dependencies": [
+        "trade-off"
+      ],
+      "notes": "Generalized baseline predicate. No Gaussian baseline formula, Blackwell converse, or statistical algorithm is assumed."
+    },
+    {
+      "id": "consistency",
+      "kind": "Lemma",
+      "number": "§2.1 · consistency",
+      "title": "Weaker requirements preserve unlearning",
+      "section": "02 · Unlearning and feasibility",
+      "summary": "Increase the allowed removal curve and decrease the required preservation curve; an already feasible distribution stays feasible.",
+      "statement": "If p satisfies (f_d, f_c) unlearning, f_d ≤ f′_d and f′_c ≤ f_c, then p satisfies (f′_d, f′_c) unlearning.",
+      "assumptions": [
+        "The original pair of inequalities holds.",
+        "The removal requirement is weakened pointwise.",
+        "The preservation requirement is weakened pointwise."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Unlearning.lean",
+        "declaration": "StatisticalUnlearning.Unlearns.mono"
+      },
+      "dependencies": [
+        "unlearning"
+      ],
+      "notes": "Proved for the generalized encoded predicate. The argument uses only order transitivity."
+    },
+    {
+      "id": "feasible-region",
+      "kind": "Definition",
+      "number": "3",
+      "title": "The feasible edited distributions",
+      "section": "02 · Unlearning and feasibility",
+      "summary": "Restrict the two unlearning inequalities to the chosen distribution family.",
+      "statement": "ℛ = { p ∈ 𝒫 : T(p,p₁) ≤ f_d and f_c ≤ T(p,q₁) }.\n\nThe paper also places the reference distributions in 𝒫 and requires realizable baselines. Those source restrictions must be supplied separately to this generalized predicate.",
+      "assumptions": [
+        "𝒫 is a set of probability measures on Ω."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Unlearning.lean",
+        "declaration": "StatisticalUnlearning.feasibleRegion"
+      },
+      "dependencies": [
+        "unlearning"
+      ],
+      "notes": "A definition is not a characterization theorem for any particular population family."
+    },
+    {
+      "id": "feasible-membership",
+      "kind": "Lemma",
+      "number": "Auxiliary 5",
+      "title": "Unfolding membership in the feasible region",
+      "section": "02 · Unlearning and feasibility",
+      "summary": "Membership means belonging to the family and satisfying both pointwise bounds.",
+      "statement": "p ∈ ℛ ↔ p ∈ 𝒫 ∧ T(p,p₁) ≤ f_d ∧ f_c ≤ T(p,q₁).",
+      "assumptions": [
+        "Only the typing data of the defined feasible region."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Unlearning.lean",
+        "declaration": "StatisticalUnlearning.mem_feasibleRegion"
+      },
+      "dependencies": [
+        "feasible-region"
+      ],
+      "notes": "Definitional unfolding, explicitly distinguished from a statistical result."
+    },
+    {
+      "id": "feasible-monotonicity",
+      "kind": "Lemma",
+      "number": "Auxiliary 6",
+      "title": "Weaker requirements enlarge the feasible region",
+      "section": "02 · Unlearning and feasibility",
+      "summary": "The consistency observation lifts to inclusion of feasible sets.",
+      "statement": "f_d ≤ f′_d and f′_c ≤ f_c imply ℛ(f_d,f_c) ⊆ ℛ(f′_d,f′_c).",
+      "assumptions": [
+        "The same family and reference distributions are used.",
+        "Both baseline inequalities hold pointwise."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Unlearning.lean",
+        "declaration": "StatisticalUnlearning.feasibleRegion_mono"
+      },
+      "dependencies": [
+        "consistency",
+        "feasible-region"
+      ],
+      "notes": "An auxiliary consequence of the encoded definitions."
+    },
+    {
+      "id": "geometric-region",
+      "kind": "Definition",
+      "number": "Geometric model",
+      "title": "The metric feasible set",
+      "section": "03 · Metric geometry",
+      "summary": "R(u,v;a,e) = { x : a ≤ dist(x,u) and dist(x,v) ≤ e }.",
+      "statement": "R(u,v;a,e) = { x : a ≤ dist(x,u) and dist(x,v) ≤ e }.",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "The two radii are real numbers; no sign assumption is needed to define the set."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.geometricFeasibleRegion"
+      },
+      "dependencies": [],
+      "notes": "A geometric prerequisite for Gaussian results. The Gaussian testing-to-distance bridge is not yet proved."
+    },
+    {
+      "id": "geometric-membership",
+      "kind": "Lemma",
+      "number": "Geometric auxiliary",
+      "title": "Unfolding the geometric constraints",
+      "section": "03 · Metric geometry",
+      "summary": "x ∈ R(u,v;a,e) ↔ a ≤ dist(x,u) ∧ dist(x,v) ≤ e.",
+      "statement": "x ∈ R(u,v;a,e) ↔ a ≤ dist(x,u) ∧ dist(x,v) ≤ e.",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "No sign assumptions on the real thresholds."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.mem_geometricFeasibleRegion"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "Definitional unfolding; no Gaussian result is claimed."
+    },
+    {
+      "id": "geometric-subset",
+      "kind": "Lemma",
+      "number": "Geometric auxiliary",
+      "title": "Feasibility implies preservation",
+      "section": "03 · Metric geometry",
+      "summary": "R(u,v;a,e) ⊆ closedBall(v,e).",
+      "statement": "R(u,v;a,e) ⊆ closedBall(v,e).",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "No sign assumptions on the real thresholds."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "A direct consequence of the second metric inequality."
+    },
+    {
+      "id": "geometric-point-bound",
+      "kind": "Lemma",
+      "number": "Geometric auxiliary",
+      "title": "A feasible point bounds the removal radius",
+      "section": "03 · Metric geometry",
+      "summary": "x ∈ R(u,v;a,e) implies a ≤ dist(u,v) + e.",
+      "statement": "x ∈ R(u,v;a,e) implies a ≤ dist(u,v) + e.",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "The pointwise bound additionally assumes x is feasible."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.removal_le_separation_add_preservation"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "An individual-point version of the necessary nonemptiness bound."
+    },
+    {
+      "id": "geometric-zero",
+      "kind": "Lemma",
+      "number": "Geometry 1",
+      "title": "Zero removal leaves the preservation ball",
+      "section": "03 · Metric geometry",
+      "summary": "R(u,v;0,e) = closedBall(v,e).",
+      "statement": "R(u,v;0,e) = closedBall(v,e).",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "No nonnegativity premise on e is needed; for negative e both sets are empty."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.geometricFeasibleRegion_zero_removal"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "This checks the geometric boundary case flagged in the source review. It does not establish the Gaussian trade-off formula."
+    },
+    {
+      "id": "geometric-necessary",
+      "kind": "Lemma",
+      "number": "Geometry 2",
+      "title": "Nonemptiness bounds the removal radius",
+      "section": "03 · Metric geometry",
+      "summary": "R(u,v;a,e) ≠ ∅ implies a ≤ dist(u,v) + e.",
+      "statement": "R(u,v;a,e) ≠ ∅ implies a ≤ dist(u,v) + e.",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "The geometric feasible set is nonempty."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "The necessary geometric direction uses only the triangle inequality. The converse needs extra geometry."
+    },
+    {
+      "id": "geometric-whole-ball",
+      "kind": "Lemma",
+      "number": "Geometry 3",
+      "title": "Separation makes the whole ball feasible",
+      "section": "03 · Metric geometry",
+      "summary": "a + e ≤ dist(u,v) implies R(u,v;a,e) = closedBall(v,e).",
+      "statement": "a + e ≤ dist(u,v) implies R(u,v;a,e) = closedBall(v,e).",
+      "assumptions": [
+        "X is a pseudometric space.",
+        "The displayed separation inequality holds."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Geometry.lean",
+        "declaration": "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le"
+      },
+      "dependencies": [
+        "geometric-region"
+      ],
+      "notes": "A sufficient condition only. Necessity is not claimed, including at zero removal radius."
+    },
+    {
+      "id": "representation-bridge",
+      "kind": "Obligation",
+      "number": "Bridge",
+      "title": "Connect the encoding to real-valued testing",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Translate tests, expectations and infima between the ENNReal model and the paper's [0,1]-valued formulation.",
+      "statement": "Construct the two measurable test conversions; prove equality of errors and preservation of feasibility; then identify the two infima. Add the realizable-baseline interface.",
+      "assumptions": [],
+      "dependencies": [
+        "trade-off",
+        "trade-off-upper-bound"
+      ],
+      "notes": "This is the next correspondence milestone. No bridge theorem is assumed in the existing library."
+    },
+    {
+      "id": "blackwell",
+      "kind": "Paper theorem",
+      "number": "Appendix A.5 · 19",
+      "title": "Blackwell ordering and data processing",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Relate testing order to Markov-kernel comparison, with the measurable-space hypotheses audited explicitly.",
+      "statement": "Formalize the forward data-processing direction first. Review the regularity required by the converse before adopting the paper's full statement.",
+      "assumptions": [
+        "Exact regularity assumptions remain under source review."
+      ],
+      "dependencies": [
+        "representation-bridge"
+      ],
+      "notes": "Not formalized. This is a dependency for divergence comparisons and composition."
+    },
+    {
+      "id": "gaussian-region",
+      "kind": "Paper proposition",
+      "number": "3 · §3.1",
+      "title": "The Gaussian feasible region",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Identify simultaneous removal and preservation constraints through Gaussian testing and Mahalanobis geometry.",
+      "statement": "Separate Gaussian testing from geometry, then handle zero removal threshold, coincident centers and general covariance explicitly.",
+      "assumptions": [
+        "Nondegenerate covariance and parameter domains must be stated precisely."
+      ],
+      "dependencies": [
+        "representation-bridge",
+        "geometric-region"
+      ],
+      "notes": "Source audit found a zero-threshold boundary issue and a metric ambiguity. See the audit notes before formalizing this target."
+    },
+    {
+      "id": "composition",
+      "kind": "Paper lemma",
+      "number": "2 · §2.3",
+      "title": "Composition across independent domains",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Compose removal and preservation trade-offs over product distributions.",
+      "statement": "Develop product measures and testing comparisons, prove tensor composition is well defined, and derive the unlearning inequalities.",
+      "assumptions": [
+        "Independent product structure; further hypotheses depend on the chosen comparison theorem."
+      ],
+      "dependencies": [
+        "blackwell",
+        "unlearning"
+      ],
+      "notes": "No composition theorem is admitted as an axiom."
+    },
+    {
+      "id": "other-families",
+      "kind": "Paper propositions",
+      "number": "4–5 and appendices",
+      "title": "Beyond finite-dimensional Gaussians",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Gaussian white noise, log-concave location models, Poisson and multiple populations need separate developments.",
+      "statement": "Track support and identifiability, generalized inverse conventions, unions of excluded intervals, and nontrivial Cameron–Martin spaces.",
+      "assumptions": [
+        "Family-specific hypotheses are not yet finalized."
+      ],
+      "dependencies": [
+        "representation-bridge"
+      ],
+      "notes": "Several printed claims require correction or additional conditions; no family-level theorem is currently certified."
+    },
+    {
+      "id": "finite-sample",
+      "kind": "Paper propositions",
+      "number": "6–7 and Appendix D",
+      "title": "Finite-sample removal algorithms",
+      "section": "04 · Open proof obligations",
+      "status": "pending",
+      "summary": "Formalize the sampling algorithms and probability bounds underlying random and selective removal.",
+      "statement": "Encode independent samples, positive edited sample sizes, concentration and confidence allocation. Check every finite-sample constant.",
+      "assumptions": [
+        "Sampling independence, sample-size restrictions and confidence domains must be explicit."
+      ],
+      "dependencies": [
+        "gaussian-region"
+      ],
+      "notes": "The random-removal confidence-bookkeeping issue does not itself disprove its final bound; the review outlines a direct pooled-Gaussian repair."
+    }
+  ]
+}

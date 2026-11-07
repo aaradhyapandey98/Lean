@@ -1,0 +1,30 @@
+{
+  "declarations": [
+    "StatisticalUnlearning.SignificanceLevel",
+    "StatisticalUnlearning.RandomizedTest",
+    "StatisticalUnlearning.RandomizedTest.toFun",
+    "StatisticalUnlearning.RandomizedTest.measurable_toFun",
+    "StatisticalUnlearning.RandomizedTest.le_one",
+    "StatisticalUnlearning.zeroTest",
+    "StatisticalUnlearning.typeIError",
+    "StatisticalUnlearning.typeIIError",
+    "StatisticalUnlearning.tradeOff",
+    "StatisticalUnlearning.typeIError_zero",
+    "StatisticalUnlearning.typeIIError_zero",
+    "StatisticalUnlearning.tradeOff_antitone",
+    "StatisticalUnlearning.tradeOff_le_one",
+    "StatisticalUnlearning.Baseline",
+    "StatisticalUnlearning.Unlearns",
+    "StatisticalUnlearning.Unlearns.mono",
+    "StatisticalUnlearning.feasibleRegion",
+    "StatisticalUnlearning.mem_feasibleRegion",
+    "StatisticalUnlearning.feasibleRegion_mono",
+    "StatisticalUnlearning.geometricFeasibleRegion",
+    "StatisticalUnlearning.mem_geometricFeasibleRegion",
+    "StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall",
+    "StatisticalUnlearning.geometricFeasibleRegion_zero_removal",
+    "StatisticalUnlearning.removal_le_separation_add_preservation",
+    "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound",
+    "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le"
+  ]
+}

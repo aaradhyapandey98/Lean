@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="A transparent, growing Lean formalization of Statistical Unlearning of Distributions, with mathematical statements and formal source side by side.">
+  <title>Statistical Unlearning · Proof Companion</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data/proofs.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#paper-panel">Skip to the statement</a>
+  <header class="masthead">
+    <a class="brand" href="#" aria-label="Proof companion home"><span class="brand-mark" aria-hidden="true">∴</span><span>Formal papers<span class="brand-sub">Aaradhya Pandey</span></span></a>
+    <nav class="top-links" aria-label="Project links">
+      <a id="paper-link" href="https://arxiv.org/abs/2605.16645" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a>
+      <a id="repository-link" class="repository-link" hidden target="_blank" rel="noopener noreferrer">Source on GitHub <span aria-hidden="true">↗</span></a>
+      <span class="edition">A living formalization</span>
+    </nav>
+  </header>
+
+  <section class="project-intro" aria-labelledby="project-title">
+    <div class="intro-copy">
+      <p class="eyebrow"><span class="small-rule"></span> Paper 001 <span class="eyebrow-separator">/</span> Statistics &amp; information theory</p>
+      <h1 id="project-title">Statistical Unlearning<br>of Distributions</h1>
+      <p class="subtitle">A Hypothesis Testing Approach</p>
+      <p class="authors" id="authors">Aaradhya Pandey <span>&amp;</span> Sanjeev Kulkarni</p>
+    </div>
+    <div class="project-note">
+      <p class="note-heading">Mathematics, made inspectable.</p>
+      <p>Read the mathematical statement alongside its Lean source. Each result carries its own proof status, assumptions, and connection to the paper.</p>
+      <div class="progress-summary" aria-label="Formalization progress">
+        <div><strong id="checked-count">0</strong><span>checked</span></div>
+        <span class="stat-divider" aria-hidden="true"></span>
+        <div><strong id="pending-count">0</strong><span>in progress</span></div>
+        <span class="progress-caption">Tracked entries,<br>not paper coverage.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="reader-heading">
+    <div class="reader-label"><span class="book-icon" aria-hidden="true">▤</span> The proof library <span id="entry-total" class="entry-total"></span></div>
+    <div class="trust-label"><span class="trust-dot" aria-hidden="true"></span><span id="build-label">Verification status is recorded per result</span></div>
+  </div>
+
+  <main class="reader-shell">
+    <aside class="library-sidebar" aria-label="Statement library">
+      <div class="sidebar-inner">
+        <div class="sidebar-title"><h2>Contents</h2><span class="keyboard-hint" title="Focus search">/</span></div>
+        <label class="search-wrap"><span class="search-icon" aria-hidden="true"></span><span class="sr-only">Search statements</span><input id="search" type="search" placeholder="Find a result…" autocomplete="off"></label>
+        <div class="filter-row" role="group" aria-label="Filter by proof status">
+          <button class="filter active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="checked" aria-pressed="false">Checked</button>
+          <button class="filter" data-filter="open" aria-pressed="false">Open</button>
+        </div>
+        <nav id="contents" class="contents" aria-label="Paper statements"></nav>
+        <p id="no-results" class="no-results" hidden>No matching statements.<br>Try another term or filter.</p>
+        <div class="sidebar-footer"><span class="status-dot pending" aria-hidden="true"></span><p>This project is in progress.<br>The full paper is not yet verified.</p></div>
+      </div>
+    </aside>
+
+    <div class="reading-area">
+      <div class="mobile-tabs" role="tablist" aria-label="Reading pane">
+        <button id="paper-tab" role="tab" aria-selected="true" aria-controls="paper-panel" tabindex="0">Mathematics</button>
+        <button id="lean-tab" role="tab" aria-selected="false" aria-controls="lean-panel" tabindex="-1">Lean source</button>
+      </div>
+      <div class="paired-panels" id="paired-panels">
+        <article id="paper-panel" class="paper-panel" tabindex="-1" aria-labelledby="statement-title">
+          <div class="panel-caption"><span>THE MATHEMATICS</span><a id="entry-paper-link" target="_blank" rel="noopener noreferrer">Paper reference <span aria-hidden="true">↗</span></a></div>
+          <div id="paper-content" class="paper-content">
+            <div class="result-meta"><span id="statement-kind" class="result-kind"></span><span id="statement-status" class="status-badge"></span></div>
+            <h2 id="statement-title"></h2>
+            <p id="statement-summary" class="statement-summary"></p>
+            <div id="statement-text" class="mathematical-statement"></div>
+            <section id="assumptions-section" class="assumptions-box" aria-labelledby="assumptions-title"><h3 id="assumptions-title">Assumptions &amp; scope</h3><ul id="assumptions-list"></ul></section>
+            <section id="dependencies-section" class="dependencies-section" aria-labelledby="dependencies-title"><h3 id="dependencies-title">Depends on</h3><div id="dependencies" class="dependencies"></div></section>
+            <aside id="entry-note" class="entry-note"></aside>
+          </div>
+          <div class="entry-pagination"><button id="previous-entry"><span aria-hidden="true">←</span> Previous</button><span id="entry-position"></span><button id="next-entry">Next <span aria-hidden="true">→</span></button></div>
+        </article>
+
+        <section id="lean-panel" class="lean-panel" aria-labelledby="lean-heading">
+          <div class="panel-caption code-caption"><span id="lean-heading"><span class="lean-glyph" aria-hidden="true">∀</span> THE FORMAL SOURCE</span><span class="language-label">Lean 4</span></div>
+          <div class="code-filebar"><span class="file-icon" aria-hidden="true">◇</span><span id="lean-file">Awaiting formal source</span><button id="copy-code" aria-label="Copy Lean source" title="Copy Lean source"><span aria-hidden="true">▢</span><span class="copy-label">Copy</span></button></div>
+          <div id="declaration-name" class="declaration-name"></div>
+          <div id="code-body" class="code-body"><pre aria-label="Lean source"><code id="lean-code"></code></pre></div>
+          <div id="empty-proof" class="empty-proof" hidden><span class="empty-symbol" aria-hidden="true">λ</span><h3>A proof still to write.</h3><p>This statement is part of the formalization roadmap. No Lean proof is claimed here.</p></div>
+          <div class="verification-box"><div class="verification-title"><span id="verification-icon" aria-hidden="true">○</span><h3 id="verification-heading">Verification evidence</h3></div><p id="verification-detail"></p><a id="source-link" hidden target="_blank" rel="noopener noreferrer">Inspect source <span aria-hidden="true">↗</span></a></div>
+          <details id="build-details" class="build-details"><summary>Build &amp; trust details <span aria-hidden="true">+</span></summary><dl id="build-facts"></dl><a id="build-run-link" hidden target="_blank" rel="noopener noreferrer">Inspect the build on GitHub ↗</a><p>Lean checks the formal statement. Its correspondence with the paper remains a mathematical review task.</p></details>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><p><span class="footer-mark" aria-hidden="true">∴</span> A patient, transparent formalization of mathematical statistics.</p><div><span id="paper-version">arXiv:2605.16645v1</span><a href="https://lean-lang.org/" target="_blank" rel="noopener noreferrer">Built with Lean <span aria-hidden="true">↗</span></a></div></footer>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

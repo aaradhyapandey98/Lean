@@ -1,13 +1,29 @@
-import StatisticalUnlearning.Unlearning
+import StatisticalUnlearning
 
-/-! Run `lake env lean StatisticalUnlearning/Audit.lean` to print the actual
-transitive axiom dependencies of every initial theorem. Output must be inspected;
-this source file alone is not evidence of a successful audit. -/
-
+-- Generated axiom queries; build the imported library before running.
+#print axioms StatisticalUnlearning.SignificanceLevel
+#print axioms StatisticalUnlearning.RandomizedTest
+#print axioms StatisticalUnlearning.RandomizedTest.toFun
+#print axioms StatisticalUnlearning.RandomizedTest.measurable_toFun
+#print axioms StatisticalUnlearning.RandomizedTest.le_one
+#print axioms StatisticalUnlearning.zeroTest
+#print axioms StatisticalUnlearning.typeIError
+#print axioms StatisticalUnlearning.typeIIError
+#print axioms StatisticalUnlearning.tradeOff
 #print axioms StatisticalUnlearning.typeIError_zero
 #print axioms StatisticalUnlearning.typeIIError_zero
 #print axioms StatisticalUnlearning.tradeOff_antitone
 #print axioms StatisticalUnlearning.tradeOff_le_one
+#print axioms StatisticalUnlearning.Baseline
+#print axioms StatisticalUnlearning.Unlearns
 #print axioms StatisticalUnlearning.Unlearns.mono
+#print axioms StatisticalUnlearning.feasibleRegion
 #print axioms StatisticalUnlearning.mem_feasibleRegion
 #print axioms StatisticalUnlearning.feasibleRegion_mono
+#print axioms StatisticalUnlearning.geometricFeasibleRegion
+#print axioms StatisticalUnlearning.mem_geometricFeasibleRegion
+#print axioms StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall
+#print axioms StatisticalUnlearning.geometricFeasibleRegion_zero_removal
+#print axioms StatisticalUnlearning.removal_le_separation_add_preservation
+#print axioms StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound
+#print axioms StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le
