@@ -31,3 +31,5 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.leftInverse
 #print axioms StatisticalUnlearning.inverseSublevel_bddBelow
 #print axioms StatisticalUnlearning.leftInverse_mono
+#print axioms StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty
+#print axioms StatisticalUnlearning.leftInverse_eq_one_of_empty

@@ -29,6 +29,8 @@
     "StatisticalUnlearning.inverseSublevel",
     "StatisticalUnlearning.leftInverse",
     "StatisticalUnlearning.inverseSublevel_bddBelow",
-    "StatisticalUnlearning.leftInverse_mono"
+    "StatisticalUnlearning.leftInverse_mono",
+    "StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty",
+    "StatisticalUnlearning.leftInverse_eq_one_of_empty"
   ]
 }

@@ -30,6 +30,28 @@ theorem inverseSublevel_bddBelow (f : ℝ → ℝ) (t : ℝ) :
   · norm_num
   · exact hx.1
 
+/-- On a nonempty sublevel set, adjoining `1` leaves the infimum unchanged. -/
+theorem leftInverse_eq_sInf_of_nonempty (f : ℝ → ℝ) (t : ℝ)
+    (hs : {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧ f x ≤ t}.Nonempty) :
+    leftInverse f t = sInf {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧ f x ≤ t} := by
+  have hb : BddBelow {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧ f x ≤ t} := by
+    exact ⟨0, fun _ hx => hx.1⟩
+  apply le_antisymm
+  · exact csInf_le_csInf (inverseSublevel_bddBelow f t) hs
+      (fun _ hx => Set.mem_insert_of_mem 1 hx)
+  · apply le_csInf ⟨1, Set.mem_insert 1 _⟩
+    intro x hx
+    rcases hx with rfl | hx
+    · obtain ⟨y, hy⟩ := hs
+      exact le_trans (csInf_le hb hy) hy.2.1
+    · exact csInf_le hb hx
+
+/-- On an empty sublevel set the generalized inverse is exactly `1`. -/
+theorem leftInverse_eq_one_of_empty (f : ℝ → ℝ) (t : ℝ)
+    (hs : {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧ f x ≤ t} = ∅) :
+    leftInverse f t = 1 := by
+  simp [leftInverse, inverseSublevel, hs]
+
 /-- Lemma 17: pointwise order on `[0,1]` preserves generalized-inverse order. -/
 theorem leftInverse_mono {f g : ℝ → ℝ}
     (h : ∀ x ∈ Set.Icc (0 : ℝ) 1, f x ≤ g x) (t : ℝ) :
