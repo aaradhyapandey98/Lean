@@ -55,3 +55,7 @@ Assign disjoint modules to agents and arrange independent statement review. Comm
 - The complete paper remains unverified; the real/ENNReal correspondence and source-facing interface are the immediate next tasks. Geometry remains separate from the unproved Gaussian testing correspondence.
 
 The publication commit may differ from the checked source revision because it adds evidence, generated reader data and this handoff. The evidence hashes bind every Lean file, toolchain, Lake configuration, lockfile and declaration registry. Do not treat a changed Lean file as covered by this result.
+
+## Real and encoded randomized tests — draft
+
+Branch `testing-real-representation` starts from PR #7 head `192f3dade235fbc50658612c69f1bdac9c96d9bc`. It proposes real-to-ENNReal and ENNReal-to-real pointwise conversions for measurable tests valued in [0,1]. CI must check the exact revision before either direction is regarded as proved; source fidelity and independent review are outstanding. These statements do not establish expectation, type-I constraint, infimum, or trade-off equivalence, the Blackwell converse, divergence ordering, tensor properties, or composition. Local Lean is unavailable; use PR-triggered GitHub Actions for the pinned build and axiom audit. Existing evidence must not certify changed sources.
