@@ -1,0 +1,35 @@
+name: Statistical unlearning
+
+on:
+  push:
+    branches: [main, formalize-statistical-unlearning]
+    paths: [statistical-unlearning/**, .github/workflows/unlearning.yml]
+  pull_request:
+    paths: [statistical-unlearning/**, .github/workflows/unlearning.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unlearning-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: statistical-unlearning
+          auto-config: false
+          build: true
+          build-args: --wfail
+          test: false
+          lint: false
+          use-github-cache: false
+      - name: Record resolved dependencies
+        working-directory: statistical-unlearning
+        run: cat lake-manifest.json
