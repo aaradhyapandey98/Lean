@@ -29,7 +29,7 @@ window.PROOF_DATA = {
           31,
           34
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L31-L34"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L31-L34"
       },
       "dependencies": [],
       "notes": "Encoded foundation. Equivalence of this test type with the real interval-valued test type remains to be formalized.",
@@ -62,12 +62,12 @@ window.PROOF_DATA = {
           60,
           62
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L60-L62"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L60-L62"
       },
       "dependencies": [
         "randomized-tests"
       ],
-      "notes": "The real-integral and infimum representation bridges are open obligations. A checked encoding is not yet a checked equivalence with the paper's Definition 1.",
+      "notes": "The real-test, error, feasibility and infimum correspondence is proved by tradeOff_eq_real_test_infimum. Independent source-fidelity review remains outstanding.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
       "status": "checked",
       "axioms": [
@@ -96,7 +96,7 @@ window.PROOF_DATA = {
           65,
           67
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L65-L67"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L65-L67"
       },
       "dependencies": [
         "randomized-tests"
@@ -130,7 +130,7 @@ window.PROOF_DATA = {
           70,
           72
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L70-L72"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L70-L72"
       },
       "dependencies": [
         "randomized-tests"
@@ -165,7 +165,7 @@ window.PROOF_DATA = {
           76,
           81
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L81"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L81"
       },
       "dependencies": [
         "trade-off"
@@ -200,7 +200,7 @@ window.PROOF_DATA = {
           84,
           98
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Testing.lean#L84-L98"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L84-L98"
       },
       "dependencies": [
         "trade-off",
@@ -237,7 +237,7 @@ window.PROOF_DATA = {
           33,
           35
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
       },
       "dependencies": [
         "trade-off"
@@ -273,7 +273,7 @@ window.PROOF_DATA = {
           38,
           43
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
       },
       "dependencies": [
         "unlearning"
@@ -307,7 +307,7 @@ window.PROOF_DATA = {
           48,
           51
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
       },
       "dependencies": [
         "unlearning"
@@ -341,7 +341,7 @@ window.PROOF_DATA = {
           55,
           59
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
       },
       "dependencies": [
         "feasible-region"
@@ -376,7 +376,7 @@ window.PROOF_DATA = {
           62,
           69
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
       },
       "dependencies": [
         "consistency",
@@ -412,7 +412,7 @@ window.PROOF_DATA = {
           30,
           32
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
       },
       "dependencies": [],
       "notes": "A geometric prerequisite for Gaussian results. The Gaussian testing-to-distance bridge is not yet proved.",
@@ -445,7 +445,7 @@ window.PROOF_DATA = {
           35,
           39
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
       },
       "dependencies": [
         "geometric-region"
@@ -480,7 +480,7 @@ window.PROOF_DATA = {
           42,
           47
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
       },
       "dependencies": [
         "geometric-region"
@@ -515,7 +515,7 @@ window.PROOF_DATA = {
           68,
           76
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
       },
       "dependencies": [
         "geometric-region"
@@ -550,7 +550,7 @@ window.PROOF_DATA = {
           53,
           64
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
       },
       "dependencies": [
         "geometric-region"
@@ -585,7 +585,7 @@ window.PROOF_DATA = {
           81,
           86
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
       },
       "dependencies": [
         "geometric-region"
@@ -620,7 +620,7 @@ window.PROOF_DATA = {
           92,
           105
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
       },
       "dependencies": [
         "geometric-region"
@@ -637,20 +637,39 @@ window.PROOF_DATA = {
     },
     {
       "id": "representation-bridge",
-      "kind": "Obligation",
+      "kind": "Representation lemma",
       "number": "Bridge",
-      "title": "Connect the encoding to real-valued testing",
-      "section": "04 · Open proof obligations",
-      "status": "pending",
-      "summary": "Translate tests, expectations and infima between the ENNReal model and the paper's [0,1]-valued formulation.",
-      "statement": "Construct the two measurable test conversions; prove equality of errors and preservation of feasibility; then identify the two infima. Add the realizable-baseline interface.",
-      "assumptions": [],
+      "title": "Real and encoded testing trade-offs agree",
+      "section": "01 · Testing foundations",
+      "summary": "The encoded curve equals the infimum of real type-II expectations over the paper's feasible measurable tests.",
+      "statement": "For probability measures P,Q and α in [0,1], the real value of the encoded trade-off equals the infimum over measurable real tests φ in [0,1] satisfying E_P[φ] ≤ α, of E_Q[1−φ].",
+      "assumptions": [
+        "P and Q are probability measures on the same measurable space.",
+        "α is represented by a finite ENNReal value in [0,1]."
+      ],
       "dependencies": [
         "trade-off",
         "trade-off-upper-bound"
       ],
-      "notes": "This is the next correspondence milestone. No bridge theorem is assumed in the existing library.",
-      "sourceUrl": "https://arxiv.org/html/2605.16645v1"
+      "notes": "This proves Definition 1's representation bridge; independent source-fidelity review and the realizable-baseline interface remain open.",
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.tradeOff_eq_real_test_infimum",
+        "code": "theorem tradeOff_eq_real_test_infimum (P Q : ProbabilityMeasure Ω)\n    (α : SignificanceLevel) :\n    (tradeOff P Q α).toReal =\n      sInf {r : ℝ | ∃ f : Ω → ℝ, Measurable f ∧\n        (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧\n        (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ∧\n        r = ∫ x, (1 - f x) ∂(Q : Measure Ω)} := by\n  rw [tradeOff_toReal_eq_iInf, ← sInf_range]\n  congr 1\n  ext r\n  constructor\n  · rintro ⟨⟨φ, hfeas⟩, hval⟩\n    obtain ⟨f, hf, hrange, hrep⟩ := encoded_test_to_real φ\n    have hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x) := fun x =\u003e (hrep x).symm\n    refine ⟨f, hf, hrange, (real_test_feasible_iff P φ f hf hrange hφ α).2 hfeas, ?_⟩\n    exact hval.symm.trans (typeIIError_real Q φ f hf hrange hφ).symm\n  · rintro ⟨f, hf, hrange, hfeas, hval⟩\n    obtain ⟨φ, hφ⟩ := real_test_to_encoded f hf hrange\n    refine ⟨⟨φ, (real_test_feasible_iff P φ f hf hrange hφ α).1 hfeas⟩, ?_⟩\n    exact (typeIIError_real Q φ f hf hrange hφ).symm.trans hval.symm",
+        "lines": [
+          232,
+          251
+        ],
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Testing.lean#L232-L251"
+      },
+      "sourceUrl": "https://arxiv.org/html/2605.16645v1",
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "blackwell",
@@ -765,7 +784,7 @@ window.PROOF_DATA = {
           79,
           87
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/2072f714b7edfcaa722fd29767ab806f261dff86/statistical-unlearning/StatisticalUnlearning/Inverse.lean#L79-L87"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/06d9c30b11e288385272b3eb0aed678264a1c734/statistical-unlearning/StatisticalUnlearning/Inverse.lean#L79-L87"
       },
       "dependencies": [],
       "notes": "The two representation lemmas prove that adjoining 1 implements the paper’s empty-infimum convention. Independent statement review remains outstanding.",
@@ -782,9 +801,9 @@ window.PROOF_DATA = {
   "build": {
     "status": "passed",
     "command": "lake build --wfail; lake env lean StatisticalUnlearning/Audit.lean; strict axiom audit",
-    "revision": "2072f714b7edfcaa722fd29767ab806f261dff86",
+    "revision": "06d9c30b11e288385272b3eb0aed678264a1c734",
     "toolchain": "leanprover/lean4:v4.24.0",
     "mathlib": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
-    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42382449741"
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42386185097"
   }
 };
