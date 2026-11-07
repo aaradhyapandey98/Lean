@@ -25,6 +25,10 @@
     "StatisticalUnlearning.geometricFeasibleRegion_zero_removal",
     "StatisticalUnlearning.removal_le_separation_add_preservation",
     "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound",
-    "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le"
+    "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le",
+    "StatisticalUnlearning.inverseSublevel",
+    "StatisticalUnlearning.leftInverse",
+    "StatisticalUnlearning.inverseSublevel_bddBelow",
+    "StatisticalUnlearning.leftInverse_mono"
   ]
 }

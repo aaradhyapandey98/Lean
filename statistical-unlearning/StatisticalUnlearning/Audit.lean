@@ -27,3 +27,7 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.removal_le_separation_add_preservation
 #print axioms StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound
 #print axioms StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le
+#print axioms StatisticalUnlearning.inverseSublevel
+#print axioms StatisticalUnlearning.leftInverse
+#print axioms StatisticalUnlearning.inverseSublevel_bddBelow
+#print axioms StatisticalUnlearning.leftInverse_mono
