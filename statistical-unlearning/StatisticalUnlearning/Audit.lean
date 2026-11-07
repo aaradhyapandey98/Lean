@@ -56,3 +56,5 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.tradeOff_kernel_ge
 #print axioms StatisticalUnlearning.real_test_to_encoded
 #print axioms StatisticalUnlearning.encoded_test_to_real
+#print axioms StatisticalUnlearning.typeIError_real
+#print axioms StatisticalUnlearning.typeIIError_real
