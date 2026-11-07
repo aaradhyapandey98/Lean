@@ -7,7 +7,7 @@ This project has two deliverables: a Lean library with explicit assumptions, and
 ## Current trust status
 
 - Lean source is authored without proof placeholders or project-specific axioms.
-- The seven initial elementary lemmas compiled in [GitHub Actions run 42334954883](https://github.com/aaradhyapandey98/Lean/actions/runs/42334954883), Lean 4.24.0 / mathlib v4.24.0. Per-declaration axiom auditing is a separate check.
+- All **13 elementary lemmas** compiled in [GitHub Actions run 42335449513](https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513), Lean 4.24.0 / mathlib v4.24.0. All **26 registered declarations** passed the transitive-axiom audit. These counts include auxiliary results and definitions, not completed main paper theorems.
 - A green source scan is not a proof certificate. Only a successful Lean build and axiom audit for matching source may set a declaration's site status to **checked**.
 - Formal statement fidelity is reviewed separately from compilation. In particular, the ENNReal representation of tests and trade-offs still needs its bridge to the paper's real-valued formulation.
 - Suspected and independently reviewed source issues are recorded in `docs/PAPER_AUDIT.md` and `docs/INDEPENDENT_REVIEW.md`. These are mathematical review notes, not machine-checked counterexamples.
@@ -28,6 +28,8 @@ python3 scripts/check_integrity.py verify-audit --declarations declarations.json
 python3 scripts/build_site.py --evidence .audit/axioms.json
 ```
 
+The retained result is [verification/last-audit.json](verification/last-audit.json), bound to the exact source/configuration hashes and linked to the successful CI run. To reproduce the checked reader without rebuilding, `python3 scripts/build_site.py --evidence verification/last-audit.json`; this fails if the current Lean sources or pinned configuration differ. Rebuilding and auditing remain the proof-validation steps.
+
 The audit accepts only `propext`, `Classical.choice`, and `Quot.sound`. These are foundational Lean/mathlib axioms, not statistical assumptions. Exact axiom use is displayed per declaration. Statistical hypotheses belong in visible theorem statements, not opaque structures or assumed conclusions.
 
 `lake-manifest.json` was recovered from the successful CI dependency resolution and pins mathlib plus its transitive packages. Use `lake build` for routine work. Run `lake update` deliberately when updating dependencies, review the lockfile diff, and rebuild.
@@ -40,7 +42,7 @@ Open `site/index.html`, or serve the folder locally:
 python3 -m http.server 8000 --directory site
 ```
 
-The left pane explains a statement and its source; the right pane shows the actual Lean source. Search, status filters, deep links, dependency links, and a mobile reading mode support navigation. Pending paper results remain visible as obligations.
+The left pane explains a statement and its source; the right pane shows the actual Lean source. Search, status filters, deep links, dependency links, and a mobile reading mode support navigation. The initial reader tracks 24 entries, including all 13 checked elementary lemmas and six open milestones. Entry counts are not a percentage of paper coverage. Browser layout QA remains pending; syntax, accessibility structure, and functional DOM tests passed.
 
 ## Continue across sessions
 

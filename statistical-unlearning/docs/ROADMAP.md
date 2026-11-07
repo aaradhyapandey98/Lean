@@ -2,10 +2,10 @@
 
 ## Milestone 0: a reproducible foundation
 
-1. Pin Lean and mathlib, resolve and commit `lake-manifest.json`, and obtain the first successful CI build.
-2. Check every authored declaration's axioms and bind audit results to exact source hashes.
+1. **Done:** pin Lean and mathlib, resolve and commit `lake-manifest.json`, and obtain a successful CI build.
+2. **Done for the current 26 declarations:** check axioms and bind audit results to exact source hashes.
 3. Independently review Definitions 1–3; prove the ENNReal/real representation bridge and the trade-off range and feasible-test nonemptiness facts.
-4. Publish the split-pane reader with statuses derived from build evidence.
+4. **Reader built and tested:** publish the split-pane reader with statuses derived from build evidence.
 
 ## Milestone 1: hypothesis testing
 

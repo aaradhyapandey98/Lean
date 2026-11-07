@@ -44,4 +44,12 @@ Assign disjoint modules to agents and arrange independent statement review. Comm
 
 ## Latest complete verification
 
-Pending the complete build, axiom audit and reader integration. This section must be updated with the actual successful run and revision.
+**Passed:** [GitHub Actions run 42335449513](https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513), source revision `7233527933bdea3d5b46b1228ea7a55c2bb31684`.
+
+- All three library modules compiled with `lake build --wfail`: 13 elementary lemmas.
+- All 26 registry entries passed `#print axioms` inspection; the union of their dependencies is exactly `propext`, `Classical.choice`, `Quot.sound`.
+- Source hygiene, 18 integrity unit tests, JavaScript syntax checks and the 24-entry reader's functional DOM tests passed.
+- Retained evidence: `verification/last-audit.json`, extracted verbatim from the successful run. The checked reader is generated from this evidence and actual Lean files.
+- The complete paper remains unverified; the real/ENNReal correspondence and source-facing interface are the immediate next tasks. Geometry remains separate from the unproved Gaussian testing correspondence.
+
+The publication commit may differ from the checked source revision because it adds evidence, generated reader data and this handoff. The evidence hashes bind every Lean file, toolchain, Lake configuration, lockfile and declaration registry. Do not treat a changed Lean file as covered by this result.

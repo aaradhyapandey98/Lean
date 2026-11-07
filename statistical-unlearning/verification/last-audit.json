@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "kind": "lean_axiom_audit",
+  "status": "passed",
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "declarations": [
+    {
+      "name": "StatisticalUnlearning.SignificanceLevel",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.RandomizedTest",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.RandomizedTest.toFun",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.RandomizedTest.measurable_toFun",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.RandomizedTest.le_one",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.zeroTest",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.typeIError",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.typeIIError",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.tradeOff",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.typeIError_zero",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.typeIIError_zero",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.tradeOff_antitone",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.tradeOff_le_one",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.Baseline",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.Unlearns",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.Unlearns.mono",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.feasibleRegion",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.mem_feasibleRegion",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.feasibleRegion_mono",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.geometricFeasibleRegion",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.mem_geometricFeasibleRegion",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.geometricFeasibleRegion_zero_removal",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.removal_le_separation_add_preservation",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "log_sha256": "c7942bd765100e43cd6a5d672f4dcaa70de946302642af27fd73098b33f99d5b",
+  "toolchain": "leanprover/lean4:v4.24.0",
+  "source_snapshot": {
+    "StatisticalUnlearning/Audit.lean": "03fbc922ef4e77071dce5490d1e1ceb2740a0c754894939ceeba09e2f1450da1",
+    "StatisticalUnlearning/Geometry.lean": "dacd896f55c441d6f586ec2b567fd0494b5bfd8f734e387f5bea47097311fb8c",
+    "StatisticalUnlearning/Testing.lean": "03cc0f3e81cee8873bef588fcfd8b4221d77cc4986db186e1ad851acd340a317",
+    "StatisticalUnlearning/Unlearning.lean": "6a7a07b525291918ddf09cf96a9826db76f2c240ad5abc45fdc248efc2261291",
+    "StatisticalUnlearning.lean": "1625cee4b33db0923765d440382bcc7c17ab91221f14874d042f96bdd25155c7",
+    "declarations.json": "18e72f5da1a06e8092d1b7a2b463a98623aab71ac26c64e612884675e194462f",
+    "lake-manifest.json": "51c76d947ef77a12a2d7dd4ab364c49bcfb6a1520661d8ab1edb805f439b5257",
+    "lakefile.lean": "601f40dcace30192ebe4ee2fe4f6918179e755f790ecdf24bacaa014c0bd88dd",
+    "lean-toolchain": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
+  },
+  "source_declarations": [
+    "StatisticalUnlearning.Baseline",
+    "StatisticalUnlearning.RandomizedTest",
+    "StatisticalUnlearning.SignificanceLevel",
+    "StatisticalUnlearning.Unlearns",
+    "StatisticalUnlearning.Unlearns.mono",
+    "StatisticalUnlearning.feasibleRegion",
+    "StatisticalUnlearning.feasibleRegion_mono",
+    "StatisticalUnlearning.geometricFeasibleRegion",
+    "StatisticalUnlearning.geometricFeasibleRegion_eq_closedBall_of_add_le",
+    "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound",
+    "StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall",
+    "StatisticalUnlearning.geometricFeasibleRegion_zero_removal",
+    "StatisticalUnlearning.mem_feasibleRegion",
+    "StatisticalUnlearning.mem_geometricFeasibleRegion",
+    "StatisticalUnlearning.removal_le_separation_add_preservation",
+    "StatisticalUnlearning.tradeOff",
+    "StatisticalUnlearning.tradeOff_antitone",
+    "StatisticalUnlearning.tradeOff_le_one",
+    "StatisticalUnlearning.typeIError",
+    "StatisticalUnlearning.typeIError_zero",
+    "StatisticalUnlearning.typeIIError",
+    "StatisticalUnlearning.typeIIError_zero",
+    "StatisticalUnlearning.zeroTest"
+  ],
+  "scope": "Parsed axiom reports after an independently successful Lean run; not standalone kernel certification.",
+  "build": {
+    "revision": "7233527933bdea3d5b46b1228ea7a55c2bb31684",
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513"
+  }
+}

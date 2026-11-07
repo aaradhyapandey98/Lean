@@ -29,12 +29,18 @@ window.PROOF_DATA = {
           29,
           32
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L29-L32"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L29-L32"
       },
       "dependencies": [],
       "notes": "Encoded foundation. Equivalence of this test type with the real interval-valued test type remains to be formalized.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "trade-off",
@@ -56,14 +62,20 @@ window.PROOF_DATA = {
           52,
           54
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L52-L54"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L52-L54"
       },
       "dependencies": [
         "randomized-tests"
       ],
       "notes": "The real-integral and infimum representation bridges are open obligations. A checked encoding is not yet a checked equivalence with the paper's Definition 1.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "zero-type-i",
@@ -84,14 +96,20 @@ window.PROOF_DATA = {
           57,
           59
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L57-L59"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L57-L59"
       },
       "dependencies": [
         "randomized-tests"
       ],
       "notes": "Auxiliary lemma for the encoded testing problem; not a numbered main theorem of the paper.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "zero-type-ii",
@@ -112,14 +130,20 @@ window.PROOF_DATA = {
           62,
           64
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L62-L64"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L62-L64"
       },
       "dependencies": [
         "randomized-tests"
       ],
       "notes": "The normalization Q(Ω)=1 supplies the unit value.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "trade-off-antitone",
@@ -141,14 +165,20 @@ window.PROOF_DATA = {
           68,
           73
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L68-L73"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L68-L73"
       },
       "dependencies": [
         "trade-off"
       ],
       "notes": "No existence of an optimal test is assumed.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "trade-off-upper-bound",
@@ -170,7 +200,7 @@ window.PROOF_DATA = {
           76,
           82
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L82"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L82"
       },
       "dependencies": [
         "trade-off",
@@ -179,7 +209,13 @@ window.PROOF_DATA = {
       ],
       "notes": "This is weaker than the complete trade-off-function characterization.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "unlearning",
@@ -201,14 +237,20 @@ window.PROOF_DATA = {
           33,
           35
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
       },
       "dependencies": [
         "trade-off"
       ],
       "notes": "Generalized baseline predicate. No Gaussian baseline formula, Blackwell converse, or statistical algorithm is assumed.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "consistency",
@@ -231,14 +273,20 @@ window.PROOF_DATA = {
           38,
           43
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
       },
       "dependencies": [
         "unlearning"
       ],
       "notes": "Proved for the generalized encoded predicate. The argument uses only order transitivity.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "feasible-region",
@@ -259,14 +307,20 @@ window.PROOF_DATA = {
           48,
           51
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
       },
       "dependencies": [
         "unlearning"
       ],
       "notes": "A definition is not a characterization theorem for any particular population family.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "feasible-membership",
@@ -287,14 +341,20 @@ window.PROOF_DATA = {
           55,
           59
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
       },
       "dependencies": [
         "feasible-region"
       ],
       "notes": "Definitional unfolding, explicitly distinguished from a statistical result.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "feasible-monotonicity",
@@ -316,7 +376,7 @@ window.PROOF_DATA = {
           62,
           69
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
       },
       "dependencies": [
         "consistency",
@@ -324,7 +384,13 @@ window.PROOF_DATA = {
       ],
       "notes": "An auxiliary consequence of the encoded definitions.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-region",
@@ -346,12 +412,18 @@ window.PROOF_DATA = {
           30,
           32
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
       },
       "dependencies": [],
       "notes": "A geometric prerequisite for Gaussian results. The Gaussian testing-to-distance bridge is not yet proved.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-membership",
@@ -373,14 +445,20 @@ window.PROOF_DATA = {
           35,
           39
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "Definitional unfolding; no Gaussian result is claimed.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-subset",
@@ -402,14 +480,20 @@ window.PROOF_DATA = {
           42,
           47
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "A direct consequence of the second metric inequality.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-point-bound",
@@ -431,14 +515,20 @@ window.PROOF_DATA = {
           68,
           76
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "An individual-point version of the necessary nonemptiness bound.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-zero",
@@ -460,14 +550,20 @@ window.PROOF_DATA = {
           53,
           64
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "This checks the geometric boundary case flagged in the source review. It does not establish the Gaussian trade-off formula.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-necessary",
@@ -489,14 +585,20 @@ window.PROOF_DATA = {
           81,
           86
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "The necessary geometric direction uses only the triangle inequality. The converse needs extra geometry.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "geometric-whole-ball",
@@ -518,14 +620,20 @@ window.PROOF_DATA = {
           92,
           105
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/7233527933bdea3d5b46b1228ea7a55c2bb31684/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
       },
       "dependencies": [
         "geometric-region"
       ],
       "notes": "A sufficient condition only. Necessity is not claimed, including at zero removal radius.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1",
-      "status": "unverified"
+      "status": "checked",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "verification": "Lean accepted the encoded declaration and its axiom audit uses only the displayed foundational axioms. This records code checking; read the correspondence notes for remaining mathematical representation obligations."
     },
     {
       "id": "representation-bridge",
@@ -638,10 +746,11 @@ window.PROOF_DATA = {
     }
   ],
   "build": {
-    "status": "unverified",
+    "status": "passed",
     "command": "lake build --wfail; lake env lean StatisticalUnlearning/Audit.lean; strict axiom audit",
-    "revision": "No successful build recorded",
+    "revision": "7233527933bdea3d5b46b1228ea7a55c2bb31684",
     "toolchain": "leanprover/lean4:v4.24.0",
-    "mathlib": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7"
+    "mathlib": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513"
   }
 };
