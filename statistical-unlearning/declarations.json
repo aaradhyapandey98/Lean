@@ -52,6 +52,10 @@
     "StatisticalUnlearning.typeIError_kernel",
     "StatisticalUnlearning.kernelPullback_complement",
     "StatisticalUnlearning.typeIIError_kernel",
-    "StatisticalUnlearning.tradeOff_kernel_ge"
+    "StatisticalUnlearning.tradeOff_kernel_ge",
+    "StatisticalUnlearning.real_test_to_encoded",
+    "StatisticalUnlearning.encoded_test_to_real",
+    "StatisticalUnlearning.typeIError_real",
+    "StatisticalUnlearning.typeIIError_real"
   ]
 }

@@ -1,3 +1,4 @@
+import Mathlib.MeasureTheory.Integral.Bochner.Basic
 import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
 import Mathlib.MeasureTheory.Integral.Lebesgue.Sub
 import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
@@ -134,5 +135,54 @@ theorem tradeOff_one (P Q : ProbabilityMeasure Ω) :
   apply le_antisymm
   · simpa using tradeOff_le_diagonal P Q ⟨1, by simp⟩
   · exact zero_le _
+
+/-- Every paper-style real measurable test has an encoded counterpart. -/
+theorem real_test_to_encoded (f : Ω → ℝ) (hf : Measurable f)
+    (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1) :
+    ∃ φ : RandomizedTest Ω, ∀ x, φ.toFun x = ENNReal.ofReal (f x) := by
+  refine ⟨⟨fun x => ENNReal.ofReal (f x),
+    ENNReal.measurable_ofReal.comp hf, ?_⟩, fun _ => rfl⟩
+  intro x
+  simpa using ENNReal.ofReal_le_ofReal (hrange x).2
+
+/-- Every encoded test corresponds pointwise to a measurable real test in [0,1]. -/
+theorem encoded_test_to_real (φ : RandomizedTest Ω) :
+    ∃ f : Ω → ℝ, Measurable f ∧ (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+      ∀ x, ENNReal.ofReal (f x) = φ.toFun x := by
+  refine ⟨fun x => (φ.toFun x).toReal,
+    ENNReal.measurable_toReal.comp φ.measurable_toFun, ?_, ?_⟩
+  · intro x
+    exact ⟨ENNReal.toReal_nonneg,
+      by simpa using ENNReal.toReal_mono (by simp : (1 : ℝ≥0∞) ≠ ∞) (φ.le_one x)⟩
+  · intro x
+    exact ENNReal.ofReal_toReal
+      (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (φ.le_one x))
+
+/-- The real rejection expectation equals the encoded type-I error. -/
+theorem typeIError_real (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
+    (f : Ω → ℝ) (hf : Measurable f) (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1)
+    (hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x)) :
+    (∫ x, f x ∂(P : Measure Ω)) = (typeIError P φ).toReal := by
+  have hfun : (fun x => ENNReal.ofReal (f x)) = φ.toFun := by
+    funext x
+    exact (hφ x).symm
+  have hn : 0 ≤ᵐ[(P : Measure Ω)] f := ae_of_all _ (fun x => (hrange x).1)
+  simpa only [hfun, typeIError] using
+    (integral_eq_lintegral_of_nonneg_ae hn hf.aestronglyMeasurable)
+
+/-- The real acceptance expectation equals the encoded type-II error. -/
+theorem typeIIError_real (Q : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
+    (f : Ω → ℝ) (hf : Measurable f) (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1)
+    (hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x)) :
+    (∫ x, (1 - f x) ∂(Q : Measure Ω)) = (typeIIError Q φ).toReal := by
+  have hfun : (fun x => ENNReal.ofReal (1 - f x)) =
+      (fun x => 1 - φ.toFun x) := by
+    funext x
+    rw [ENNReal.ofReal_sub 1 (hrange x).1, ENNReal.ofReal_one, ← hφ x]
+  have hn : 0 ≤ᵐ[(Q : Measure Ω)] (fun x => 1 - f x) :=
+    ae_of_all _ (fun x => sub_nonneg.mpr (hrange x).2)
+  have hm : Measurable (fun x => 1 - f x) := measurable_const.sub hf
+  simpa only [hfun, typeIIError] using
+    (integral_eq_lintegral_of_nonneg_ae hn hm.aestronglyMeasurable)
 
 end StatisticalUnlearning
