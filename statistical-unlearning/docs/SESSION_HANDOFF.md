@@ -44,6 +44,8 @@ Assign disjoint modules to agents and arrange independent statement review. Comm
 
 ## Latest complete verification
 
+**Latest draft PR #2:** [run 42339473157](https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157), source revision `03f521a85499a43d07b631b1bfda35aa929be95c`, built all four library modules and audited 35 registered declarations with only `propext`, `Classical.choice`, and `Quot.sound`. The inverse ordering and the empty/nonempty infimum cases compile. An independent source-fidelity review of the new declarations remains outstanding. The website manifest and `verification/last-audit.json` were refreshed from that run; the source hashes must still match before a reader badge is trusted.
+
 **Passed:** [GitHub Actions run 42335449513](https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513), source revision `7233527933bdea3d5b46b1228ea7a55c2bb31684`.
 
 - All three library modules compiled with `lake build --wfail`: 13 elementary lemmas.

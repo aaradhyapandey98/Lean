@@ -7,7 +7,7 @@ This project has two deliverables: a Lean library with explicit assumptions, and
 ## Current trust status
 
 - Lean source is authored without proof placeholders or project-specific axioms.
-- All **13 elementary lemmas** compiled in [GitHub Actions run 42335449513](https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513), Lean 4.24.0 / mathlib v4.24.0. All **26 registered declarations** passed the transitive-axiom audit. These counts include auxiliary results and definitions, not completed main paper theorems.
+- The inverse-order increment and the existing foundations compiled in [GitHub Actions run 42339473157](https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157), Lean 4.24.0 / mathlib v4.24.0. All **35 registered declarations** passed the transitive-axiom audit. These include auxiliary results and definitions; independent review of the new inverse statements is outstanding.
 - A green source scan is not a proof certificate. Only a successful Lean build and axiom audit for matching source may set a declaration's site status to **checked**.
 - Formal statement fidelity is reviewed separately from compilation. In particular, the ENNReal representation of tests and trade-offs still needs its bridge to the paper's real-valued formulation.
 - Suspected and independently reviewed source issues are recorded in `docs/PAPER_AUDIT.md` and `docs/INDEPENDENT_REVIEW.md`. These are mathematical review notes, not machine-checked counterexamples.
@@ -17,7 +17,6 @@ This project has two deliverables: a Lean library with explicit assumptions, and
 Install [Lean via elan](https://lean-lang.org/install/), then, from this directory:
 
 ```sh
-lake update
 lake exe cache get
 lake build
 python3 scripts/check_integrity.py structural
@@ -42,7 +41,7 @@ Open `site/index.html`, or serve the folder locally:
 python3 -m http.server 8000 --directory site
 ```
 
-The left pane explains a statement and its source; the right pane shows the actual Lean source. Search, status filters, deep links, dependency links, and a mobile reading mode support navigation. The initial reader tracks 24 entries, including all 13 checked elementary lemmas and six open milestones. Entry counts are not a percentage of paper coverage. Browser layout QA remains pending; syntax, accessibility structure, and functional DOM tests passed.
+The left pane explains a statement and its source; the right pane shows the actual Lean source. Search, status filters, deep links, dependency links, and a mobile reading mode support navigation. Entry counts are not a percentage of paper coverage. Browser layout QA remains pending; syntax, accessibility structure, and functional DOM tests passed.
 
 ## Continue across sessions
 

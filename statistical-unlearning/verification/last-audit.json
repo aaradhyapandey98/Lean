@@ -241,18 +241,100 @@
         "propext"
       ],
       "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.inverseSublevel",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.inverseSublevel_bddBelow",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_mono",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_eq_one_of_empty",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_nonneg",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_le_one",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_antitone",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
     }
   ],
   "errors": [],
-  "log_sha256": "c7942bd765100e43cd6a5d672f4dcaa70de946302642af27fd73098b33f99d5b",
+  "log_sha256": "45bc0a7e224ffe1bc776d0fd0de07094ffa41617af7c9f2e2ce16613937a18d1",
   "toolchain": "leanprover/lean4:v4.24.0",
   "source_snapshot": {
-    "StatisticalUnlearning/Audit.lean": "03fbc922ef4e77071dce5490d1e1ceb2740a0c754894939ceeba09e2f1450da1",
+    "StatisticalUnlearning/Audit.lean": "e1828aefa8fbf9024bc6d9fa9ed84731942b7c07c41875a19339bf38b2a95900",
     "StatisticalUnlearning/Geometry.lean": "dacd896f55c441d6f586ec2b567fd0494b5bfd8f734e387f5bea47097311fb8c",
+    "StatisticalUnlearning/Inverse.lean": "5b340ce909f9be18491e74f9a1d6b95f6584fcfba8bcf759c9810a83dabde0d8",
     "StatisticalUnlearning/Testing.lean": "03cc0f3e81cee8873bef588fcfd8b4221d77cc4986db186e1ad851acd340a317",
     "StatisticalUnlearning/Unlearning.lean": "6a7a07b525291918ddf09cf96a9826db76f2c240ad5abc45fdc248efc2261291",
-    "StatisticalUnlearning.lean": "1625cee4b33db0923765d440382bcc7c17ab91221f14874d042f96bdd25155c7",
-    "declarations.json": "18e72f5da1a06e8092d1b7a2b463a98623aab71ac26c64e612884675e194462f",
+    "StatisticalUnlearning.lean": "161e742fe497d73cd554f0e501056ffaebaf2cf3b7c1a2b26c1a9811cd1f8533",
+    "declarations.json": "ef7e72239ddb212e506220ddcbac6027b918bbf0cae6d1dc865176df26144523",
     "lake-manifest.json": "51c76d947ef77a12a2d7dd4ab364c49bcfb6a1520661d8ab1edb805f439b5257",
     "lakefile.lean": "601f40dcace30192ebe4ee2fe4f6918179e755f790ecdf24bacaa014c0bd88dd",
     "lean-toolchain": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
@@ -270,6 +352,15 @@
     "StatisticalUnlearning.geometricFeasibleRegion_nonempty_implies_bound",
     "StatisticalUnlearning.geometricFeasibleRegion_subset_closedBall",
     "StatisticalUnlearning.geometricFeasibleRegion_zero_removal",
+    "StatisticalUnlearning.inverseSublevel",
+    "StatisticalUnlearning.inverseSublevel_bddBelow",
+    "StatisticalUnlearning.leftInverse",
+    "StatisticalUnlearning.leftInverse_antitone",
+    "StatisticalUnlearning.leftInverse_eq_one_of_empty",
+    "StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty",
+    "StatisticalUnlearning.leftInverse_le_one",
+    "StatisticalUnlearning.leftInverse_mono",
+    "StatisticalUnlearning.leftInverse_nonneg",
     "StatisticalUnlearning.mem_feasibleRegion",
     "StatisticalUnlearning.mem_geometricFeasibleRegion",
     "StatisticalUnlearning.removal_le_separation_add_preservation",
@@ -284,7 +375,7 @@
   ],
   "scope": "Parsed axiom reports after an independently successful Lean run; not standalone kernel certification.",
   "build": {
-    "revision": "7233527933bdea3d5b46b1228ea7a55c2bb31684",
-    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42335449513"
+    "revision": "dd5140eb7d5473eac93bdad97b5a2433877a84ab",
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157"
   }
 }
