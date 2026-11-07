@@ -33,3 +33,6 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.leftInverse_mono
 #print axioms StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty
 #print axioms StatisticalUnlearning.leftInverse_eq_one_of_empty
+#print axioms StatisticalUnlearning.leftInverse_nonneg
+#print axioms StatisticalUnlearning.leftInverse_le_one
+#print axioms StatisticalUnlearning.leftInverse_antitone

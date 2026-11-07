@@ -635,6 +635,34 @@ window.PROOF_DATA = {
       ],
       "notes": "The random-removal confidence-bookkeeping issue does not itself disprove its final bound; the review outlines a direct pooled-Gaussian repair.",
       "sourceUrl": "https://arxiv.org/html/2605.16645v1"
+    },
+    {
+      "id": "inverse-order",
+      "kind": "Paper lemma",
+      "number": "17 · Appendix A.4",
+      "title": "Ordering generalized inverses",
+      "section": "05 · Generalized inverses",
+      "summary": "Pointwise ordering of two functions preserves ordering of their generalized left inverses.",
+      "statement": "If f(x) ≤ g(x) for all x ∈ [0,1], then f⁻¹(t) ≤ g⁻¹(t). The inverse is the infimum of the sublevel set in [0,1], with empty infimum defined as 1.",
+      "assumptions": [
+        "Pointwise ordering on [0,1].",
+        "The result holds for all real thresholds; the paper restricts thresholds to [0,1].",
+        "Nonincreasingness and range restrictions are not needed for this implication."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/Inverse.lean",
+        "declaration": "StatisticalUnlearning.leftInverse_mono",
+        "code": "theorem leftInverse_mono {f g : ℝ → ℝ}\n    (h : ∀ x ∈ Set.Icc (0 : ℝ) 1, f x ≤ g x) (t : ℝ) :\n    leftInverse f t ≤ leftInverse g t := by\n  apply csInf_le_csInf (inverseSublevel_bddBelow f t)\n  · exact ⟨1, Set.mem_insert 1 _⟩\n  · intro x hx\n    rcases hx with rfl | hx\n    · exact Set.mem_insert 1 _\n    · exact Set.mem_insert_of_mem 1 ⟨hx.1, hx.2.1, le_trans (h x ⟨hx.1, hx.2.1⟩) hx.2.2⟩",
+        "lines": [
+          79,
+          87
+        ],
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/main/statistical-unlearning/StatisticalUnlearning/Inverse.lean#L79-L87"
+      },
+      "dependencies": [],
+      "notes": "The two representation lemmas prove that adjoining 1 implements the paper’s empty-infimum convention. Independent statement review remains outstanding.",
+      "sourceUrl": "https://arxiv.org/html/2605.16645v1",
+      "status": "unverified"
     }
   ],
   "build": {

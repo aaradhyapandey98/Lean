@@ -30,6 +30,29 @@ theorem inverseSublevel_bddBelow (f : ℝ → ℝ) (t : ℝ) :
   · norm_num
   · exact hx.1
 
+/-- Generalized inverses take values in the unit interval. -/
+theorem leftInverse_nonneg (f : ℝ → ℝ) (t : ℝ) :
+    0 ≤ leftInverse f t := by
+  apply le_csInf ⟨1, Set.mem_insert 1 _⟩
+  intro x hx
+  rcases hx with rfl | hx
+  · norm_num
+  · exact hx.1
+
+theorem leftInverse_le_one (f : ℝ → ℝ) (t : ℝ) :
+    leftInverse f t ≤ 1 := by
+  exact csInf_le (inverseSublevel_bddBelow f t) (Set.mem_insert 1 _)
+
+/-- Raising the threshold enlarges the sublevel set and lowers its infimum. -/
+theorem leftInverse_antitone (f : ℝ → ℝ) : Antitone (leftInverse f) := by
+  intro s t hst
+  apply csInf_le_csInf (inverseSublevel_bddBelow f t)
+  · exact ⟨1, Set.mem_insert 1 _⟩
+  · intro x hx
+    rcases hx with rfl | hx
+    · exact Set.mem_insert 1 _
+    · exact Set.mem_insert_of_mem 1 ⟨hx.1, hx.2.1, le_trans hx.2.2 hst⟩
+
 /-- On a nonempty sublevel set, adjoining `1` leaves the infimum unchanged. -/
 theorem leftInverse_eq_sInf_of_nonempty (f : ℝ → ℝ) (t : ℝ)
     (hs : {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧ f x ≤ t}.Nonempty) :

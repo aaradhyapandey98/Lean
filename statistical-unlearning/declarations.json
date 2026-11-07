@@ -31,6 +31,9 @@
     "StatisticalUnlearning.inverseSublevel_bddBelow",
     "StatisticalUnlearning.leftInverse_mono",
     "StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty",
-    "StatisticalUnlearning.leftInverse_eq_one_of_empty"
+    "StatisticalUnlearning.leftInverse_eq_one_of_empty",
+    "StatisticalUnlearning.leftInverse_nonneg",
+    "StatisticalUnlearning.leftInverse_le_one",
+    "StatisticalUnlearning.leftInverse_antitone"
   ]
 }
