@@ -185,4 +185,31 @@ theorem typeIIError_real (Q : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
   simpa only [hfun, typeIIError] using
     (integral_eq_lintegral_of_nonneg_ae hn hm.aestronglyMeasurable)
 
+/-- A test's type-I error is finite and at most one under a probability law. -/
+theorem typeIError_le_one (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω) :
+    typeIError P φ ≤ 1 := by
+  calc
+    typeIError P φ ≤ ∫⁻ _x, (1 : ℝ≥0∞) ∂(P : Measure Ω) :=
+      lintegral_mono φ.le_one
+    _ = 1 := by simp
+
+/-- A test's type-II error is finite and at most one under a probability law. -/
+theorem typeIIError_le_one (Q : ProbabilityMeasure Ω) (φ : RandomizedTest Ω) :
+    typeIIError Q φ ≤ 1 := by
+  calc
+    typeIIError Q φ ≤ ∫⁻ _x, (1 : ℝ≥0∞) ∂(Q : Measure Ω) :=
+      lintegral_mono (fun _ => tsub_le_self)
+    _ = 1 := by simp
+
+/-- Corresponding real and encoded tests obey the same type-I constraint. -/
+theorem real_test_feasible_iff (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
+    (f : Ω → ℝ) (hf : Measurable f) (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1)
+    (hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x)) (α : SignificanceLevel) :
+    (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ↔
+      typeIError P φ ≤ (α : ℝ≥0∞) := by
+  rw [typeIError_real P φ f hf hrange hφ]
+  exact ENNReal.toReal_le_toReal
+    (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIError_le_one P φ))
+    (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) α.2.2)
+
 end StatisticalUnlearning
