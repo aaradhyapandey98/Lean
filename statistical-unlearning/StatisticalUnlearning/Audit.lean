@@ -48,3 +48,9 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.typeIIError_map
 #print axioms StatisticalUnlearning.tradeOff_map_ge
 #print axioms StatisticalUnlearning.tradeOff_map_equiv
+#print axioms StatisticalUnlearning.kernelLaw
+#print axioms StatisticalUnlearning.kernelPullbackTest
+#print axioms StatisticalUnlearning.typeIError_kernel
+#print axioms StatisticalUnlearning.kernelPullback_complement
+#print axioms StatisticalUnlearning.typeIIError_kernel
+#print axioms StatisticalUnlearning.tradeOff_kernel_ge

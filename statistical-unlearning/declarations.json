@@ -46,6 +46,12 @@
     "StatisticalUnlearning.typeIError_map",
     "StatisticalUnlearning.typeIIError_map",
     "StatisticalUnlearning.tradeOff_map_ge",
-    "StatisticalUnlearning.tradeOff_map_equiv"
+    "StatisticalUnlearning.tradeOff_map_equiv",
+    "StatisticalUnlearning.kernelLaw",
+    "StatisticalUnlearning.kernelPullbackTest",
+    "StatisticalUnlearning.typeIError_kernel",
+    "StatisticalUnlearning.kernelPullback_complement",
+    "StatisticalUnlearning.typeIIError_kernel",
+    "StatisticalUnlearning.tradeOff_kernel_ge"
   ]
 }
