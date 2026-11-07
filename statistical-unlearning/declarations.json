@@ -65,6 +65,7 @@
     "StatisticalUnlearning.typeIIError_le_one",
     "StatisticalUnlearning.real_test_feasible_iff",
     "StatisticalUnlearning.tradeOff_toReal_eq_iInf",
-    "StatisticalUnlearning.tradeOff_eq_real_test_infimum"
+    "StatisticalUnlearning.tradeOff_eq_real_test_infimum",
+    "StatisticalUnlearning.real_tradeOff_kernel_ge"
   ]
 }
