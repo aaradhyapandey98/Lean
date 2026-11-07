@@ -36,3 +36,4 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.leftInverse_nonneg
 #print axioms StatisticalUnlearning.leftInverse_le_one
 #print axioms StatisticalUnlearning.leftInverse_antitone
+#print axioms StatisticalUnlearning.leftInverse_congr

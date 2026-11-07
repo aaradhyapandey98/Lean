@@ -34,6 +34,7 @@
     "StatisticalUnlearning.leftInverse_eq_one_of_empty",
     "StatisticalUnlearning.leftInverse_nonneg",
     "StatisticalUnlearning.leftInverse_le_one",
-    "StatisticalUnlearning.leftInverse_antitone"
+    "StatisticalUnlearning.leftInverse_antitone",
+    "StatisticalUnlearning.leftInverse_congr"
   ]
 }

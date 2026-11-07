@@ -322,19 +322,28 @@
         "propext"
       ],
       "status": "passed"
+    },
+    {
+      "name": "StatisticalUnlearning.leftInverse_congr",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "status": "passed"
     }
   ],
   "errors": [],
-  "log_sha256": "45bc0a7e224ffe1bc776d0fd0de07094ffa41617af7c9f2e2ce16613937a18d1",
+  "log_sha256": "1c4c6e67bfa2806ff491f0dcc4a6f0a1fb184ec02d3db8390baf264bd5687fb9",
   "toolchain": "leanprover/lean4:v4.24.0",
   "source_snapshot": {
-    "StatisticalUnlearning/Audit.lean": "e1828aefa8fbf9024bc6d9fa9ed84731942b7c07c41875a19339bf38b2a95900",
+    "StatisticalUnlearning/Audit.lean": "a1aaaab4c0e251915df4899f972c1f3543330f3f2f1f4c68a99f827b4d602967",
     "StatisticalUnlearning/Geometry.lean": "dacd896f55c441d6f586ec2b567fd0494b5bfd8f734e387f5bea47097311fb8c",
-    "StatisticalUnlearning/Inverse.lean": "5b340ce909f9be18491e74f9a1d6b95f6584fcfba8bcf759c9810a83dabde0d8",
+    "StatisticalUnlearning/Inverse.lean": "99f3922e3fa961e08dfb8b6c184a375a3faf510edb48e271c1a4217e7eae4e9a",
     "StatisticalUnlearning/Testing.lean": "03cc0f3e81cee8873bef588fcfd8b4221d77cc4986db186e1ad851acd340a317",
     "StatisticalUnlearning/Unlearning.lean": "6a7a07b525291918ddf09cf96a9826db76f2c240ad5abc45fdc248efc2261291",
     "StatisticalUnlearning.lean": "161e742fe497d73cd554f0e501056ffaebaf2cf3b7c1a2b26c1a9811cd1f8533",
-    "declarations.json": "ef7e72239ddb212e506220ddcbac6027b918bbf0cae6d1dc865176df26144523",
+    "declarations.json": "740b1730412ce8ec3a094dcc45e09c3ac38a153d868828958d0618090fdd5b6d",
     "lake-manifest.json": "51c76d947ef77a12a2d7dd4ab364c49bcfb6a1520661d8ab1edb805f439b5257",
     "lakefile.lean": "601f40dcace30192ebe4ee2fe4f6918179e755f790ecdf24bacaa014c0bd88dd",
     "lean-toolchain": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
@@ -356,6 +365,7 @@
     "StatisticalUnlearning.inverseSublevel_bddBelow",
     "StatisticalUnlearning.leftInverse",
     "StatisticalUnlearning.leftInverse_antitone",
+    "StatisticalUnlearning.leftInverse_congr",
     "StatisticalUnlearning.leftInverse_eq_one_of_empty",
     "StatisticalUnlearning.leftInverse_eq_sInf_of_nonempty",
     "StatisticalUnlearning.leftInverse_le_one",
@@ -375,7 +385,7 @@
   ],
   "scope": "Parsed axiom reports after an independently successful Lean run; not standalone kernel certification.",
   "build": {
-    "revision": "dd5140eb7d5473eac93bdad97b5a2433877a84ab",
-    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157"
+    "revision": "d33b784cef29805d1f39cceac209ab7c78e2b6a3",
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42378427055"
   }
 }

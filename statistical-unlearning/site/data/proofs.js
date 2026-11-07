@@ -29,7 +29,7 @@ window.PROOF_DATA = {
           29,
           32
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L29-L32"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L29-L32"
       },
       "dependencies": [],
       "notes": "Encoded foundation. Equivalence of this test type with the real interval-valued test type remains to be formalized.",
@@ -62,7 +62,7 @@ window.PROOF_DATA = {
           52,
           54
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L52-L54"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L52-L54"
       },
       "dependencies": [
         "randomized-tests"
@@ -96,7 +96,7 @@ window.PROOF_DATA = {
           57,
           59
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L57-L59"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L57-L59"
       },
       "dependencies": [
         "randomized-tests"
@@ -130,7 +130,7 @@ window.PROOF_DATA = {
           62,
           64
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L62-L64"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L62-L64"
       },
       "dependencies": [
         "randomized-tests"
@@ -165,7 +165,7 @@ window.PROOF_DATA = {
           68,
           73
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L68-L73"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L68-L73"
       },
       "dependencies": [
         "trade-off"
@@ -200,7 +200,7 @@ window.PROOF_DATA = {
           76,
           82
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L82"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Testing.lean#L76-L82"
       },
       "dependencies": [
         "trade-off",
@@ -237,7 +237,7 @@ window.PROOF_DATA = {
           33,
           35
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L33-L35"
       },
       "dependencies": [
         "trade-off"
@@ -273,7 +273,7 @@ window.PROOF_DATA = {
           38,
           43
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L38-L43"
       },
       "dependencies": [
         "unlearning"
@@ -307,7 +307,7 @@ window.PROOF_DATA = {
           48,
           51
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L48-L51"
       },
       "dependencies": [
         "unlearning"
@@ -341,7 +341,7 @@ window.PROOF_DATA = {
           55,
           59
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L55-L59"
       },
       "dependencies": [
         "feasible-region"
@@ -376,7 +376,7 @@ window.PROOF_DATA = {
           62,
           69
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Unlearning.lean#L62-L69"
       },
       "dependencies": [
         "consistency",
@@ -412,7 +412,7 @@ window.PROOF_DATA = {
           30,
           32
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L30-L32"
       },
       "dependencies": [],
       "notes": "A geometric prerequisite for Gaussian results. The Gaussian testing-to-distance bridge is not yet proved.",
@@ -445,7 +445,7 @@ window.PROOF_DATA = {
           35,
           39
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L35-L39"
       },
       "dependencies": [
         "geometric-region"
@@ -480,7 +480,7 @@ window.PROOF_DATA = {
           42,
           47
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L42-L47"
       },
       "dependencies": [
         "geometric-region"
@@ -515,7 +515,7 @@ window.PROOF_DATA = {
           68,
           76
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L68-L76"
       },
       "dependencies": [
         "geometric-region"
@@ -550,7 +550,7 @@ window.PROOF_DATA = {
           53,
           64
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L53-L64"
       },
       "dependencies": [
         "geometric-region"
@@ -585,7 +585,7 @@ window.PROOF_DATA = {
           81,
           86
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L81-L86"
       },
       "dependencies": [
         "geometric-region"
@@ -620,7 +620,7 @@ window.PROOF_DATA = {
           92,
           105
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Geometry.lean#L92-L105"
       },
       "dependencies": [
         "geometric-region"
@@ -765,7 +765,7 @@ window.PROOF_DATA = {
           79,
           87
         ],
-        "url": "https://github.com/aaradhyapandey98/Lean/blob/dd5140eb7d5473eac93bdad97b5a2433877a84ab/statistical-unlearning/StatisticalUnlearning/Inverse.lean#L79-L87"
+        "url": "https://github.com/aaradhyapandey98/Lean/blob/d33b784cef29805d1f39cceac209ab7c78e2b6a3/statistical-unlearning/StatisticalUnlearning/Inverse.lean#L79-L87"
       },
       "dependencies": [],
       "notes": "The two representation lemmas prove that adjoining 1 implements the paper’s empty-infimum convention. Independent statement review remains outstanding.",
@@ -782,9 +782,9 @@ window.PROOF_DATA = {
   "build": {
     "status": "passed",
     "command": "lake build --wfail; lake env lean StatisticalUnlearning/Audit.lean; strict axiom audit",
-    "revision": "dd5140eb7d5473eac93bdad97b5a2433877a84ab",
+    "revision": "d33b784cef29805d1f39cceac209ab7c78e2b6a3",
     "toolchain": "leanprover/lean4:v4.24.0",
     "mathlib": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
-    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157"
+    "url": "https://github.com/aaradhyapandey98/Lean/actions/runs/42378427055"
   }
 };
