@@ -7,6 +7,7 @@
   const $ = id => document.getElementById(id);
   let current = null;
   let filter = 'all';
+  let paperMode = 'html';
   const labels = {checked:'Lean checked', unverified:'Not yet checked', pending:'Planned'};
   const statusOf = entry => ['checked','unverified','pending'].includes(entry.status) ? entry.status : 'pending';
   const setText = (id,text) => { $(id).textContent = text || ''; };
@@ -117,9 +118,21 @@
       'representation-bridge':3, 'blackwell':15, 'gaussian-region':5,
       'composition':4, 'other-families':6, 'finite-sample':7
     };
+    const paperSections = {
+      'randomized-tests':'S2.SS1', 'trade-off':'S2.SS1', 'zero-type-i':'S2.SS1',
+      'zero-type-ii':'S2.SS1', 'trade-off-antitone':'S2.SS1', 'trade-off-upper-bound':'S2.SS1',
+      'unlearning':'S2.SS1', 'consistency':'S2.SS1', 'feasible-region':'S2.SS2',
+      'feasible-membership':'S2.SS2', 'feasible-monotonicity':'S2.SS2',
+      'geometric-region':'S3.SS1', 'geometric-membership':'S3.SS1', 'geometric-subset':'S3.SS1',
+      'geometric-point-bound':'S3.SS1', 'geometric-zero':'S3.SS1', 'geometric-necessary':'S3.SS1',
+      'geometric-whole-ball':'S3.SS1', 'representation-bridge':'S2.SS1',
+      'gaussian-region':'S3.SS1', 'composition':'S2.SS3', 'other-families':'S3', 'finite-sample':'S4'
+    };
     const page = paperPages[entry.id] || 3;
     const frame = $('paper-frame');
-    const paperUrl = 'https://arxiv.org/pdf/2605.16645v1#page=' + page;
+    const paperUrl = paperMode === 'pdf'
+      ? 'https://arxiv.org/pdf/2605.16645v1#page=' + page
+      : 'https://arxiv.org/html/2605.16645v1#' + (paperSections[entry.id] || 'S2');
     if (frame && frame.getAttribute('src') !== paperUrl) frame.setAttribute('src', paperUrl);
     setText('statement-kind',shortLabel(entry));setText('statement-status',labels[state]);$('statement-status').className='status-badge '+state;
     setText('statement-title',entry.title);setText('statement-summary',entry.summary);$('statement-summary').hidden=!entry.summary;
@@ -163,6 +176,11 @@
   $('next-entry').addEventListener('click',()=>{const index=entries.indexOf(current);if(index<entries.length-1)location.hash=encodeURIComponent(entries[index+1].id);});
   window.addEventListener('hashchange',()=>{let id='';try{id=decodeURIComponent(location.hash.slice(1));}catch(_){}selectEntry(id);});
   $('paper-tab').addEventListener('click',()=>setTab(false));$('lean-tab').addEventListener('click',()=>setTab(true));
+  for (const mode of ['html','pdf']) $('paper-'+mode+'-view').addEventListener('click',()=>{
+    paperMode=mode;
+    for (const choice of ['html','pdf']) $('paper-'+choice+'-view').setAttribute('aria-pressed',String(choice===mode));
+    if(current) selectEntry(current.id);
+  });
   document.querySelector('.mobile-tabs').addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();const lean=event.key==='End'||(event.key!=='Home'&&$('paper-tab').getAttribute('aria-selected')==='true');setTab(lean);$(lean?'lean-tab':'paper-tab').focus();}});
   document.addEventListener('keydown',event=>{if(event.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){event.preventDefault();$('search').focus();}if(event.key==='Escape'&&document.activeElement===$('search')){$('search').value='';renderNavigation();$('search').blur();}});
   $('copy-code').addEventListener('click',async()=>{const code=current?.lean?.code;if(!code)return;try{await navigator.clipboard.writeText(code);$('announcement').textContent='Lean source copied.';$('copy-code').querySelector('.copy-label').textContent='Copied';setTimeout(()=>$('copy-code').querySelector('.copy-label').textContent='Copy',1600);}catch(_){$('announcement').textContent='Clipboard unavailable. Select the Lean source to copy it.';const range=document.createRange();range.selectNodeContents($('lean-code'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);}});

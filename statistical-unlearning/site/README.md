@@ -2,11 +2,11 @@
 
 This is a static reader for the formalization. Open `index.html` directly,
 serve this directory, or publish it to GitHub Pages. Lean and status data come
-from `data/proofs.js`; the paper pane loads the original versioned PDF from
-arXiv and therefore requires network access and a browser PDF viewer.
+from `data/proofs.js`; the paper pane loads the original versioned HTML or PDF
+from arXiv and therefore requires network access and, for PDF, a browser viewer.
 
-The PDF is the authoritative paper, not a reconstructed transcript. Choosing
-a tracked result navigates to its source page. PDF and Lean panes scroll
+The PDF is the authoritative paper; the HTML is arXiv's experimental rendering.
+Choosing a tracked result navigates to its source section or page. Paper and Lean panes scroll
 independently: automatic paragraph-level alignment is not yet implemented.
 An external link is provided if the PDF cannot be embedded. No result without
 an audited declaration is represented as proved.
