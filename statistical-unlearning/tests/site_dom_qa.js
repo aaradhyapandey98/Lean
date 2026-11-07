@@ -69,6 +69,16 @@ function harness(extraEntry){
  assert.equal(links().length,entries.length);
  assert.equal($('statement-title').textContent,entries[0].title);
  assert.equal($('lean-file').textContent,entries[0].lean.file);
+ assert.equal($('lean-scope-note').textContent,entries[0].notes,'Correspondence notes remain visible beside Lean');
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/html/2605.16645v1#S2.SS1','The paper pane must show the original versioned HTML');
+ window.location.hash='gaussian-region';
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/html/2605.16645v1#S3.SS1','HTML selection must navigate to the corresponding source section');
+ await $('paper-pdf-view').click();
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/pdf/2605.16645v1#page=5','Source selection must navigate to the corresponding PDF page');
+ await $('paper-html-view').click();
+ window.location.hash='blackwell';
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/html/2605.16645v1#A1.SS5','Appendix results must navigate to the correct source section');
+ window.location.hash=entries[0].id;
  assert.equal($('checked-count').textContent,String(entries.filter(e=>e.status==='checked').length));
  const sourceText=()=> $('lean-code').children.map(row=>row.children.slice(1).map(n=>n.textContent).join('')).join('\n');
  assert.equal(sourceText(),entries[0].lean.code,'Displayed source must preserve exact Unicode source');
