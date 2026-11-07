@@ -11,6 +11,7 @@ Read `docs/PAPER_AUDIT.md`, `docs/INDEPENDENT_REVIEW.md`, and `docs/STATEMENT_RE
 - No `sorry`, `admit`, new `axiom`, `unsafe`, or native computation shortcut in project Lean sources.
 - Do not hide target conclusions in hypotheses, typeclasses, structures, opaque definitions, or equivalences.
 - Minimize assumptions theorem by theorem. Prefer existing mathlib results with explicit source correspondence.
+- Permit only the foundational axioms `propext`, `Classical.choice`, and `Quot.sound` in transitive Lean dependencies. Develop statistical facts here or use established Lean libraries, with pinned revisions, reviewed statements, and the same axiom audit. Do not treat a statistical conclusion passed as a hypothesis as a proof of that conclusion.
 - Every new declaration must be included in `declarations.json`, and every library module must be imported by the library root.
 - Run `lake build`, structural checks, and `#print axioms` auditing. A source scan alone never establishes verification.
 - Keep axiom evidence bound to the exact Lean files, lake configuration, toolchain and dependency lockfile. An evidence mismatch must make the website fail closed to unverified.
@@ -20,6 +21,12 @@ Read `docs/PAPER_AUDIT.md`, `docs/INDEPENDENT_REVIEW.md`, and `docs/STATEMENT_RE
 ## Collaboration
 
 Give agents small, disjoint tasks with exact source anchors and explicit output files. Use independent review for theorem statements and material mathematical changes. Do not allow multiple workers to edit a shared file concurrently. Integrate and compile before reporting completion.
+
+## Efficient continuing work
+
+Use focused milestones and record results before starting another. Search existing Lean libraries first and inspect exact types, assumptions, imports and axiom dependencies. Reuse dependency build artifacts; do not run `lake clean` or update pinned dependencies as a routine proof step. Run the narrowest relevant build while iterating, then one full build and axiom audit for an integrated batch. Profile before attempting elaboration optimizations, and compare before and after on the same environment. Preserve source-facing statement anchors and independently review their exact meanings; do not claim a frozen-anchor workflow unless the actual approval and enforcement process exists.
+
+The user's five-hour allowance is an account usage window, not an elapsed-time budget we can measure from this environment. Do not claim to know the remaining balance or promise exact quota control. When access or a workspace spend limit blocks further work, checkpoint and report the limitation. Do not purchase credits or change billing settings.
 
 ## Continuity
 
