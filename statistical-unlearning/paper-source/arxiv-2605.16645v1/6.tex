@@ -1,0 +1,15 @@
+\vspace{-4mm}
+\section{Conclusion and future directions}
+\label{sec:conclusion}
+\vspace{-3mm}
+ Machine unlearning increasingly requires moving beyond individual record deletion to erase the influence of entire subpopulations. Our theoretical study is focused on analyzing the statistical or information-theoretic tradeoff in this task: full removal is computationally expensive, while random partial removal is statistically inefficient. At the distributional level, we formalize this removal of a carefully chosen subset of the unwanted domain as \emph{distributional unlearning}, a framework that optimally balances forgetting an unwanted distribution while preserving a desired one. Our theoretical analysis describes the information-theoretic feasible regions for the edited population for several parametric and non-parametric families, and provides provable guarantees connecting this approach to downstream model performance. We also provide finite-sample guarantees for a few data selection algorithms. The statistical framework of unlearning itself is model-agnostic. Moreover, since the selection algorithms we analyze are based on a metric on data representations rather than model internals, the algorithms are model-agnostic too.
+
+
+
+While our theoretical results establish several benefits of selective data deletion, some limitations remain and suggest natural avenues for future work. One important direction is to characterize the feasible regions for broader parametric families $\{p_{\mu}: \mu \in \Theta\}$, and to develop finite-sample or non-asymptotic concentration guarantees for weighted MLE-based procedures $\hat{\mu}$. A more basic limitation is that our framework assumes access to samples that have already been labeled as coming from the unwanted subpopulation or the desired one. In practice,  identifying all samples from such a domain may itself be a difficult upstream task. It would also be valuable to understand the behavior of the method when the available retain set is incomplete, noisy, or only approximately specified. Finally, from an algorithmic perspective, the success of distance-based removal depends on the quality of the representation space ($\Theta,\|\cdot\|$). This raises the question of how the theoretical guarantees change under alternative feature maps, particularly non-isometric representations.
+
+
+
+
+
+

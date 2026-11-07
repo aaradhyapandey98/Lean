@@ -1,0 +1,58 @@
+\vspace{-3 mm}
+\section{Introduction and motivation} \label{sec:Intro}
+\vspace{-2mm}
+
+
+As machine learning models remain deployed over time, portions of their training data may later become legally or ethically unacceptable, requiring deletion. Increasingly, such deletion requests concern not just individual records but whole subpopulations or domains, corresponding to unwanted concepts, data-defined groups, harmful biases, or toxic language \citet{kurmanji2024towards}. This shift creates a basic tension: removing every example from the target domain can be computationally expensive, since the cost of many efficient unlearning methods grows with the size of the forget set \citet{guo2020certified}. A concrete example is the attempt to unlearn creative works such as the Harry Potter series \citet{eldan2023s}, where the volume of identified text and the scale of the trained model make the unlearning step costly. At the same time, discarding a small random subset is often statistically ineffective, because the domain may continue to influence the model through the remaining data. For example, large language models can still reproduce memorized training sequences even after the specific source document is removed ~\citep{liu2025language}, owing to overlapping contexts elsewhere in the corpus. This exposes a methodological gap between costly full deletion and unreliable naive subsampling, and points to the need for principled domain unlearning.
+
+
+\vspace{-1 mm}
+To address this gap, we begin from the observation that a domain’s statistical influence is often carried by a small, high-impact subset of its samples. This suggests an intermediate strategy: remove only the influential subset, achieving both computational efficiency and statistical effect. We formalize this idea by modeling a domain or subpopulation as a probability distribution, a standard abstraction in statistical learning~\citep{shalev2014understanding} and natural language processing~\citep{blei2003latent,srivastava2017autoencoding}. This leads to the central question: \emph{what is the smallest set of data points whose removal makes the edited data far from an unwanted domain while keeping it close to a retained one?} This is known as \emph{distributional unlearning} ~\citep{allouah2025distributionalmachineunlearningselective}. This perspective complements what is called \emph{sample-level} unlearning ~\citep{pandey2026gaussian}: methods for approximating retraining after a specified set of records is removed. Prior approaches based on influence functions~\citep{guo2020certified} or data sharding~\hbox{\citep{bourtoule2021machine}} address the \emph{computational} side of unlearning, but not the \emph{statistical} problem of choosing the most impactful samples to forget. Likewise, class-level unlearning~\citep{tarun2023fast,kodge2024deep} and concept erasure~\citep{ravfogel2020null,belrose2023leace} operate on domain-like objects, but either modify internal representations, making erasure potentially reversible, or do not provide a principled rule for selecting a small removal set. Thus, the basic question remains: which samples to remove?
+
+
+
+\vspace{-4mm}
+\subsection{Summary of our contributions} \label{ssec:contribution}
+\vspace{-2mm}
+
+
+
+\textbf{Hypothesis testing framework:}
+We formalize distributional unlearning through a hypothesis-testing framework
+(Definition~\ref{def:dist-unlearning}) to balance removal and preservation guarantees. This framework generalizes the KL-divergence-based
+formulation of~\citet{allouah2025distributionalmachineunlearningselective} (Proposition~\ref{thm:CoD}) and admits an equivalent characterization through a
+data-processing principle (Theorem~\ref{thm:Blackwell}). We also prove composition rules for distributional unlearning over product and multimodal domains (Lemma~\ref{lem:CDU}).
+
+
+
+
+\textbf{Robust downstream guarantees:} We prove that our unlearning framework  \eqref{eq:dist-unlearning} provides distributional guarantees for downstream models (Lemma \ref{lem:DG}),  robust guarantees under the total variation loss  (Proposition \ref{prop:predictive}), and more generally for any divergence-based loss satisfying data-processing.
+
+
+
+\textbf{Feasible region and Pareto frontier:}  We provide an interpretable and  clear geometric description (Figure \ref{fig:alpha_e_plot_1}) of the fundamental region of allowable edited data distributions and characterize the closed-form Pareto frontier (Figure \ref{fig:alpha-eps-feasibleM}) of achievable removal-preservation levels for several families of distributions, including parametric families such as shifted Gaussians (Proposition \ref{thm:FFR}, Lemma \ref{lem:PFGF}), a one-dimensional location family with symmetric log-concave noise (Proposition \ref{prop:FFRLC}), and the one-dimensional Poisson family (Proposition \ref{thm:FRP}). It also includes nonparametric families with infinite-dimensional parameter spaces such as the Gaussian white noise model (Proposition \ref{thm:GWN}).
+  
+
+
+\textbf{Algorithms \& information-computation gaps:} We analyze the random removal algorithm of ~\citet{allouah2025distributionalmachineunlearningselective} in Propositions~\ref{th:random} and~\ref{th:randomLC}, together with Remark~\ref{rem:RRLaplace}. We also analyze the selective removal mechanism of ~\citet{allouah2025distributionalmachineunlearningselective} in Propositions~\ref{th:selective} and~\ref{th:randomLCSR}. We show that both the algorithmic procedures attain smaller feasible regions than the information-theoretic feasible region, thereby giving rise to information-computation gaps (Remarks \ref{rem:ICGRRM}, \ref{rem:ICGSR}). Moreover, in the one-dimensional Gaussian case, we show that under large separation (Proposition \ref{th:CSRRODG}, Remark \ref{rem:CSROGH}), selective removal yields a more favorable information-computation gap than random removal.
+  
+
+
+\vspace{-4mm}
+\subsection{Comparison with previous work}
+\label{ssec:Comparison}
+\vspace{-2mm}
+
+
+
+\textbf{Sample-level unlearning.}
+Sample-level unlearning has advanced rapidly, providing efficient model updates and formal deletion guarantees~\citep{neel2021descent,zhang2024towards,chien2024langevin,allouah2024utility,koloskova2025certified,pandey2026gaussian}. 
+Influence-function methods approximate the effect of deleting individual points without retraining~\citep{izzo2021approximate}; certified unlearning bounds the distance to a scratch-retrained model~\citep{guo2020certified}; and data sharding enables efficient removal of small batches~\citep{bourtoule2021machine}. 
+These methods, however, typically assume the forget set is already specified. Our work is complementary: we ask which samples should be flagged and removed, and in what quantity, to erase a domain’s statistical footprint.
+
+
+
+\textbf{Comparison with ~\citet{allouah2025distributionalmachineunlearningselective}.}  
+We propose an interpretable and robust definition of distributional unlearning based on hypothesis testing  (Definition \ref{def:dist-unlearning}) that extends and encompasses the definition of \citep{allouah2025distributionalmachineunlearningselective} (Proposition \ref{thm:CoD}), as well as the accompanying downstream guarantees (Lemma \ref{lem:DG}). We also prove a robust version of the downstream distributional guarantee (Proposition \ref{prop:predictive}). For shifted Gaussian families, we find the information-theoretic feasible regions (Proposition \ref{thm:FFR}) and the corresponding statistical Pareto frontier (Lemma \ref{lem:PFGF}) as well as the algorithmic Pareto frontier for both the random removal (Proposition \ref{th:random}) and selective removal (Proposition \ref{th:selective}) algorithms. On the statistical front, we extend the one-dimensional Gaussian results of \citep{allouah2025distributionalmachineunlearningselective} to higher dimensions (Proposition \ref{thm:FFR}, Lemma \ref{lem:PFGF}), including the non-parametric Gaussian white noise model (Proposition \ref{thm:GWN}), as well as for non-Gaussian log-concave location families (Proposition \ref{prop:FFRLC}) such as Laplace. We also provide a characterization of the feasible region for the Poisson family (Proposition \ref{thm:FRP}), which is a non-location family. On the algorithmic front, we provide theorems on the behavior of both the removal algorithms on all the parametric families mentioned above (Propositions \ref{th:random}, \ref{th:randomLC}, \ref{th:selective}, \ref{th:randomLCSR}). We refer to \citep{allouah2025distributionalmachineunlearningselective} for more details on the connections of unlearning to  concept \textit{ erasure} methods  
+~\citep{ravfogel2020null, kaushik2020learning, elazar2018adversarial}, and \textit{Domain adaptation} ~\citep{ben2010theory}.
+

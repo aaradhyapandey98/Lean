@@ -1,0 +1,129 @@
+\vspace{-4mm}
+\section{Unlearning a distribution: the hypothesis testing framework}
+\label{sec:problem}
+\vspace{-2mm}
+The primary focus in machine unlearning has been at the level of samples,  by efficiently removing the influence of selected data points. On the contrary, \cite{allouah2025distributionalmachineunlearningselective} introduced distributional unlearning under a divergence-based constraint, where the goal is to erase the statistical influence of an entire subpopulation. In this section, we formalize this using an interpretable hypothesis testing approach, introduce its feasible regions, and discuss the consequences for downstream tasks.
+
+\vspace{-1 mm}
+\textbf{Problem statement.}
+We first model the unwanted population as a probability distribution $p_1$.  Now, the objective is to construct a new data distribution $p$ that is statistically distinguishable (far) from $p_1$ yet remains indistinguishable (close) to a retained distribution $q_1$. In practice, these true distributions are unknown, and we have finite samples $S_1 = \{x_i^{(1)}\}_{i=1}^{n_1}$ drawn IID from the unwanted distribution $p_1$, and $S_2 = \{x_j^{(2)}\}_{j=1}^{n_2}$ from the retained distribution $q_1$.
+We further assume that these sets are obtained via some upstream process, and throughout we assume that the random vector $S_1$ is generated independently of $S_2$. Now, we would like to solve the following problem from a statistical or information theoretic perspective: given these identified samples, which subset of the entire data should be removed to most efficiently achieve our objective defined at the distribution level?
+\vspace{-4mm}
+\subsection{\texorpdfstring{$(f_d,f_c)$}{(f_d,f_c)} distributional unlearning}
+\vspace{-2mm}
+We formalize this using a hypothesis testing approach instead of the Kullback-Leibler (KL) divergence  \cite{allouah2025distributionalmachineunlearningselective} because of its interpretability and tightness under post-processing.
+
+\begin{definition}[Trade-off function \cite{dong2022gaussian}]    \label{def:TOF} 
+Given two probability distributions $P, Q$ on a measurable space $(\cW, \mathcal{F}_{\cW})$, we define the  \emph{trade-off function} as  the map $= T(P,Q):[0,1]\to[0,1]$  
+\vspace{-1mm}
+\begin{equation}\label{eq:TOF}
+ %\textbf{TOF: } 
+ T(P,Q)(\alpha):=
+  \inf_{\phi}\Bigl\{
+        \beta_{\vp} := \e_{Q}[1-\vp] 
+        \,\Bigm\vert\,
+        \alpha_{\vp}:= \e_{P}[\vp]\le \alpha,\;
+        \vp:\cW\!\to[0,1]\text{ measurable}
+      \Bigr\}.
+\end{equation}
+\textbf{Intuition:} For type I error $\alpha$, the trade-off function (TOF) returns the smallest value of type II error $\beta_{\vp}$ over all possible test functions $\vp\colon \cW\to[0,1]$. So, $T(P,Q)(\alpha) \geq T(P',Q')(\alpha)$  $\forall \alpha \in [0,1]$ captures the intuition that the pair $(P,Q)$ is more difficult to distinguish than  $(P',Q')$ across every scale $\alpha$. \cite{dong2022gaussian} proved that  trade off functions $\cT:=\{T(P,Q): (P,Q)\}= \{f: [0,1] \to [0,1] \text{ convex, continuous, decreasing and } f(x)\leq 1-x \forall x\in [0,1]\}$ satisfy Blackwell ordering.
+\end{definition}
+\begin{definition}[$(f_d,f_c)$ distributional unlearning]
+\label{def:dist-unlearning}
+For TOFs $f_d,f_c \in \cT$, a distribution $p \in \mathcal{P}$ (a class of distributions on $(\cW, \cF_{\cW})$) satisfy $(f_d,f_c)$ unlearning with respect to $p_1, q_1 \in \cP$ if:
+\begin{align} \label{eq:dist-unlearning}
+T(p, p_1) \leq f_d =T(P_d, Q_d) \quad\text{(removal)},
+\quad 
+T(p, q_1) \geq f_c = T(P_c, Q_c) \quad\text{(preservation)}.
+\end{align}
+\end{definition}
+\vspace{-1mm}
+\textbf{Generalization to multiple unwanted and retained populations:}
+In the appendix (Definition \ref{def:dist-unlearning_multi}) we generalize the above definition  to $k$ many unwanted populations $\{p_1, \cdots, p_{k}\}$ with baseline TOFs $\{f_{d1}, \cdots, f_{dk}\}$ and $l$ many retained ones $\{q_1, \cdots, q_{l}\}$ with baseline TOFs $\{f_{c1}, \cdots, f_{cl}\}$. 
+
+\textbf{Intuition and flexibility in the choice of the baseline pairs $(f_d,f_c)$ depending on $\cP$:}  Let $f_d= T(N(0,1), N(\alpha, 1))$ for $\alpha >0$. Then from the definition of $T(P,Q)$, the inequality  $T(p, p_1) \leq f_d$ has the interpretation that the pair (edited data, unwanted data) $=$ $(p, p_1)$ is statistically easier to differentiate by an adversary than the pair of normally distributed samples $(N(0,1), N(\alpha, 1))$. Similarly, for $f_c= T(N(0,1), N(\ve, 1))$ for $\ve>0$, the inequality  $T(p, q_1)\geq f_c$ captures the intuition that the pair (edited data, retained data) $= (p,q_1)$ is statistically more difficult to separate by an adversary than the pair $(N(0,1), N(\ve, 1))$. In comparison to $(\alpha, \ve)$ unlearning of \cite{allouah2025distributionalmachineunlearningselective} our definition gives us the flexibility to adaptively choose the baseline TOFs $(f_d,f_c)$ depending upon our prior knowledge about the type of populations $\cP \ni  p_1, q_1 $.
+
+\vspace{-1mm}
+
+\textbf{Consistency of the framework: }  If $p$ satisfies $(f_d,f_c)$ unlearning with respect to $p_1,q_1\in \cP$, then $p$ also satisfies $(f_{d'},f_{c'})$ unlearning for TOFs $f_{d'} \geq f_d$ and $f_c \geq f_{c'}$. For $f_d=T(N(0,1), N(\alpha, 1))$ and  $f_c=T(N(0,1), N(\ve, 1))$, if $p$ satisfies $(f_d \leftrightarrow \alpha ,f_c \leftrightarrow \ve)$ unlearning, then as a consequence of Lemma \ref{lem: GTOF} it also satisfies  $(f_{d'} \leftrightarrow \alpha' ,f_{c'} \leftrightarrow \ve')$ unlearning for any $0\leq \alpha' \leq \alpha$ and $\ve' \geq \ve$.
+
+In the remainder of this section, we analyze the properties of Definition \ref{def:dist-unlearning}  at the population level, capturing the fundamental feasible region and Pareto Frontier of extremal $(\alpha, \ve)$ pairs of the problem. 
+
+\begin{restatable}[Comparison with $(\alpha, \varepsilon)$ unlearning ~\citet{allouah2025distributionalmachineunlearningselective}]{proposition}{CoD}
+\label{thm:CoD}
+For TOFs $f_d =T(P_d, Q_d),f_c= T(P_c, Q_c) $, if  a distribution $p \in \mathcal{P}$ (a class of distributions on $(\cW, \cF_{\cW})$) satisfy $(f_d,f_c)$ unlearning with respect to $p_1, q_1 \in \cP$ in the sense of \eqref{eq:dist-unlearning}, then it satisfies $(\alpha, \varepsilon)$ distributional unlearning of ~\citet{allouah2025distributionalmachineunlearningselective} with $\alpha = KL(Q_d, P_d)$ and $\varepsilon= KL(Q_c,P_c)$. Equivalently,
+\vspace{-1 mm}
+\begin{equation} \label{eq:aeu}
+KL(p_1, p) \geq \alpha =KL(Q_d,P_d) \text{ (removal) },
+\quad 
+KL(q_1, p) \leq \varepsilon= KL(Q_c, P_c) \text{ (preservation)}.
+\end{equation}
+\end{restatable}
+\vspace{-4 mm}
+\subsection{Removal-preservation trade-off and the feasible region}
+\vspace{-2 mm}
+The baseline trade-off functions $(f_d,f_c)$ captures how different the edited data $p$ can be from the unwanted distribution $p_{1}$ while remaining indistinguishable to the desired one $q_1$. 
+For a given population $\cP$, we would have to choose an appropriate pair $(f_d,f_c)$ to understand whether the output $p$ achieves  \eqref{eq:dist-unlearning} jointly for $p_1, q_1 \in \cP$. Now, we formalize the feasible region.
+\vspace{-1 mm}
+\begin{definition}[Feasible region] \label{def:FR}
+    Given probability distributions $p_1,q_1 \in \cP$ and trade-off functions $f_d,f_c \in \cT$ we define the feasible region  $\cR=\{p \in \cP: T(p, p_1) \leq f_d, \text{ and } T(p, q_1) \geq f_c\}$
+\end{definition}
+\begin{remark}
+This fundamental region of feasibility and its boundary \textit{generalizes} the \emph{Pareto frontier} concept of \cite{allouah2025distributionalmachineunlearningselective} and provides tighter boundary regions in our examples of interest. 
+\end{remark}
+\vspace{-4 mm}
+\subsection{Compositional rules of unlearning under multimodal inputs}
+\vspace{-2 mm}
+The hypothesis testing approach to unlearning \eqref{eq:dist-unlearning} extends naturally to multimodal settings. It allows us to produce a product distribution $p\otimes p'$, when there are multiple modes $p\in \cP, p'\in \cP'$ that need to be combined. For instance, the unwanted distribution $p_1 \in \cP$ may correspond to toxic language in text, while $p_1' \in \cP'$  captures inappropriate content in images, both of which are to be jointly unlearned under a framework. We formalize this as a compositional rule in the following Lemma.
+\vspace{-1 mm}
+\begin{restatable}[Composition laws of distributional unlearning]{lemma}{CDU}
+\label{lem:CDU}
+If a distribution $p \in \cP$ satisfy $(f_d=T(P_d,Q_d),f_c=T(P_c,Q_c))$ unlearning with respect to  probability distributions $p_1,q_1\in \cP$ on some $(\cW, \cF_{\cW})$ \eqref{eq:dist-unlearning}, and a distribution $p' \in \cP'$ satisfy $(f_d'=T(P_d',Q_d'),f_c'=T(P_c',Q_c'))$ unlearning with respect to  probability distributions $p_1',q_1'\in \cP'$ on some $(\cW', \cF_{\cW}')$, then the product distribution $p\otimes p'$ satisfy $(f_d\otimes f_d', f_c\otimes f_c')$  unlearning with respect to $p_1\otimes p_1', q_1\otimes q_1' \in \cP \otimes \cP'$, where  for trade-off functions $f=T(P,Q)$ and $f'=T(P',Q')$ we define $f\otimes f':= T(P\otimes P', Q\otimes Q')$, and for families of distributions $\cP$ and $\cP'$ we define $\cP\otimes \cP':=\{p\otimes p': p\in \cP, p'\in \cP'\}$.
+\end{restatable}
+\vspace{-2 mm}
+ \begin{remark}(Compositing large number of multimodal inputs and natural baselines)
+      For desired and unwanted pairs of domains $q_n, p_n$ respectively within a mode of input $\cP_n$ such as text, image, video, audio, if $p^{(n)}\in \cP_n$ satisfy $(f_{dn},f_{cn})$ unlearning \eqref{eq:dist-unlearning} with respect to $p_n,q_n \in \cP_n$, then $p^{[n]}= p^{(1)} \otimes  \cdots \otimes p^{(n)}$ satisfy $(f_{dn}^{\otimes n},f_{cn}^{\otimes n})$ unlearning \eqref{eq:dist-unlearning} with respect to $\otimes_{i=1}^n p_i, \otimes_{i=1}^n q_i \in \otimes_{i=1}^n \cP_i$. Now, as $n\uparrow \infty$ or equivalently, number of forms of inputs becomes large, as a consequence of ~\citep[Theorem 6]{pandey2025infinitely}, we have for a sequence of trade-off functions $\{f_n\}_n$ with $f_n(0)=1$, if $f_n^{\otimes n} \to f_{\infty} \in \cT$ and the convergence is pointwise on $[0,1]$, then $f_{\infty} \in \cI$, where \vspace{-1 mm} 
+\begin{equation}
+    \cI := \{T(P,Q): P \text{ infinitely divisible  on } \R \text{ with } P(e^x) =1 \text{ and } dQ(x)= e^x dP(x)\}.\footnote{We refer to ~\citep{kallenberg2021foundations} for definitions of infinitely divisible distributions on the real line $(\R, \cB_{\R})$.}
+\end{equation}
+Therefore, we obtain a natural class of removal-preservation baselines $(f_d,f_c)$ whenever we have multimodal inputs with a large number of modes of input. A consequence of a central limit type theorem dictates the natural choices of baselines $f_d,f_c \in \cI$ ~\citet{pandey2025infinitely}. Mathematically, if one considers $\cP_n= \{\mu+Z:\mu\in \R\}$ with $Z\sim N(0,1)$, then $\otimes_{i=1}^n\cP_i=\{\mu +Z :\mu\in \R^n\}$ with $Z\sim N(0,\II_n)$. So, when $n$ is large, considering baselines  $(f_d,f_c)$ with $f_d,f_c\in \cI$ becomes natural.  Moreover, the Gaussian baseline with $f=T(N(0,1), N(\alpha,1))$ for any $\alpha >0$ and the Poisson baseline $g=T(P(\lambda_1), P(\lambda_2))$ with any $\lambda_1, \lambda_2 >0$ belong to $\cI$ ~\citep[Lemma 4]{pandey2025infinitely}.
+\end{remark}
+\vspace{-1 mm}
+\begin{remark}(Behavior under additional source of information)
+    The hypothesis-testing approach to unlearning \eqref{eq:dist-unlearning} behaves naturally when we add more \textit{independent columns} to our data. More precisely, if $\cP'=\{p'\}$ a single ton, and $p\in \cP$ satisfy $(f_d,f_c)$ unlearning with respect to $p_1,q_1\in \cP$, then $p\otimes p'$ satisfy $(f_d,f_c)$ unlearning with respect to $p_1\otimes p', q_1\otimes p' \in \cP\otimes \{p'\}$.  This follows from Proposition \ref{prop:tensor-basic-properties} as $T(p\otimes p', p_1\otimes p')= T(p,p_1) \leq f_d$ and $T(p\otimes p', q_1\otimes p')= T(p,q_1) \geq f_c$. 
+\end{remark}
+\vspace{-3mm}
+\subsection{Downstream guarantees}
+\vspace{-2 mm}
+ Blackwell ordering (Theorem \ref{thm:Blackwell}) implies our unlearning framework (Definition \ref{def:dist-unlearning}) encompasses the KL divergence-based unlearning of \cite{allouah2025distributionalmachineunlearningselective} (Proposition \ref{thm:CoD}). More generally, the framework \ref{def:dist-unlearning} encompasses every divergence-based unlearning $D(\cdot, \cdot)$ satisfying data processing inequality (Proposition \ref{prop:data-processing-functional}). This means the bivariate function $D(P, Q)$ of pairs of probability measures that satisfies $D(R\circ P, R\circ Q) \leq D(P,Q)$ for any Markov kernel $R$.
+
+\textbf{Downstream performance.}
+We now connect our unlearning objective of outputting a distribution $p$ on $(\cW, \cF_{\cW})$ that is close to $q_1$ and far from $p_1$ to a robust notion of predictive performance by measuring the generalization error difference on $\cF=\{h:(\cW, \cF_{\cW}) \to ([-1,1], \cB_{[-1,1]})\}$.
+\vspace{-1 mm}
+\begin{equation}
+2TV(p, p_1):=\sup_{h \in \cF}|\E_p[h]- \E_{p_1}[h]| \text{ and }
+2TV(p, q_1):=\sup_{h \in \cF}|\E_p[h]- \E_{q_1}[h]|.
+\vspace{-1 mm}
+\end{equation}
+\vspace{-2mm}
+ \begin{remark}[Intuition]
+     We measure predictive performance of $h$ at the distributional level by looking at averaged quantities $\E_p[h], \E_{p_1}[h],\E_{q_1}[h]$ for a given loss $h$. Moreover, in our definition, we simultaneously allow different choices of $h$.  More precisely, we  robustly measure the differences $|\E_p[h]- \E_{p_1}[h]|$ and  $|\E_p[h]- \E_{q_1}[h]|$ not just for a fixed $h$, but for a collection. To be concrete, we consider the largest such class by allowing all measurable functions $h$ with $\|h\|_{\infty}\leq 1$.
+ \end{remark}
+\vspace{-2 mm}
+\begin{restatable}{proposition}{predictive}
+\label{prop:predictive}
+Consider $\mathcal{P}$, a class of distributions on $(\cW, \cF_{\cW})$. For TOFs $f_d= T(P_d, Q_d), f_c=T(P_c, Q_c)$, if a distribution $p\in \cP$ satisfy $(f_d,f_c)$ unlearning with respect to $p_1, q_1 \in \cP$ \ref{def:dist-unlearning}, then,
+\begin{align}
+TV(p,p_1) \geq TV(P_d, Q_d) \text{ and } TV(p,q_1) \leq TV(P_c,Q_c).
+\end{align}
+\end{restatable}
+\vspace{-2 mm}
+\begin{remark}[Intuition]
+    These bounds show that unlearning guarantees increased loss under the unwanted domain $p_1$ and decreased loss under the preserved one $q_1$. In this sense, our framework provides meaningful control over downstream predictive behavior under this robust notion. Moreover, with $f_d=T(N(0,1), N(\alpha, 1))$ and $f_c= T(N(0,1), N(\ve, 1))$, we have $TV(P_d, Q_d) = 2 \Phi(\frac{\alpha}{2}) -1$ and $TV(P_c, Q_c) = 2 \Phi(\frac{\ve}{2}) -1$ \citep[Equation 7.40]{polyanskiy_wu_2025}.
+\end{remark}
+\vspace{-2 mm}
+\begin{remark}[Downstream guarantees]
+    From Proposition \ref{thm:CoD}, and as shown in the appendix (Lemma \ref{lem:DG}), our $(f_d,f_c)$ unlearning framework (Definition \ref{def:dist-unlearning}) also gives analogous downstream guarantees in the sense of ~\citep{allouah2025distributionalmachineunlearningselective} with $\alpha= KL(Q_d,P_d)$ and $\varepsilon=KL(Q_c,P_c)$. 
+\end{remark}
+\vspace{-2 mm}
+

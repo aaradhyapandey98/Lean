@@ -1,0 +1,181 @@
+\newcommand{\ya}[1]{[{
+\color{orange}{\footnotesize \textbf{YA:} #1}}]
+}
+\newcommand\tagthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+
+\newcommand{\alg}{\textsc{TrimGrad}\xspace}
+
+\providecommand{\lin}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\ac}[1]{a{\left(#1\right)}}
+\providecommand{\hg}[1]{\mathrm{H}_\cG{\left(#1\right)}}
+\providecommand{\loss}{\mathcal{L}}
+\providecommand{\prc}{\varepsilon_{\mathrm{precision}}}
+\newcommand{\clip}[1]{\mathrm{Clip}{(#1)}}
+
+\providecommand{\refLE}[1]{\ensuremath{\stackrel{(\ref{#1})}{\leq}}}
+\providecommand{\refEQ}[1]{\ensuremath{\stackrel{(\ref{#1})}{=}}}
+\providecommand{\refGE}[1]{\ensuremath{\stackrel{(\ref{#1})}{\geq}}}
+\providecommand{\refID}[1]{\ensuremath{\stackrel{(\ref{#1})}{\equiv}}}
+
+  \providecommand{\R}{\mathbb{R}} %
+  \providecommand{\N}{\mathbb{N}} %
+  
+  \DeclareMathOperator{\E}{{\mathbb E}}
+  \providecommand{\Eb}[1]{{\mathbb E}\left[#1\right] }       %
+  \providecommand{\EE}[2]{{\mathbb E}_{#1}\left.#2\right. }  %
+  \providecommand{\EEb}[2]{{\mathbb E}_{#1}\left[#2\right] } %
+  \providecommand{\prob}[1]{{\rm Pr}\left[#1\right] } 
+  \providecommand{\Prob}[2]{{\rm Pr}_{#1}\left[#2\right] } 
+  \providecommand{\P}[1]{{\rm Pr}\left.#1\right. }
+  \providecommand{\Pb}[1]{{\rm Pr}\left[#1\right] }
+  \providecommand{\PP}[2]{{\rm Pr}_{#1}\left[#2\right] }
+  \providecommand{\PPb}[2]{{\rm Pr}_{#1}\left[#2\right] }
+
+  \DeclareMathOperator*{\argmin}{arg\,min}
+  \DeclareMathOperator*{\argmax}{arg\,max}
+  \DeclareMathOperator*{\supp}{supp}
+  \DeclareMathOperator*{\diag}{diag}
+  \DeclareMathOperator*{\Tr}{Tr}
+\providecommand{\forget}{\cS_f}
+\providecommand{\retain}{\cS_r}
+  
+  \DeclareMathOperator*{\Circ}{\bigcirc}
+
+    \providecommand{\ttheta}{\bm{\theta}}
+  \providecommand{\0}{\mathbf{0}}
+  \providecommand{\1}{\mathbf{1}}
+  \renewcommand{\aa}{\mathbf{a}}
+  \providecommand{\bb}{\mathbf{b}}
+  \providecommand{\cc}{\mathbf{c}}
+  \providecommand{\dd}{\mathbf{d}}
+  \providecommand{\ee}{\mathbf{e}}
+  \providecommand{\ff}{\mathbf{f}}
+  \let\ggg\gg
+  \renewcommand{\gg}{\mathbf{g}}
+  \providecommand{\hh}{\mathbf{h}}
+  \providecommand{\ii}{\mathbf{i}}
+  \providecommand{\jj}{\mathbf{j}}
+  \providecommand{\kk}{\mathbf{k}}
+  \providecommand{\mm}{\mathbf{m}}
+  \providecommand{\nn}{\mathbf{n}}
+  \providecommand{\oo}{\mathbf{o}}
+  \providecommand{\pp}{\mathbf{p}}
+  \providecommand{\qq}{\mathbf{q}}
+  \providecommand{\rr}{\mathbf{r}}
+  \providecommand{\ss}{\mathbb{s}}
+  \providecommand{\tt}{\mathbf{t}}
+  \providecommand{\uu}{\mathbf{u}}
+  \providecommand{\vv}{\mathbf{v}}
+  \providecommand{\ww}{\mathbf{w}}
+  \providecommand{\xx}{\mathbf{x}}
+  \providecommand{\xxi}{\mathbf{\xi}}
+  \providecommand{\yy}{\mathbf{y}}
+  \providecommand{\zz}{\mathbf{z}}
+  
+  \providecommand{\mA}{\mathbf{A}}
+  \providecommand{\mB}{\mathbf{B}}
+  \providecommand{\mC}{\mathbf{C}}
+  \providecommand{\mD}{\mathbf{D}}
+  \providecommand{\mE}{\mathbf{E}}
+  \providecommand{\mF}{\mathbf{F}}
+  \providecommand{\mG}{\mathbf{G}}
+  \providecommand{\mH}{\mathbf{H}}
+  \providecommand{\mI}{\mathbf{I}}
+  \providecommand{\mJ}{\mathbf{J}}
+  \providecommand{\mK}{\mathbf{K}}
+  \providecommand{\mL}{\mathbf{L}}
+  \providecommand{\mM}{\mathbf{M}}
+  \providecommand{\mN}{\mathbf{N}}
+  \providecommand{\mO}{\mathbf{O}}
+  \providecommand{\mP}{\mathbf{P}}
+  \providecommand{\mQ}{\mathbf{Q}}
+  \providecommand{\mR}{\mathbf{R}}
+  \providecommand{\mS}{\mathbf{S}}
+  \providecommand{\mT}{\mathbf{T}}
+  \providecommand{\mU}{\mathbf{U}}
+  \providecommand{\mV}{\mathbf{V}}
+  \providecommand{\mW}{\mathbf{W}}
+  \providecommand{\mX}{\mathbf{X}}
+  \providecommand{\mY}{\mathbf{Y}}
+  \providecommand{\mZ}{\mathbf{Z}}
+  \providecommand{\mLambda}{\mathbf{\Lambda}}
+  
+  \providecommand{\cA}{\mathcal{A}}
+  \providecommand{\cB}{\mathcal{B}}
+  \providecommand{\cC}{\mathcal{C}}
+  \providecommand{\cD}{\mathcal{D}}
+  \providecommand{\cE}{\mathcal{E}}
+  \providecommand{\cF}{\mathcal{F}}
+  \providecommand{\cG}{\mathcal{G}}
+  \providecommand{\cH}{\mathcal{H}}
+  \providecommand{\cI}{\mathcal{I}}
+  \providecommand{\cJ}{\mathcal{J}}
+  \providecommand{\cK}{\mathcal{K}}
+  \providecommand{\cL}{\mathcal{L}}
+  \providecommand{\cM}{\mathcal{M}}
+  \providecommand{\cN}{\mathcal{N}}
+  \providecommand{\cO}{\mathcal{O}}
+  \providecommand{\cP}{\mathcal{P}}
+  \providecommand{\cQ}{\mathcal{Q}}
+  \providecommand{\cR}{\mathcal{R}}
+  \providecommand{\cS}{\mathcal{S}}
+  \providecommand{\cT}{\mathcal{T}}
+  \providecommand{\cU}{\mathcal{U}}
+  \providecommand{\cV}{\mathcal{V}}
+  \providecommand{\cX}{\mathcal{X}}
+  \providecommand{\cY}{\mathcal{Y}}
+  \providecommand{\cW}{\mathcal{W}}
+  \providecommand{\cZ}{\mathcal{Z}}
+
+  \providecommand{\SSigma}{\mathbf{\Sigma}}
+  \providecommand{\LLambda}{\mathbf{\Lambda}}
+
+  \newcommand{\card}[1]{\left|#1\right|}
+  \newcommand{\sigmacor}{\sigma_{\mathrm{cor}}}
+  \newcommand{\sigmacdp}{\sigma_{\mathrm{cdp}}}
+  
+  \usepackage{bm}
+  \newcommand{\bxi}{\boldsymbol{\xi}}
+
+  
+\providecommand{\mycomment}[3]{\todo[caption={},size=footnotesize,color=#1!20]{\textbf{#2: }#3}}%
+\providecommand{\inlinecomment}[3]{%
+  {\color{#1}#2: #3}}%
+\newcommand\commenter[2]%
+{%
+  \expandafter\newcommand\csname i#1\endcsname[1]{\inlinecomment{#2}{#1}{##1}}
+  \expandafter\newcommand\csname #1\endcsname[1]{\mycomment{#2}{#1}{##1}}
+}
+  
+
+
+
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{observation}[lemma]{Observation}
+
+
+
+\newcommand{\cm}{\setminus}
+
+\newcommand{\e}{\mathbb{E}}
+\newcommand{\p}{\mathbb{P}}
+%\newcommand{\R}{\mathbb{R}}
+\newcommand{\vp}{\varphi}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\II}{\mathbb{I}}
+
+
+
+
