@@ -34,6 +34,13 @@
     "StatisticalUnlearning.leftInverse_eq_one_of_empty",
     "StatisticalUnlearning.leftInverse_nonneg",
     "StatisticalUnlearning.leftInverse_le_one",
-    "StatisticalUnlearning.leftInverse_antitone"
+    "StatisticalUnlearning.leftInverse_antitone",
+    "StatisticalUnlearning.constantTest",
+    "StatisticalUnlearning.typeIError_constant",
+    "StatisticalUnlearning.typeIIError_constant",
+    "StatisticalUnlearning.tradeOff_le_diagonal",
+    "StatisticalUnlearning.typeIIError_eq_one_sub_typeIError",
+    "StatisticalUnlearning.tradeOff_self",
+    "StatisticalUnlearning.tradeOff_one"
   ]
 }

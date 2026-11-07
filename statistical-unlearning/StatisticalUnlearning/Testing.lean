@@ -1,4 +1,5 @@
 import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+import Mathlib.MeasureTheory.Integral.Lebesgue.Sub
 import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
 
 /-!
@@ -38,6 +39,12 @@ def zeroTest : RandomizedTest Ω where
   toFun := fun _ => 0
   measurable_toFun := measurable_const
   le_one := fun _ => zero_le _
+
+/-- A constant randomized test at a permitted significance level. -/
+def constantTest (α : SignificanceLevel) : RandomizedTest Ω where
+  toFun := fun _ => α
+  measurable_toFun := measurable_const
+  le_one := fun _ => α.2.2
 
 /-- Type-I error: the rejection probability under the null distribution. -/
 noncomputable def typeIError (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω) : ℝ≥0∞ :=
@@ -80,5 +87,52 @@ theorem tradeOff_le_one (P Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
     tradeOff P Q α ≤ typeIIError Q (zeroTest (Ω := Ω)) :=
       iInf_le_of_le (zeroTest (Ω := Ω)) (iInf_le_of_le hzero le_rfl)
     _ = 1 := typeIIError_zero Q
+
+@[simp] theorem typeIError_constant (P : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    typeIError P (constantTest (Ω := Ω) α) = α := by
+  simp [typeIError, constantTest]
+
+@[simp] theorem typeIIError_constant (Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    typeIIError Q (constantTest (Ω := Ω) α) = 1 - (α : ℝ≥0∞) := by
+  simp [typeIIError, constantTest]
+
+/-- Every trade-off curve lies below the diagonal, by a constant random test. -/
+theorem tradeOff_le_diagonal (P Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    tradeOff P Q α ≤ 1 - (α : ℝ≥0∞) := by
+  have h : typeIError P (constantTest (Ω := Ω) α) ≤ (α : ℝ≥0∞) := by simp
+  calc
+    tradeOff P Q α ≤ typeIIError Q (constantTest (Ω := Ω) α) :=
+      iInf_le_of_le (constantTest (Ω := Ω) α) (iInf_le_of_le h le_rfl)
+    _ = 1 - (α : ℝ≥0∞) := typeIIError_constant Q α
+
+/-- Under identical distributions, the two errors sum to one. -/
+theorem typeIIError_eq_one_sub_typeIError (P : ProbabilityMeasure Ω)
+    (φ : RandomizedTest Ω) : typeIIError P φ = 1 - typeIError P φ := by
+  have hle : (∫⁻ x, φ.toFun x ∂(P : Measure Ω)) ≤ 1 := by
+    calc
+      (∫⁻ x, φ.toFun x ∂(P : Measure Ω)) ≤ ∫⁻ _x, (1 : ℝ≥0∞) ∂(P : Measure Ω) :=
+        lintegral_mono φ.le_one
+      _ = 1 := by simp
+  have hfinite : (∫⁻ x, φ.toFun x ∂(P : Measure Ω)) ≠ ∞ :=
+    ne_top_of_le_ne_top (by simp) hle
+  have hsub := lintegral_sub φ.measurable_toFun hfinite
+    (ae_of_all (P : Measure Ω) φ.le_one)
+  simpa [typeIIError, typeIError] using hsub
+
+/-- The encoded trade-off curve of a distribution with itself is the diagonal. -/
+theorem tradeOff_self (P : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    tradeOff P P α = 1 - (α : ℝ≥0∞) := by
+  apply le_antisymm (tradeOff_le_diagonal P P α)
+  unfold tradeOff
+  refine le_iInf fun φ => le_iInf fun hφ => ?_
+  rw [typeIIError_eq_one_sub_typeIError]
+  exact tsub_le_tsub_left hφ 1
+
+/-- At type-I budget one, zero type-II error is achievable. -/
+theorem tradeOff_one (P Q : ProbabilityMeasure Ω) :
+    tradeOff P Q ⟨1, by simp⟩ = 0 := by
+  apply le_antisymm
+  · simpa using tradeOff_le_diagonal P Q ⟨1, by simp⟩
+  · exact zero_le _
 
 end StatisticalUnlearning

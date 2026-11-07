@@ -36,3 +36,10 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.leftInverse_nonneg
 #print axioms StatisticalUnlearning.leftInverse_le_one
 #print axioms StatisticalUnlearning.leftInverse_antitone
+#print axioms StatisticalUnlearning.constantTest
+#print axioms StatisticalUnlearning.typeIError_constant
+#print axioms StatisticalUnlearning.typeIIError_constant
+#print axioms StatisticalUnlearning.tradeOff_le_diagonal
+#print axioms StatisticalUnlearning.typeIIError_eq_one_sub_typeIError
+#print axioms StatisticalUnlearning.tradeOff_self
+#print axioms StatisticalUnlearning.tradeOff_one
