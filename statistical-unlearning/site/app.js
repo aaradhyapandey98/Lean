@@ -104,6 +104,23 @@
   function selectEntry(id) {
     const entry=byId.get(id)||entries[0];if(!entry)return;
     current=entry;const state=statusOf(entry);
+    // The paper is the source itself, not a reconstructed or summarized copy.
+    // Cross-origin restrictions mean scrolling is independent of this reader.
+    const paperPages = {
+      'randomized-tests':3, 'trade-off':3, 'zero-type-i':3,
+      'zero-type-ii':3, 'trade-off-antitone':3, 'trade-off-upper-bound':3,
+      'unlearning':3, 'consistency':3, 'feasible-region':4,
+      'feasible-membership':4, 'feasible-monotonicity':4,
+      'geometric-region':5, 'geometric-membership':5, 'geometric-subset':5,
+      'geometric-point-bound':5, 'geometric-zero':5, 'geometric-necessary':5,
+      'geometric-whole-ball':5, 'inverse-order':14,
+      'representation-bridge':3, 'blackwell':15, 'gaussian-region':5,
+      'composition':4, 'other-families':6, 'finite-sample':7
+    };
+    const page = paperPages[entry.id] || 3;
+    const frame = $('paper-frame');
+    const paperUrl = 'https://arxiv.org/pdf/2605.16645v1#page=' + page;
+    if (frame && frame.getAttribute('src') !== paperUrl) frame.setAttribute('src', paperUrl);
     setText('statement-kind',shortLabel(entry));setText('statement-status',labels[state]);$('statement-status').className='status-badge '+state;
     setText('statement-title',entry.title);setText('statement-summary',entry.summary);$('statement-summary').hidden=!entry.summary;
     setText('statement-text',entry.statement);$('statement-text').hidden=!entry.statement;

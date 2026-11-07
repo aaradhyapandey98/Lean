@@ -1,8 +1,15 @@
 # Proof companion
 
-This is a dependency-free static reader for the formalization. Open `index.html`
-directly, serve this directory, or publish it to GitHub Pages. All project data
-comes from `data/proofs.js`; no build step or external service is required.
+This is a static reader for the formalization. Open `index.html` directly,
+serve this directory, or publish it to GitHub Pages. Lean and status data come
+from `data/proofs.js`; the paper pane loads the original versioned PDF from
+arXiv and therefore requires network access and a browser PDF viewer.
+
+The PDF is the authoritative paper, not a reconstructed transcript. Choosing
+a tracked result navigates to its source page. PDF and Lean panes scroll
+independently: automatic paragraph-level alignment is not yet implemented.
+An external link is provided if the PDF cannot be embedded. No result without
+an audited declaration is represented as proved.
 
 The reader displays a mathematical statement beside its actual Lean source. A
 tracked statement is not the same as a verified theorem, and the counters do not

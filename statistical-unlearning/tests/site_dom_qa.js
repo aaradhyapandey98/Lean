@@ -69,6 +69,10 @@ function harness(extraEntry){
  assert.equal(links().length,entries.length);
  assert.equal($('statement-title').textContent,entries[0].title);
  assert.equal($('lean-file').textContent,entries[0].lean.file);
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/pdf/2605.16645v1#page=3','The paper pane must show the original versioned PDF');
+ window.location.hash='gaussian-region';
+ assert.equal($('paper-frame').getAttribute('src'),'https://arxiv.org/pdf/2605.16645v1#page=5','Source selection must navigate to the corresponding PDF page');
+ window.location.hash=entries[0].id;
  assert.equal($('checked-count').textContent,String(entries.filter(e=>e.status==='checked').length));
  const sourceText=()=> $('lean-code').children.map(row=>row.children.slice(1).map(n=>n.textContent).join('')).join('\n');
  assert.equal(sourceText(),entries[0].lean.code,'Displayed source must preserve exact Unicode source');
