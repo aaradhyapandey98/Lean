@@ -412,14 +412,14 @@
       "section": "04 · Open proof obligations",
       "status": "pending",
       "summary": "Relate testing order to Markov-kernel comparison, with the measurable-space hypotheses audited explicitly.",
-      "statement": "Formalize the forward data-processing direction first. Review the regularity required by the converse before adopting the paper's full statement.",
+      "statement": "The kernel-to-order direction is proved for the real-test infimum. The converse, including its measurable-space hypotheses, remains open.",
       "assumptions": [
         "Exact regularity assumptions remain under source review."
       ],
       "dependencies": [
         "representation-bridge"
       ],
-      "notes": "Not formalized. This is a dependency for divergence comparisons and composition."
+      "notes": "The full equivalence remains unproved. The checked forward direction is tracked separately; independent source review is outstanding."
     },
     {
       "id": "gaussian-region",
@@ -510,6 +510,28 @@
       },
       "dependencies": [],
       "notes": "The two representation lemmas prove that adjoining 1 implements the paper’s empty-infimum convention. Independent statement review remains outstanding."
+    },
+    {
+      "id": "blackwell-real-forward",
+      "kind": "Partial paper theorem",
+      "number": "Appendix A.5 · 19, forward direction",
+      "title": "Kernel post-processing raises the testing trade-off",
+      "section": "01 · Testing foundations",
+      "summary": "If both laws pass through the same Markov kernel, the real-valued testing trade-off cannot decrease.",
+      "statement": "T(P,Q)(α) ≤ T(KP,KQ)(α), with both sides given by infima over measurable real tests as in Definition 1.",
+      "assumptions": [
+        "P,Q are probability measures on a common measurable space.",
+        "K is a Markov kernel to the target measurable space.",
+        "α is represented in [0,1]."
+      ],
+      "lean": {
+        "file": "StatisticalUnlearning/KernelDataProcessing.lean",
+        "declaration": "StatisticalUnlearning.real_tradeOff_kernel_ge"
+      },
+      "dependencies": [
+        "representation-bridge"
+      ],
+      "notes": "This is only the kernel-to-order direction of Theorem 19. Its converse and independent source-fidelity review remain open."
     }
   ]
 }
