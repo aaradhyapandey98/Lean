@@ -46,7 +46,7 @@
       "dependencies": [
         "randomized-tests"
       ],
-      "notes": "The real-integral and infimum representation bridges are open obligations. A checked encoding is not yet a checked equivalence with the paper's Definition 1."
+      "notes": "The real-test, error, feasibility and infimum correspondence is proved by tradeOff_eq_real_test_infimum. Independent source-fidelity review remains outstanding."
     },
     {
       "id": "zero-type-i",
@@ -384,19 +384,25 @@
     },
     {
       "id": "representation-bridge",
-      "kind": "Obligation",
+      "kind": "Representation lemma",
       "number": "Bridge",
-      "title": "Connect the encoding to real-valued testing",
-      "section": "04 · Open proof obligations",
-      "status": "pending",
-      "summary": "Translate tests, expectations and infima between the ENNReal model and the paper's [0,1]-valued formulation.",
-      "statement": "Construct the two measurable test conversions; prove equality of errors and preservation of feasibility; then identify the two infima. Add the realizable-baseline interface.",
-      "assumptions": [],
+      "title": "Real and encoded testing trade-offs agree",
+      "section": "01 · Testing foundations",
+      "summary": "The encoded curve equals the infimum of real type-II expectations over the paper's feasible measurable tests.",
+      "statement": "For probability measures P,Q and α in [0,1], the real value of the encoded trade-off equals the infimum over measurable real tests φ in [0,1] satisfying E_P[φ] ≤ α, of E_Q[1−φ].",
+      "assumptions": [
+        "P and Q are probability measures on the same measurable space.",
+        "α is represented by a finite ENNReal value in [0,1]."
+      ],
       "dependencies": [
         "trade-off",
         "trade-off-upper-bound"
       ],
-      "notes": "This is the next correspondence milestone. No bridge theorem is assumed in the existing library."
+      "notes": "This proves Definition 1's representation bridge; independent source-fidelity review and the realizable-baseline interface remain open.",
+      "lean": {
+        "file": "StatisticalUnlearning/Testing.lean",
+        "declaration": "StatisticalUnlearning.tradeOff_eq_real_test_infimum"
+      }
     },
     {
       "id": "blackwell",
