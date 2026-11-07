@@ -62,3 +62,6 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.real_geometricFeasibleRegion_eq
 #print axioms StatisticalUnlearning.real_geometricFeasibleRegion_nonempty_iff
 #print axioms StatisticalUnlearning.zero_removal_whole_ball_counterexample
+#print axioms StatisticalUnlearning.typeIError_le_one
+#print axioms StatisticalUnlearning.typeIIError_le_one
+#print axioms StatisticalUnlearning.real_test_feasible_iff
