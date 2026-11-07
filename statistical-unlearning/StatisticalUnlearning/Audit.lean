@@ -58,3 +58,7 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.encoded_test_to_real
 #print axioms StatisticalUnlearning.typeIError_real
 #print axioms StatisticalUnlearning.typeIIError_real
+#print axioms StatisticalUnlearning.leftInverse_congr
+#print axioms StatisticalUnlearning.real_geometricFeasibleRegion_eq
+#print axioms StatisticalUnlearning.real_geometricFeasibleRegion_nonempty_iff
+#print axioms StatisticalUnlearning.zero_removal_whole_ball_counterexample
