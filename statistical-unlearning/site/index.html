@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f3ed">
-  <meta name="description" content="A transparent, growing Lean formalization of Statistical Unlearning of Distributions, with mathematical statements and formal source side by side.">
+  <meta name="description" content="Read the original arXiv paper alongside Lean declarations and their verification status.">
   <title>Statistical Unlearning · Proof Companion</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="data/proofs.js"></script>
@@ -30,7 +30,7 @@
     </div>
     <div class="project-note">
       <p class="note-heading">Mathematics, made inspectable.</p>
-      <p>Read the mathematical statement alongside its Lean source. Each result carries its own proof status, assumptions, and connection to the paper.</p>
+      <p>Read the original paper alongside the Lean source and its verification status.</p>
       <div class="progress-summary" aria-label="Formalization progress">
         <div><strong id="checked-count">0</strong><span>checked</span></div>
         <span class="stat-divider" aria-hidden="true"></span>
@@ -68,7 +68,10 @@
       </div>
       <div class="paired-panels" id="paired-panels">
         <article id="paper-panel" class="paper-panel" tabindex="-1" aria-labelledby="statement-title">
-          <div class="panel-caption"><span>THE MATHEMATICS</span><a id="entry-paper-link" target="_blank" rel="noopener noreferrer">Paper reference <span aria-hidden="true">↗</span></a></div>
+          <div class="panel-caption"><span>ORIGINAL PAPER · ARXIV V1</span><a id="entry-paper-link" target="_blank" rel="noopener noreferrer">Open original <span aria-hidden="true">↗</span></a></div>
+          <div class="paper-frame-note"><div class="paper-view-controls" role="group" aria-label="Paper format"><button id="paper-html-view" type="button" aria-pressed="true">Original HTML</button><button id="paper-pdf-view" type="button" aria-pressed="false">Original PDF</button></div><span>The source is loaded directly from arXiv. The PDF is the authoritative version; HTML is arXiv's experimental rendering. Select a result to navigate to its section or page. The panes scroll independently.</span></div>
+          <iframe id="paper-frame" class="paper-frame" title="Original paper: Statistical Unlearning of Distributions, arXiv version 1" src="https://arxiv.org/html/2605.16645v1#S2.SS1" loading="eager" referrerpolicy="no-referrer"></iframe>
+          <p class="paper-frame-fallback">If the original paper does not load, <a href="https://arxiv.org/pdf/2605.16645v1" target="_blank" rel="noopener noreferrer">open the PDF in a separate tab</a>.</p>
           <div id="paper-content" class="paper-content">
             <div class="result-meta"><span id="statement-kind" class="result-kind"></span><span id="statement-status" class="status-badge"></span></div>
             <h2 id="statement-title"></h2>
@@ -87,6 +90,7 @@
           <div id="declaration-name" class="declaration-name"></div>
           <div id="code-body" class="code-body"><pre aria-label="Lean source"><code id="lean-code"></code></pre></div>
           <div id="empty-proof" class="empty-proof" hidden><span class="empty-symbol" aria-hidden="true">λ</span><h3>A proof still to write.</h3><p>This statement is part of the formalization roadmap. No Lean proof is claimed here.</p></div>
+          <section id="lean-scope" class="lean-scope" aria-labelledby="lean-scope-title"><h3 id="lean-scope-title">Assumptions and correspondence</h3><p id="lean-scope-note"></p><ul id="lean-assumptions"></ul></section>
           <div class="verification-box"><div class="verification-title"><span id="verification-icon" aria-hidden="true">○</span><h3 id="verification-heading">Verification evidence</h3></div><p id="verification-detail"></p><a id="source-link" hidden target="_blank" rel="noopener noreferrer">Inspect source <span aria-hidden="true">↗</span></a></div>
           <details id="build-details" class="build-details"><summary>Build &amp; trust details <span aria-hidden="true">+</span></summary><dl id="build-facts"></dl><a id="build-run-link" hidden target="_blank" rel="noopener noreferrer">Inspect the build on GitHub ↗</a><p>Lean checks the formal statement. Its correspondence with the paper remains a mathematical review task.</p></details>
         </section>
