@@ -67,11 +67,11 @@ theorem tradeOff_map_equiv (P Q : ProbabilityMeasure Ω) (e : Ω ≃ᵐ Ω')
   have hP : (P.map e.measurable.aemeasurable).map e.symm.measurable.aemeasurable = P := by
     apply Subtype.ext
     change ((P : Measure Ω).map e).map e.symm = (P : Measure Ω)
-    exact Measure.map_symm_map e
+    exact MeasurableEquiv.map_symm_map e
   have hQ : (Q.map e.measurable.aemeasurable).map e.symm.measurable.aemeasurable = Q := by
     apply Subtype.ext
     change ((Q : Measure Ω).map e).map e.symm = (Q : Measure Ω)
-    exact Measure.map_symm_map e
+    exact MeasurableEquiv.map_symm_map e
   apply le_antisymm
   · simpa only [hP, hQ] using
       tradeOff_map_ge (P.map e.measurable.aemeasurable) (Q.map e.measurable.aemeasurable)
