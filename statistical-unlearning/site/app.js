@@ -126,6 +126,7 @@
       'geometric-region':'S3.SS1', 'geometric-membership':'S3.SS1', 'geometric-subset':'S3.SS1',
       'geometric-point-bound':'S3.SS1', 'geometric-zero':'S3.SS1', 'geometric-necessary':'S3.SS1',
       'geometric-whole-ball':'S3.SS1', 'representation-bridge':'S2.SS1',
+      'inverse-order':'A1.SS4', 'blackwell':'A1.SS5',
       'gaussian-region':'S3.SS1', 'composition':'S2.SS3', 'other-families':'S3', 'finite-sample':'S4'
     };
     const page = paperPages[entry.id] || 3;
