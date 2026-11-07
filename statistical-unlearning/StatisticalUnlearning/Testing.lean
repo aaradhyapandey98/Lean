@@ -11,8 +11,8 @@ Source: Pandey and Kulkarni, arXiv:2605.16645v1, Definition 1, equation (1).
 We use `ℝ≥0∞` for error probabilities and the nonnegative integral. Every test
 is measurable and bounded by one. This avoids an implicit integrability
 assumption and makes the infimum a complete-lattice infimum. Test levels are
-restricted to `[0,1]`. A real-valued reformulation and the full characterization
-of trade-off functions are future work.
+restricted to `[0,1]`. The real-valued test, error, feasibility and infimum
+correspondence is proved below. The full characterization remains future work.
 -/
 
 set_option autoImplicit false
@@ -56,7 +56,7 @@ noncomputable def typeIIError (Q : ProbabilityMeasure Ω) (φ : RandomizedTest �
   ∫⁻ x, (1 - φ.toFun x) ∂(Q : Measure Ω)
 
 /-- Encoding of Definition 1, equation (1), in nonnegative extended real
-arithmetic. The real-valued integral/infimum equivalence is not yet proved. -/
+arithmetic. See `tradeOff_eq_real_test_infimum` for the real-valued formulation. -/
 noncomputable def tradeOff (P Q : ProbabilityMeasure Ω)
     (α : SignificanceLevel) : ℝ≥0∞ :=
   ⨅ (φ : RandomizedTest Ω) (_ : typeIError P φ ≤ (α : ℝ≥0∞)), typeIIError Q φ
@@ -184,5 +184,70 @@ theorem typeIIError_real (Q : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
   have hm : Measurable (fun x => 1 - f x) := measurable_const.sub hf
   simpa only [hfun, typeIIError] using
     (integral_eq_lintegral_of_nonneg_ae hn hm.aestronglyMeasurable)
+
+/-- A test's type-I error is finite and at most one under a probability law. -/
+theorem typeIError_le_one (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω) :
+    typeIError P φ ≤ 1 := by
+  calc
+    typeIError P φ ≤ ∫⁻ _x, (1 : ℝ≥0∞) ∂(P : Measure Ω) :=
+      lintegral_mono φ.le_one
+    _ = 1 := by simp
+
+/-- A test's type-II error is finite and at most one under a probability law. -/
+theorem typeIIError_le_one (Q : ProbabilityMeasure Ω) (φ : RandomizedTest Ω) :
+    typeIIError Q φ ≤ 1 := by
+  calc
+    typeIIError Q φ ≤ ∫⁻ _x, (1 : ℝ≥0∞) ∂(Q : Measure Ω) :=
+      lintegral_mono (fun _ => tsub_le_self)
+    _ = 1 := by simp
+
+/-- Corresponding real and encoded tests obey the same type-I constraint. -/
+theorem real_test_feasible_iff (P : ProbabilityMeasure Ω) (φ : RandomizedTest Ω)
+    (f : Ω → ℝ) (hf : Measurable f) (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1)
+    (hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x)) (α : SignificanceLevel) :
+    (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ↔
+      typeIError P φ ≤ (α : ℝ≥0∞) := by
+  rw [typeIError_real P φ f hf hrange hφ]
+  exact ENNReal.toReal_le_toReal
+    (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIError_le_one P φ))
+    (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) α.2.2)
+
+/-- The encoded trade-off, converted to ℝ, is the real infimum over
+encoded feasible tests. Identifying this index type with real tests uses the
+separate conversion and feasibility correspondence results. -/
+theorem tradeOff_toReal_eq_iInf (P Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    (tradeOff P Q α).toReal =
+      ⨅ φ : {φ : RandomizedTest Ω // typeIError P φ ≤ (α : ℝ≥0∞)},
+        (typeIIError Q φ.1).toReal := by
+  have h : tradeOff P Q α =
+      ⨅ φ : {φ : RandomizedTest Ω // typeIError P φ ≤ (α : ℝ≥0∞)},
+        typeIIError Q φ.1 := by
+    simp only [tradeOff, iInf_subtype']
+  rw [h]
+  exact ENNReal.toReal_iInf (fun φ =>
+    ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIIError_le_one Q φ.1))
+
+/-- Definition 1, equation (1): the encoded curve equals the infimum over
+the paper's real measurable randomized tests and their real expectations. -/
+theorem tradeOff_eq_real_test_infimum (P Q : ProbabilityMeasure Ω)
+    (α : SignificanceLevel) :
+    (tradeOff P Q α).toReal =
+      sInf {r : ℝ | ∃ f : Ω → ℝ, Measurable f ∧
+        (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+        (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ∧
+        r = ∫ x, (1 - f x) ∂(Q : Measure Ω)} := by
+  rw [tradeOff_toReal_eq_iInf, ← sInf_range]
+  congr 1
+  ext r
+  constructor
+  · rintro ⟨⟨φ, hfeas⟩, hval⟩
+    obtain ⟨f, hf, hrange, hrep⟩ := encoded_test_to_real φ
+    have hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x) := fun x => (hrep x).symm
+    refine ⟨f, hf, hrange, (real_test_feasible_iff P φ f hf hrange hφ α).2 hfeas, ?_⟩
+    exact hval.symm.trans (typeIIError_real Q φ f hf hrange hφ).symm
+  · rintro ⟨f, hf, hrange, hfeas, hval⟩
+    obtain ⟨φ, hφ⟩ := real_test_to_encoded f hf hrange
+    refine ⟨⟨φ, (real_test_feasible_iff P φ f hf hrange hφ α).1 hfeas⟩, ?_⟩
+    exact (typeIIError_real Q φ f hf hrange hφ).symm.trans hval.symm
 
 end StatisticalUnlearning
