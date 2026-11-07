@@ -43,3 +43,6 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.typeIIError_eq_one_sub_typeIError
 #print axioms StatisticalUnlearning.tradeOff_self
 #print axioms StatisticalUnlearning.tradeOff_one
+#print axioms StatisticalUnlearning.real_geometricFeasibleRegion_eq
+#print axioms StatisticalUnlearning.real_geometricFeasibleRegion_nonempty_iff
+#print axioms StatisticalUnlearning.zero_removal_whole_ball_counterexample
