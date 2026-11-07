@@ -53,3 +53,12 @@ Assign disjoint modules to agents and arrange independent statement review. Comm
 - The complete paper remains unverified; the real/ENNReal correspondence and source-facing interface are the immediate next tasks. Geometry remains separate from the unproved Gaussian testing correspondence.
 
 The publication commit may differ from the checked source revision because it adds evidence, generated reader data and this handoff. The evidence hashes bind every Lean file, toolchain, Lake configuration, lockfile and declaration registry. Do not treat a changed Lean file as covered by this result.
+
+
+## Environment blocker checkpoint — 7 November 2026
+
+Checkpoint branch `checkpoint-unavailable-lean-20261107` starts from MathJax reader draft PR #8 head `fbce43c24c1eee1224895520986729fcc731559c`. This session found no `lean`, `lake`, or `elan` executable and no usable Git checkout in the supplied workspace; `git ls-remote https://github.com/aaradhyapandey98/Lean.git HEAD` returned HTTP 403. No Lean proofs, build, axiom audit, source-fidelity review, or reader correction were completed in this session. No PR was merged.
+
+PR #2 was inspected: at that time it was draft, reported non-mergeable, and explicitly had independent source-fidelity review outstanding. PR #8 remains a draft with the numbering, references, bibliography, and missing figure issues recorded in `MATHJAX_READER_WORK.md`. The testing PRs #3, #6 and #7 are stacked drafts with their stated review and representation limitations. Do not infer verification of this checkpoint from previous source-bound audit evidence.
+
+Next session: restore a usable checkout and pinned Lean 4.24.0/mathlib environment, inspect the current remote PR heads and CI results, then independently review the generalized-inverse representation against the pinned source. Continue the real/ENNReal testing bridges and paper dependencies; correct and independently validate the full MathJax reader against the PDF and figures. Run the project's complete build, source checks, and transitive-axiom audit before making or merging a reviewed PR. Do not count elementary auxiliary declarations as completed paper results without stating their scope.
