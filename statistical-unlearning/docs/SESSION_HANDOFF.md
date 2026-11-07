@@ -73,3 +73,5 @@ Branch `statistical-unlearning-integrated-proofs` integrates the proof content o
 ## Testing feasibility bridge — draft
 
 Branch `testing-feasibility-bridge`, based on integrated head `9fa123328dba09fb9c7692e29a4e8941f8e195ed`, proposes bounds on both testing errors and equivalence of real and encoded type-I feasibility for corresponding tests. These changes require their own Lean build, axiom audit and source review. The complete constrained-infimum correspondence, Blackwell converse, divergence ordering, tensor properties and composition remain open. The prior audit is stale for the altered Lean snapshot.
+
+The error bounds and feasibility equivalence passed [CI run 42385437049](https://github.com/aaradhyapandey98/Lean/actions/runs/42385437049) for head `8bfc67e634ef6ecf68c121f1bd6340cf8981e8c8`. A subsequent proposed theorem rewrites the encoded trade-off as a real infimum indexed by encoded feasible tests; that additional declaration needs a new Lean build and audit. Identifying the result with a separately defined real-test infimum, source review, and the target 1 paper theorems remain open.
