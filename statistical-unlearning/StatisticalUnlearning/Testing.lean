@@ -212,4 +212,19 @@ theorem real_test_feasible_iff (P : ProbabilityMeasure Ω) (φ : RandomizedTest 
     (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIError_le_one P φ))
     (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) α.2.2)
 
+/-- The encoded trade-off, converted to ℝ, is the real infimum over
+encoded feasible tests. Identifying this index type with real tests uses the
+separate conversion and feasibility correspondence results. -/
+theorem tradeOff_toReal_eq_iInf (P Q : ProbabilityMeasure Ω) (α : SignificanceLevel) :
+    (tradeOff P Q α).toReal =
+      ⨅ φ : {φ : RandomizedTest Ω // typeIError P φ ≤ (α : ℝ≥0∞)},
+        (typeIIError Q φ.1).toReal := by
+  have h : tradeOff P Q α =
+      ⨅ φ : {φ : RandomizedTest Ω // typeIError P φ ≤ (α : ℝ≥0∞)},
+        typeIIError Q φ.1 := by
+    simp only [tradeOff, iInf_subtype']
+  rw [h]
+  exact ENNReal.toReal_iInf (fun φ =>
+    ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIIError_le_one Q φ.1))
+
 end StatisticalUnlearning
