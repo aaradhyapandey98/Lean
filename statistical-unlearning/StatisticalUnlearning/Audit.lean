@@ -65,3 +65,4 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.typeIError_le_one
 #print axioms StatisticalUnlearning.typeIIError_le_one
 #print axioms StatisticalUnlearning.real_test_feasible_iff
+#print axioms StatisticalUnlearning.tradeOff_toReal_eq_iInf
