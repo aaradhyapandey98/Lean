@@ -43,3 +43,8 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.typeIIError_eq_one_sub_typeIError
 #print axioms StatisticalUnlearning.tradeOff_self
 #print axioms StatisticalUnlearning.tradeOff_one
+#print axioms StatisticalUnlearning.pullbackTest
+#print axioms StatisticalUnlearning.typeIError_map
+#print axioms StatisticalUnlearning.typeIIError_map
+#print axioms StatisticalUnlearning.tradeOff_map_ge
+#print axioms StatisticalUnlearning.tradeOff_map_equiv

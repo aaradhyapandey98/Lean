@@ -41,6 +41,11 @@
     "StatisticalUnlearning.tradeOff_le_diagonal",
     "StatisticalUnlearning.typeIIError_eq_one_sub_typeIError",
     "StatisticalUnlearning.tradeOff_self",
-    "StatisticalUnlearning.tradeOff_one"
+    "StatisticalUnlearning.tradeOff_one",
+    "StatisticalUnlearning.pullbackTest",
+    "StatisticalUnlearning.typeIError_map",
+    "StatisticalUnlearning.typeIIError_map",
+    "StatisticalUnlearning.tradeOff_map_ge",
+    "StatisticalUnlearning.tradeOff_map_equiv"
   ]
 }
