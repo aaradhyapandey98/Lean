@@ -67,3 +67,4 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.real_test_feasible_iff
 #print axioms StatisticalUnlearning.tradeOff_toReal_eq_iInf
 #print axioms StatisticalUnlearning.tradeOff_eq_real_test_infimum
+#print axioms StatisticalUnlearning.real_tradeOff_kernel_ge
