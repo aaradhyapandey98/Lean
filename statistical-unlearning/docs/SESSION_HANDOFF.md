@@ -55,3 +55,7 @@ Assign disjoint modules to agents and arrange independent statement review. Comm
 - The complete paper remains unverified; the real/ENNReal correspondence and source-facing interface are the immediate next tasks. Geometry remains separate from the unproved Gaussian testing correspondence.
 
 The publication commit may differ from the checked source revision because it adds evidence, generated reader data and this handoff. The evidence hashes bind every Lean file, toolchain, Lake configuration, lockfile and declaration registry. Do not treat a changed Lean file as covered by this result.
+
+## Inverse domain congruence — draft pending verification
+
+Branch `inverse-domain-congruence`, based on PR #2 head `c48f8aed72d7b51ef962f42a16cba34602ddb8b6`, adds `leftInverse_congr`: functions agreeing on `[0,1]` have the same encoded inverse, so extension choices outside the source domain do not matter. This is a proposed supporting result, not one of ten completed paper results. Local Lean/Lake/Elan are unavailable and local GitHub access returns HTTP 403; the pull request CI must build and audit the exact revision. Independent source review, a subtype-facing interface, real/ENNReal bridges, and the MathJax reader remain outstanding. Existing evidence does not certify the changed Lean files. Do not merge until all requested validation is satisfied.
