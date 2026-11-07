@@ -7,9 +7,9 @@ This project has two deliverables: a Lean library with explicit assumptions, and
 ## Current trust status
 
 - Lean source is authored without proof placeholders or project-specific axioms.
-- The inverse-order increment and the existing foundations compiled in [GitHub Actions run 42339473157](https://github.com/aaradhyapandey98/Lean/actions/runs/42339473157), Lean 4.24.0 / mathlib v4.24.0. All **35 registered declarations** passed the transitive-axiom audit. These include auxiliary results and definitions; independent review of the new inverse statements is outstanding.
+- The current proof snapshot compiled in [GitHub Actions run 42396622510](https://github.com/aaradhyapandey98/Lean/actions/runs/42396622510), Lean 4.24.0 with the pinned mathlib revision. All **67 registered declarations** passed the transitive-axiom audit. These include definitions and auxiliary results; independent source-fidelity review of the newer statements is outstanding.
 - A green source scan is not a proof certificate. Only a successful Lean build and axiom audit for matching source may set a declaration's site status to **checked**.
-- Formal statement fidelity is reviewed separately from compilation. In particular, the ENNReal representation of tests and trade-offs still needs its bridge to the paper's real-valued formulation.
+- Formal statement fidelity is reviewed separately from compilation. The Definition 1 real-test and infimum bridge has been checked, subject to independent source review. The Blackwell converse, divergence ordering, tensor properties, and composition remain open.
 - Suspected and independently reviewed source issues are recorded in `docs/PAPER_AUDIT.md` and `docs/INDEPENDENT_REVIEW.md`. These are mathematical review notes, not machine-checked counterexamples.
 
 ## Work on the library
