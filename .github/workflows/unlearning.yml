@@ -21,15 +21,17 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
-        with:
-          lake-package-directory: statistical-unlearning
-          auto-config: false
-          build: true
-          build-args: --wfail
-          test: false
-          lint: false
-          use-github-cache: false
+      - name: Install elan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve and build
+        working-directory: statistical-unlearning
+        run: |
+          lake update
+          lake exe cache get
+          lake build --wfail
       - name: Record resolved dependencies
         working-directory: statistical-unlearning
         run: cat lake-manifest.json
