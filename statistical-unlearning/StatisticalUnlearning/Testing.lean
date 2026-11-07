@@ -135,4 +135,26 @@ theorem tradeOff_one (P Q : ProbabilityMeasure Ω) :
   · simpa using tradeOff_le_diagonal P Q ⟨1, by simp⟩
   · exact zero_le _
 
+/-- Every paper-style real measurable test has an encoded counterpart. -/
+theorem real_test_to_encoded (f : Ω → ℝ) (hf : Measurable f)
+    (hrange : ∀ x, 0 ≤ f x ∧ f x ≤ 1) :
+    ∃ φ : RandomizedTest Ω, ∀ x, φ.toFun x = ENNReal.ofReal (f x) := by
+  refine ⟨⟨fun x => ENNReal.ofReal (f x),
+    ENNReal.measurable_ofReal.comp hf, ?_⟩, fun _ => rfl⟩
+  intro x
+  simpa using ENNReal.ofReal_le_ofReal (hrange x).2
+
+/-- Every encoded test corresponds pointwise to a measurable real test in [0,1]. -/
+theorem encoded_test_to_real (φ : RandomizedTest Ω) :
+    ∃ f : Ω → ℝ, Measurable f ∧ (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+      ∀ x, ENNReal.ofReal (f x) = φ.toFun x := by
+  refine ⟨fun x => (φ.toFun x).toReal,
+    ENNReal.measurable_toReal.comp φ.measurable_toFun, ?_, ?_⟩
+  · intro x
+    exact ⟨ENNReal.toReal_nonneg,
+      by simpa using ENNReal.toReal_mono (by simp : (1 : ℝ≥0∞) ≠ ∞) (φ.le_one x)⟩
+  · intro x
+    exact ENNReal.ofReal_toReal
+      (ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (φ.le_one x))
+
 end StatisticalUnlearning
