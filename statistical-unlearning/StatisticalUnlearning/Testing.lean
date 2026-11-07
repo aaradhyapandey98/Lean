@@ -227,4 +227,27 @@ theorem tradeOff_toReal_eq_iInf (P Q : ProbabilityMeasure Ω) (α : Significance
   exact ENNReal.toReal_iInf (fun φ =>
     ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ∞) (typeIIError_le_one Q φ.1))
 
+/-- Definition 1, equation (1): the encoded curve equals the infimum over
+the paper's real measurable randomized tests and their real expectations. -/
+theorem tradeOff_eq_real_test_infimum (P Q : ProbabilityMeasure Ω)
+    (α : SignificanceLevel) :
+    (tradeOff P Q α).toReal =
+      sInf {r : ℝ | ∃ f : Ω → ℝ, Measurable f ∧
+        (∀ x, 0 ≤ f x ∧ f x ≤ 1) ∧
+        (∫ x, f x ∂(P : Measure Ω)) ≤ (α : ℝ≥0∞).toReal ∧
+        r = ∫ x, (1 - f x) ∂(Q : Measure Ω)} := by
+  rw [tradeOff_toReal_eq_iInf, ← sInf_range]
+  congr 1
+  ext r
+  constructor
+  · rintro ⟨⟨φ, hfeas⟩, hval⟩
+    obtain ⟨f, hf, hrange, hrep⟩ := encoded_test_to_real φ
+    have hφ : ∀ x, φ.toFun x = ENNReal.ofReal (f x) := fun x => (hrep x).symm
+    refine ⟨f, hf, hrange, (real_test_feasible_iff P φ f hf hrange hφ α).2 hfeas, ?_⟩
+    exact hval.symm.trans (typeIIError_real Q φ f hf hrange hφ).symm
+  · rintro ⟨f, hf, hrange, hfeas, hval⟩
+    obtain ⟨φ, hφ⟩ := real_test_to_encoded f hf hrange
+    refine ⟨⟨φ, (real_test_feasible_iff P φ f hf hrange hφ α).1 hfeas⟩, ?_⟩
+    exact (typeIIError_real Q φ f hf hrange hφ).symm.trans hval.symm
+
 end StatisticalUnlearning
