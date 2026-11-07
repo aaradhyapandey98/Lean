@@ -60,6 +60,9 @@
     "StatisticalUnlearning.leftInverse_congr",
     "StatisticalUnlearning.real_geometricFeasibleRegion_eq",
     "StatisticalUnlearning.real_geometricFeasibleRegion_nonempty_iff",
-    "StatisticalUnlearning.zero_removal_whole_ball_counterexample"
+    "StatisticalUnlearning.zero_removal_whole_ball_counterexample",
+    "StatisticalUnlearning.typeIError_le_one",
+    "StatisticalUnlearning.typeIIError_le_one",
+    "StatisticalUnlearning.real_test_feasible_iff"
   ]
 }
