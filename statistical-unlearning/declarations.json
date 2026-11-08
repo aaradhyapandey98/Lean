@@ -66,6 +66,15 @@
     "StatisticalUnlearning.real_test_feasible_iff",
     "StatisticalUnlearning.tradeOff_toReal_eq_iInf",
     "StatisticalUnlearning.tradeOff_eq_real_test_infimum",
-    "StatisticalUnlearning.real_tradeOff_kernel_ge"
+    "StatisticalUnlearning.real_tradeOff_kernel_ge",
+    "StatisticalUnlearning.UnitInterval",
+    "StatisticalUnlearning.unitIntervalExtend",
+    "StatisticalUnlearning.unitIntervalExtend_apply",
+    "StatisticalUnlearning.unitIntervalSublevel_image",
+    "StatisticalUnlearning.unitIntervalLeftInverse",
+    "StatisticalUnlearning.unitIntervalLeftInverse_eq_sInf_of_nonempty",
+    "StatisticalUnlearning.unitIntervalLeftInverse_eq_one_of_empty",
+    "StatisticalUnlearning.unitIntervalLeftInverse_mono",
+    "StatisticalUnlearning.generalizedInverse_order_paper"
   ]
 }
