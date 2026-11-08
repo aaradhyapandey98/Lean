@@ -94,4 +94,80 @@ theorem leftInverse_congr {f g : ℝ → ℝ}
   · exact leftInverse_mono (fun x hx => le_of_eq (h x hx)) t
   · exact leftInverse_mono (fun x hx => le_of_eq (h x hx).symm) t
 
+/-- The paper's domain `[0,1]`, represented as a subtype. -/
+abbrev UnitInterval := Set.Icc (0 : ℝ) 1
+
+/-- Extend a real-valued function on `[0,1]` to `ℝ`; outside values are irrelevant. -/
+def unitIntervalExtend (f : UnitInterval → ℝ) (x : ℝ) : ℝ :=
+  if hx : x ∈ Set.Icc (0 : ℝ) 1 then f ⟨x, hx⟩ else 0
+
+@[simp] theorem unitIntervalExtend_apply (f : UnitInterval → ℝ) (x : UnitInterval) :
+    unitIntervalExtend f x = f x := by
+  simp [unitIntervalExtend, x.property]
+
+/-- The real sublevel set used by `leftInverse` is exactly the coercion image of
+the paper's subtype-level sublevel set. -/
+theorem unitIntervalSublevel_image (f : UnitInterval → UnitInterval) (t : UnitInterval) :
+    {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧
+      unitIntervalExtend (fun y => (f y : ℝ)) x ≤ (t : ℝ)} =
+      (fun y : UnitInterval => (y : ℝ)) '' {y | f y ≤ t} := by
+  ext x
+  constructor
+  · rintro ⟨hx0, hx1, hfx⟩
+    let y : UnitInterval := ⟨x, ⟨hx0, hx1⟩⟩
+    refine ⟨y, ?_, rfl⟩
+    change (f y : ℝ) ≤ (t : ℝ)
+    simpa [unitIntervalExtend, y.property] using hfx
+  · rintro ⟨y, hy, rfl⟩
+    refine ⟨y.property.1, y.property.2, ?_⟩
+    have hy' : (f y : ℝ) ≤ (t : ℝ) := hy
+    simpa [unitIntervalExtend, y.property] using hy'
+
+/-- The paper-shaped generalized inverse, with both domain and codomain `[0,1]`. -/
+noncomputable def unitIntervalLeftInverse (f : UnitInterval → UnitInterval)
+    (t : UnitInterval) : UnitInterval :=
+  ⟨leftInverse (unitIntervalExtend fun x => (f x : ℝ)) (t : ℝ),
+    leftInverse_nonneg _ _, leftInverse_le_one _ _⟩
+
+/-- For a nonempty sublevel set, the paper-shaped inverse is its real infimum. -/
+theorem unitIntervalLeftInverse_eq_sInf_of_nonempty
+    (f : UnitInterval → UnitInterval) (t : UnitInterval)
+    (hs : {x : UnitInterval | f x ≤ t}.Nonempty) :
+    (unitIntervalLeftInverse f t : ℝ) =
+      sInf ((fun x : UnitInterval => (x : ℝ)) '' {x | f x ≤ t}) := by
+  have hreal :
+      {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧
+        unitIntervalExtend (fun y => (f y : ℝ)) x ≤ (t : ℝ)}.Nonempty := by
+    rw [unitIntervalSublevel_image]
+    exact hs.image fun x => (x : ℝ)
+  change leftInverse (unitIntervalExtend fun x => (f x : ℝ)) (t : ℝ) = _
+  rw [leftInverse_eq_sInf_of_nonempty _ _ hreal, unitIntervalSublevel_image]
+
+/-- For an empty sublevel set, the paper-shaped inverse has value `1`. -/
+theorem unitIntervalLeftInverse_eq_one_of_empty
+    (f : UnitInterval → UnitInterval) (t : UnitInterval)
+    (hs : {x : UnitInterval | f x ≤ t} = ∅) :
+    (unitIntervalLeftInverse f t : ℝ) = 1 := by
+  change leftInverse (unitIntervalExtend fun x => (f x : ℝ)) (t : ℝ) = 1
+  apply leftInverse_eq_one_of_empty
+  rw [unitIntervalSublevel_image, hs, Set.image_empty]
+
+/-- Pointwise order implies inverse order directly on the paper's subtype. -/
+theorem unitIntervalLeftInverse_mono {f g : UnitInterval → UnitInterval}
+    (h : ∀ x, f x ≤ g x) (t : UnitInterval) :
+    unitIntervalLeftInverse f t ≤ unitIntervalLeftInverse g t := by
+  change leftInverse (unitIntervalExtend fun x => (f x : ℝ)) (t : ℝ) ≤
+    leftInverse (unitIntervalExtend fun x => (g x : ℝ)) (t : ℝ)
+  apply leftInverse_mono
+  intro x hx
+  have h' : (f ⟨x, hx⟩ : ℝ) ≤ (g ⟨x, hx⟩ : ℝ) := h ⟨x, hx⟩
+  simpa [unitIntervalExtend, hx] using h'
+
+/-- Lemma 17 exactly in the paper's source shape. The antitonicity assumptions
+are retained for fidelity, although the stronger order lemma above does not need them. -/
+theorem generalizedInverse_order_paper {f g : UnitInterval → UnitInterval}
+    (_hf : Antitone f) (_hg : Antitone g) (h : ∀ x, f x ≤ g x) (t : UnitInterval) :
+    unitIntervalLeftInverse f t ≤ unitIntervalLeftInverse g t :=
+  unitIntervalLeftInverse_mono h t
+
 end StatisticalUnlearning
