@@ -98,7 +98,7 @@ theorem leftInverse_congr {f g : ℝ → ℝ}
 abbrev UnitInterval := Set.Icc (0 : ℝ) 1
 
 /-- Extend a real-valued function on `[0,1]` to `ℝ`; outside values are irrelevant. -/
-def unitIntervalExtend (f : UnitInterval → ℝ) (x : ℝ) : ℝ :=
+noncomputable def unitIntervalExtend (f : UnitInterval → ℝ) (x : ℝ) : ℝ :=
   if hx : x ∈ Set.Icc (0 : ℝ) 1 then f ⟨x, hx⟩ else 0
 
 @[simp] theorem unitIntervalExtend_apply (f : UnitInterval → ℝ) (x : UnitInterval) :
@@ -114,10 +114,10 @@ theorem unitIntervalSublevel_image (f : UnitInterval → UnitInterval) (t : Unit
   ext x
   constructor
   · rintro ⟨hx0, hx1, hfx⟩
-    let y : UnitInterval := ⟨x, ⟨hx0, hx1⟩⟩
-    refine ⟨y, ?_, rfl⟩
-    change (f y : ℝ) ≤ (t : ℝ)
-    simpa [unitIntervalExtend, y.property] using hfx
+    have hx : x ∈ Set.Icc (0 : ℝ) 1 := ⟨hx0, hx1⟩
+    refine ⟨⟨x, hx⟩, ?_, rfl⟩
+    change (f ⟨x, hx⟩ : ℝ) ≤ (t : ℝ)
+    simpa only [unitIntervalExtend, dif_pos hx] using hfx
   · rintro ⟨y, hy, rfl⟩
     refine ⟨y.property.1, y.property.2, ?_⟩
     have hy' : (f y : ℝ) ≤ (t : ℝ) := hy
@@ -139,7 +139,8 @@ theorem unitIntervalLeftInverse_eq_sInf_of_nonempty
       {x : ℝ | 0 ≤ x ∧ x ≤ 1 ∧
         unitIntervalExtend (fun y => (f y : ℝ)) x ≤ (t : ℝ)}.Nonempty := by
     rw [unitIntervalSublevel_image]
-    exact hs.image fun x => (x : ℝ)
+    rcases hs with ⟨x, hx⟩
+    exact ⟨(x : ℝ), ⟨x, hx, rfl⟩⟩
   change leftInverse (unitIntervalExtend fun x => (f x : ℝ)) (t : ℝ) = _
   rw [leftInverse_eq_sInf_of_nonempty _ _ hreal, unitIntervalSublevel_image]
 
