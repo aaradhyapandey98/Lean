@@ -68,3 +68,12 @@ import StatisticalUnlearning
 #print axioms StatisticalUnlearning.tradeOff_toReal_eq_iInf
 #print axioms StatisticalUnlearning.tradeOff_eq_real_test_infimum
 #print axioms StatisticalUnlearning.real_tradeOff_kernel_ge
+#print axioms StatisticalUnlearning.UnitInterval
+#print axioms StatisticalUnlearning.unitIntervalExtend
+#print axioms StatisticalUnlearning.unitIntervalExtend_apply
+#print axioms StatisticalUnlearning.unitIntervalSublevel_image
+#print axioms StatisticalUnlearning.unitIntervalLeftInverse
+#print axioms StatisticalUnlearning.unitIntervalLeftInverse_eq_sInf_of_nonempty
+#print axioms StatisticalUnlearning.unitIntervalLeftInverse_eq_one_of_empty
+#print axioms StatisticalUnlearning.unitIntervalLeftInverse_mono
+#print axioms StatisticalUnlearning.generalizedInverse_order_paper

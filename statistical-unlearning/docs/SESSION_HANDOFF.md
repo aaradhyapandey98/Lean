@@ -93,3 +93,24 @@ Branch `real-tradeoff-kernel-forward`, based on PR #12 head `596d4a9b7710b801b4d
 ## Main-integration candidate — 7 November 2026
 
 Branch `statistical-unlearning-main-candidate` starts at `7440d8e855a0e7488a0b529f543e7a68486e2535`, the full proof stack, a descendant of main `77413e267795be6aa55b5dee72895f9653e02d12`. The source snapshot passed [CI run 42396622510](https://github.com/aaradhyapandey98/Lean/actions/runs/42396622510) including `lake build --wfail`, structural/reader checks and the 67-declaration axiom audit. Only README and this handoff changed after that snapshot; retained reader evidence remains bound to the identical Lean/configuration hashes. A fresh candidate-branch check is required. An author-side source pass confirmed the recorded inverse and real forward inequality directions, but is not an independent review. The separate Lemma 17 independent source review, broader source fidelity review and the incomplete target-1 theorems remain open; do not imply full paper verification. The incomplete MathJax conversion in PR #8 is excluded. No merge to main has occurred.
+
+
+## 8 November 2026 — paper-shaped generalized inverse interface
+
+PR #2 was inspected before this increment. GitHub now records PR #2 as merged, not open. Its real-valued generalized-inverse strengthening is present on `main`, but its review correctly identified the missing source-facing subtype bridge.
+
+Draft PR #15 (`inverse-paper-interface`) adds the explicit `[0,1] → [0,1]` interface for Appendix A.4, Lemma 17:
+
+- `UnitInterval` and `unitIntervalExtend`;
+- exact identification of the real sublevel set with the coercion image of the subtype sublevel set;
+- nonempty-infimum and empty-infimum-equals-one representation theorems;
+- subtype-level inverse ordering; and
+- `generalizedInverse_order_paper`, whose hypotheses and threshold domain match the printed source.
+
+The first CI run 42480218752 failed during elaboration and performed no axiom audit. Its three reported issues were corrected without weakening a statement. [Run 42480440092](https://github.com/aaradhyapandey98/Lean/actions/runs/42480440092) then compiled source revision `41ce580e0c8e1f96a3103f9851078f56bd0bbe29` with Lean 4.24.0 and pinned mathlib `f897ebcf72cd16f89ab4577d0c826cd14afaafc7`; all 76 registered declarations passed the transitive-axiom audit using only `propext`, `Classical.choice`, and `Quot.sound`. Later commits in the draft PR change only catalog/review/handoff files until a further Lean source change is explicitly recorded.
+
+An independent assistant-agent statement pass is recorded in `docs/INVERSE_SUBTYPE_REVIEW.md`. It found the printed Lemma 17 correct and the new source-facing statement faithful; it is not a human peer review and does not replace the Lean build.
+
+After the catalog, review and handoff updates, [run 42480806020](https://github.com/aaradhyapandey98/Lean/actions/runs/42480806020) again passed the full build, all 76 axiom reports, structural checks and checked-reader generation. Its pull-request merge revision is `0950b543783f1b02cf2861fcb737a1d98eb3a0b5`, and its source snapshot includes branch head `48fb51bb233fe56d8dcf4999ecd65e9807405c2a`. The retained `verification/last-audit.json` and generated `site/data/proofs.js` were copied verbatim from that run's artifact; their subsequent evidence-only commits do not alter Lean sources.
+
+The generalized-inverse representation obligation is now implemented and independently statement-reviewed on the draft branch, but it is not merged. Target 1 remains incomplete: the source-facing realizable-baseline/family-membership interface, the Blackwell converse and its measurable-space regularity conditions, Lemma 20's divergence factorization/order, Proposition 8's tensor laws, Lemma 2's composition theorem, and broader independent/human review remain open. The testing real/ENNReal bridge and forward kernel direction already on `main` remain the starting dependencies for that work.

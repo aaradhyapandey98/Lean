@@ -500,16 +500,16 @@
       "summary": "Pointwise ordering of two functions preserves ordering of their generalized left inverses.",
       "statement": "If f(x) ≤ g(x) for all x ∈ [0,1], then f⁻¹(t) ≤ g⁻¹(t). The inverse is the infimum of the sublevel set in [0,1], with empty infimum defined as 1.",
       "assumptions": [
-        "Pointwise ordering on [0,1].",
-        "The result holds for all real thresholds; the paper restricts thresholds to [0,1].",
-        "Nonincreasingness and range restrictions are not needed for this implication."
+        "f and g map the closed unit interval to itself and are nonincreasing, as in the source.",
+        "Pointwise ordering f(x) ≤ g(x) on [0,1].",
+        "The threshold t belongs to [0,1]."
       ],
       "lean": {
         "file": "StatisticalUnlearning/Inverse.lean",
-        "declaration": "StatisticalUnlearning.leftInverse_mono"
+        "declaration": "StatisticalUnlearning.generalizedInverse_order_paper"
       },
       "dependencies": [],
-      "notes": "The two representation lemmas prove that adjoining 1 implements the paper’s empty-infimum convention. Independent statement review remains outstanding."
+      "notes": "The subtype bridge identifies the paper’s [0,1]-valued sublevel infimum with the real extension, including the empty-set value 1. A separate independent assistant pass reviewed the source-shaped statement; human review remains welcome."
     },
     {
       "id": "blackwell-real-forward",
